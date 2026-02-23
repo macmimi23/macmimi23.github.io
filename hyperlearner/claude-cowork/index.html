@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 HyperLearner — Maîtriser Claude Cowork</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<style>
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+  --text: #e6edf3; --text2: #8b949e; --accent: #58a6ff;
+  --accent2: #3fb950; --accent3: #d29922; --accent4: #f85149;
+  --border: #30363d; --radius: 12px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; }
+
+/* NAV */
+nav { position: fixed; top:0; left:0; right:0; z-index:100; background: rgba(13,17,23,.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav .inner { max-width:1100px; margin:0 auto; padding: 12px 24px; display:flex; align-items:center; gap:24px; }
+nav .logo { font-size:1.2em; font-weight:700; white-space:nowrap; }
+nav .logo span { color: var(--accent); }
+nav .tabs { display:flex; gap:4px; flex-wrap:wrap; }
+nav .tabs a { padding: 6px 16px; border-radius: 8px; text-decoration:none; color: var(--text2); font-size:.9em; font-weight:500; transition: all .2s; }
+nav .tabs a:hover, nav .tabs a.active { color: var(--text); background: var(--bg3); }
+
+/* MAIN */
+main { max-width:900px; margin: 0 auto; padding: 80px 24px 60px; }
+section { display:none; }
+section.active { display:block; }
+
+/* TYPOGRAPHY */
+h1 { font-size: 2.4em; font-weight: 800; margin: 24px 0 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 1.6em; font-weight: 700; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--text); }
+h3 { font-size: 1.2em; font-weight: 600; margin: 32px 0 12px; color: var(--accent); }
+p { margin: 12px 0; color: var(--text); }
+blockquote { margin: 16px 0; padding: 12px 20px; border-left: 3px solid var(--accent); background: var(--bg2); border-radius: 0 var(--radius) var(--radius) 0; color: var(--text2); font-style: italic; }
+hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong { color: var(--text); font-weight: 600; }
+ul, ol { margin: 12px 0 12px 24px; }
+li { margin: 6px 0; }
+
+/* CODE */
+pre { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; overflow-x: auto; margin: 16px 0; font-size: .88em; }
+code { font-family: var(--mono); font-size: .9em; }
+:not(pre) > code { background: var(--bg3); padding: 2px 6px; border-radius: 4px; font-size: .85em; }
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .92em; }
+th { background: var(--bg3); padding: 10px 14px; text-align: left; font-weight: 600; border: 1px solid var(--border); }
+td { padding: 10px 14px; border: 1px solid var(--border); }
+tr:hover td { background: var(--bg2); }
+
+/* TOC */
+.toc { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 28px; margin: 24px 0; }
+.toc h3 { margin: 0 0 12px; color: var(--text); font-size: 1em; }
+.toc ol { margin: 0; padding-left: 20px; }
+.toc li { margin: 4px 0; }
+.toc a { color: var(--text2); font-size: .92em; }
+.toc a:hover { color: var(--accent); }
+
+/* BADGES */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: .78em; font-weight: 600; }
+.badge-green { background: rgba(63,185,80,.15); color: var(--accent2); }
+.badge-yellow { background: rgba(210,153,34,.15); color: var(--accent3); }
+.badge-red { background: rgba(248,81,73,.15); color: var(--accent4); }
+
+/* EXERCISE CARDS */
+.exercise { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 20px 0; }
+.exercise h3 { margin-top: 0; }
+.exercise .check { color: var(--accent2); font-weight: 600; margin-top: 12px; }
+
+/* CHEATSHEET GRID */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.card h4 { margin: 0 0 8px; color: var(--accent); font-size: 1em; }
+
+/* DIAGRAM */
+.diagram { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 16px 0; font-family: var(--mono); font-size: .82em; line-height: 1.5; overflow-x: auto; white-space: pre; color: var(--text2); }
+
+/* PROGRESS */
+.progress-table td:last-child { text-align: center; font-size: 1.2em; }
+
+/* FOOTER */
+footer { max-width:900px; margin: 0 auto; padding: 24px; text-align: center; color: var(--text2); font-size: .85em; border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.3em; }
+  nav .inner { padding: 10px 16px; gap: 12px; }
+  nav .tabs a { padding: 4px 10px; font-size: .82em; }
+  main { padding: 70px 16px 40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">🧠 <span>HyperLearner</span></div>
+    <div class="tabs">
+      <a href="#guide" class="active" onclick="showTab('guide')">📖 Guide</a>
+      <a href="#exercises" onclick="showTab('exercises')">🎯 Exercices</a>
+      <a href="#cheatsheet" onclick="showTab('cheatsheet')">⚡ Cheatsheet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== GUIDE ==================== -->
+<main>
+<section id="guide" class="active">
+
+<h1>🎓 Maîtriser Claude Cowork</h1>
+<p style="color:var(--text2); font-size:1.1em;">Généré par HyperLearner — Février 2026</p>
+
+<div class="toc">
+<h3>📚 Table des matières</h3>
+<ol>
+  <li><a href="#s1">C'est quoi Cowork?</a></li>
+  <li><a href="#s2">Pourquoi c'est révolutionnaire</a></li>
+  <li><a href="#s3">Setup complet</a></li>
+  <li><a href="#s4">Architecture interne</a></li>
+  <li><a href="#s5">Plugins & Personnalisation</a></li>
+  <li><a href="#s6">Best Practices</a></li>
+  <li><a href="#s7">Use Cases concrets</a></li>
+  <li><a href="#s8">Limites actuelles</a></li>
+  <li><a href="#s9">Ressources</a></li>
+</ol>
+</div>
+
+<h2 id="s1">1. C'est quoi Cowork?</h2>
+<p><strong>Claude Cowork</strong> est un mode d'exécution agentique dans l'app Claude Desktop. Au lieu de répondre à des prompts un par un, Claude prend en charge des <strong>tâches complexes multi-étapes</strong> et les exécute de manière autonome.</p>
+
+<h3>Différence avec le chat classique</h3>
+<table>
+  <tr><th>Chat classique</th><th>Cowork</th></tr>
+  <tr><td>Réponses à des prompts</td><td>Exécution de tâches</td></tr>
+  <tr><td>Contexte limité</td><td>Contexte persistant</td></tr>
+  <tr><td>Output = texte</td><td>Output = fichiers terminés</td></tr>
+  <tr><td>Tu guides chaque étape</td><td>Tu décris le résultat final</td></tr>
+  <tr><td>Rapide, conversationnel</td><td>Long-running, autonome</td></tr>
+</table>
+
+<blockquote>Tu décris un résultat, tu pars, tu reviens avec le travail fini.</blockquote>
+<p>C'est la même architecture que <strong>Claude Code</strong> (le coding agent), mais accessible via l'interface Desktop pour du <strong>knowledge work</strong> (pas que du code).</p>
+
+<h2 id="s2">2. Pourquoi c'est révolutionnaire</h2>
+
+<h3>Avant Cowork</h3>
+<pre><code>Toi: "Organise mes fichiers"
+Claude: "Voici comment faire: 1. Ouvre le Finder..."
+Toi: *fait manuellement*</code></pre>
+
+<h3>Avec Cowork</h3>
+<pre><code>Toi: "Organise mes fichiers Downloads par type"
+Claude: *crée les dossiers, déplace les fichiers, te montre le log*
+Toi: *vérifie le résultat*</code></pre>
+
+<h3>Ce qui change</h3>
+<ul>
+  <li><strong>Exécution réelle</strong> sur ton Mac (pas juste des instructions)</li>
+  <li><strong>Planification automatique</strong> (Claude décompose la tâche)</li>
+  <li><strong>Transparence</strong> (tu vois ce que Claude fait en temps réel)</li>
+  <li><strong>Intervention</strong> possible à tout moment</li>
+</ul>
+
+<h2 id="s3">3. Setup complet</h2>
+
+<h3>Prérequis</h3>
+<table>
+  <tr><th>Requis</th><th>Détail</th></tr>
+  <tr><td><strong>Hardware</strong></td><td>Mac Apple Silicon (M1/M2/M3/M4)</td></tr>
+  <tr><td><strong>RAM</strong></td><td>8GB minimum recommandé</td></tr>
+  <tr><td><strong>OS</strong></td><td>macOS Sonoma ou plus récent</td></tr>
+  <tr><td><strong>App</strong></td><td>Claude Desktop (dernière version)</td></tr>
+  <tr><td><strong>Abo</strong></td><td>Claude Pro ($20/mois) ou Max ($100/mois)</td></tr>
+</table>
+
+<p>⚠️ <strong>Windows</strong> pas encore supporté (prévu mi-2026)</p>
+
+<h3>Installation pas à pas</h3>
+
+<h3>Étape 1 : Installer Claude Desktop</h3>
+<pre><code class="language-bash"># Télécharger depuis
+open https://claude.com/download
+
+# Ou via Homebrew
+brew install --cask claude</code></pre>
+
+<h3>Étape 2 : S'abonner à Pro/Max</h3>
+<ol>
+  <li>Aller sur <code>claude.ai/settings</code></li>
+  <li>Cliquer "Subscription" → "Upgrade"</li>
+  <li>Choisir Pro ($20) ou Max ($100)</li>
+</ol>
+<p>💡 <strong>Max recommandé</strong> si tu comptes utiliser Cowork intensivement (consomme plus de tokens que le chat).</p>
+
+<h3>Étape 3 : Activer Cowork</h3>
+<ol>
+  <li>Ouvrir Claude Desktop</li>
+  <li>Settings (⚙️) → "Features" ou "Beta Features"</li>
+  <li>Activer le toggle "Cowork"</li>
+  <li>Accepter les permissions</li>
+</ol>
+<p>⏳ <strong>Premier lancement</strong> : télécharge une VM Linux (~2GB). Patience.</p>
+
+<h3>Étape 4 : Configurer les permissions fichiers</h3>
+<pre><code>✅ ~/Documents/Projets
+✅ ~/Downloads
+❌ ~ (tout le home)
+❌ /System</code></pre>
+
+<h3>Étape 5 : Lancer ta première tâche</h3>
+<ol>
+  <li>Cliquer "New Cowork" ou l'icône Cowork</li>
+  <li>Attendre que la VM démarre</li>
+  <li>Décrire ta tâche</li>
+  <li>Valider le plan proposé</li>
+  <li>Laisser Claude bosser</li>
+</ol>
+
+<h2 id="s4">4. Architecture interne</h2>
+
+<div class="diagram">┌─────────────────────────────────────────────────┐
+│                 Claude Desktop                   │
+│  ┌───────────────────────────────────────────┐  │
+│  │              VM Linux isolée               │  │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐   │  │
+│  │  │ Planner │→│ Executor│→│ File I/O│   │  │
+│  │  └─────────┘  └─────────┘  └─────────┘   │  │
+│  │        ↓           ↓           ↓         │  │
+│  │  ┌─────────────────────────────────────┐ │  │
+│  │  │     Shared Folders (tes fichiers)   │ │  │
+│  │  └─────────────────────────────────────┘ │  │
+│  └───────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────┘</div>
+
+<h3>Les 5 étapes d'une tâche</h3>
+<ol>
+  <li><strong>Analyse de l'intent</strong> — Claude comprend ce que tu veux</li>
+  <li><strong>Planification</strong> — Décomposition en sous-tâches</li>
+  <li><strong>Exécution (+ sub-agents)</strong> — Travail parallèle si nécessaire</li>
+  <li><strong>Visibilité</strong> — Tu vois la progression en temps réel</li>
+  <li><strong>Livraison</strong> — Fichiers écrits dans ton système</li>
+</ol>
+
+<h3>Isolation & Sécurité</h3>
+<ul>
+  <li><strong>VM isolée</strong> : le code s'exécute dans un sandbox</li>
+  <li><strong>Permissions explicites</strong> : folder-level access control</li>
+  <li><strong>Pas de persistence</strong> : chaque session repart de zéro</li>
+  <li><strong>Approbation requise</strong> : actions risquées demandent confirmation</li>
+</ul>
+
+<h2 id="s5">5. Plugins & Personnalisation</h2>
+
+<h3>Plugins officiels Anthropic</h3>
+<table>
+  <tr><th>Plugin</th><th>Utilité</th><th>Connecteurs</th></tr>
+  <tr><td><strong>productivity</strong></td><td>Tasks, calendars, workflows</td><td>Slack, Notion, Asana, Linear, Jira</td></tr>
+  <tr><td><strong>sales</strong></td><td>Prospection, prep calls, pipeline</td><td>HubSpot, Close, Clay, ZoomInfo</td></tr>
+  <tr><td><strong>customer-support</strong></td><td>Triage tickets, KB articles</td><td>Intercom, HubSpot, Guru</td></tr>
+  <tr><td><strong>product-management</strong></td><td>Specs, roadmaps, research</td><td>Linear, Figma, Amplitude</td></tr>
+  <tr><td><strong>marketing</strong></td><td>Content, campaigns, brand</td><td>Canva, HubSpot, Ahrefs</td></tr>
+  <tr><td><strong>data</strong></td><td>SQL, dashboards, analysis</td><td>Snowflake, Hex, Amplitude</td></tr>
+</table>
+
+<h3>Installer un plugin</h3>
+<pre><code class="language-bash"># Ajouter le marketplace
+claude plugin marketplace add anthropics/knowledge-work-plugins
+
+# Installer
+claude plugin install sales@knowledge-work-plugins</code></pre>
+
+<h3>Global Instructions</h3>
+<p>Instructions permanentes pour Claude :</p>
+<pre><code>Ton: professionnel mais décontracté
+Format: toujours utiliser des bullet points
+Contexte: je suis consultant IA, mes clients sont des PME</code></pre>
+
+<h2 id="s6">6. Best Practices</h2>
+
+<h3>✅ DO</h3>
+<table>
+  <tr><th>Practice</th><th>Pourquoi</th></tr>
+  <tr><td><strong>Sois spécifique</strong></td><td>"Créer un Excel avec colonnes A, B, C" &gt; "faire un tableau"</td></tr>
+  <tr><td><strong>Décris le résultat final</strong></td><td>"Je veux un deck de 10 slides sur X"</td></tr>
+  <tr><td><strong>Teste sur des copies</strong></td><td>Backup avant de lâcher Claude sur des fichiers importants</td></tr>
+  <tr><td><strong>Review le plan</strong></td><td>Valide avant l'exécution</td></tr>
+  <tr><td><strong>Limite les permissions</strong></td><td>Que les dossiers nécessaires</td></tr>
+</table>
+
+<h3>❌ DON'T</h3>
+<table>
+  <tr><th>Anti-pattern</th><th>Problème</th></tr>
+  <tr><td>Instructions vagues</td><td>Claude va deviner (mal)</td></tr>
+  <tr><td>Opérations système</td><td>Pas conçu pour ça</td></tr>
+  <tr><td>Skip la review</td><td>Tu rates les erreurs</td></tr>
+  <tr><td>Full home access</td><td>Risque sécurité</td></tr>
+  <tr><td>Fermer l'app pendant une tâche</td><td>Session perdue</td></tr>
+</table>
+
+<h3>Optimisation tokens</h3>
+<ol>
+  <li><strong>Batch les tâches similaires</strong> — une grosse tâche &gt; plusieurs petites</li>
+  <li><strong>Utilise le chat pour le simple</strong> — exploration, brainstorm</li>
+  <li><strong>Reserve Cowork pour le complexe</strong> — multi-étapes, fichiers, autonomie</li>
+</ol>
+
+<h2 id="s7">7. Use Cases concrets</h2>
+
+<h3>📁 File & Document Management</h3>
+<pre><code>"Organise mon dossier Downloads :
+- PDFs → /PDFs
+- Images → /Images  
+- Vidéos → /Videos
+- Renomme les screenshots avec la date"</code></pre>
+
+<h3>📊 Research & Analysis</h3>
+<pre><code>"Lis tous les meeting notes dans ce dossier.
+Extrais les action items par personne.
+Génère un résumé avec les décisions clés."</code></pre>
+
+<h3>📝 Document Creation</h3>
+<pre><code>"Transforme ces notes brutes en un rapport professionnel.
+- Executive summary
+- Sections par thème
+- Recommandations
+- Format Word"</code></pre>
+
+<h3>📈 Data Processing</h3>
+<pre><code>"Analyse ce CSV de ventes :
+- Clean les données
+- Calcule les totaux par région
+- Génère un graphique tendance
+- Sauve en Excel avec formules"</code></pre>
+
+<h3>💼 Sales Prep (avec plugin)</h3>
+<pre><code>/sales:call-prep "Acme Corp"
+
+→ Claude recherche :
+  - Infos entreprise
+  - Contacts LinkedIn
+  - News récentes
+  - Historique CRM
+→ Génère un brief de 1 page</code></pre>
+
+<h2 id="s8">8. Limites actuelles</h2>
+<table>
+  <tr><th>Limite</th><th>Détail</th></tr>
+  <tr><td><strong>macOS only</strong></td><td>Windows prévu mi-2026</td></tr>
+  <tr><td><strong>Pas de sync cross-device</strong></td><td>Tes fichiers restent locaux</td></tr>
+  <tr><td><strong>Pas de persistence</strong></td><td>Chaque session = fresh start</td></tr>
+  <tr><td><strong>Pas de mémoire</strong></td><td>Claude oublie entre sessions</td></tr>
+  <tr><td><strong>Pas de partage</strong></td><td>Sessions non partageables</td></tr>
+</table>
+
+<h3>Troubleshooting</h3>
+<table>
+  <tr><th>Problème</th><th>Solution</th></tr>
+  <tr><td>"Setting up Claude's workspace"</td><td>Normal au premier lancement (2GB download)</td></tr>
+  <tr><td>Tâche bloquée</td><td>Vérifier que l'app est ouverte, pas de sleep</td></tr>
+  <tr><td>Fichiers pas trouvés</td><td>Vérifier les permissions folder</td></tr>
+  <tr><td>Usage limits</td><td>Passer à Max ou réduire la complexité</td></tr>
+</table>
+
+<h2 id="s9">9. Ressources</h2>
+<ul>
+  <li>📖 <a href="https://support.claude.com/en/articles/13345190-getting-started-with-cowork">Documentation Cowork</a></li>
+  <li>🔌 <a href="https://github.com/anthropics/knowledge-work-plugins">Plugins officiels</a></li>
+  <li>📥 <a href="https://claude.com/download">Télécharger Claude Desktop</a></li>
+  <li>💬 <a href="https://reddit.com/r/Anthropic">r/Anthropic</a></li>
+  <li>🐙 <a href="https://github.com/affaan-m/everything-claude-code">everything-claude-code</a> (42K stars)</li>
+  <li>📐 <a href="https://www.tensorlake.ai/blog/claude-cowork-architecture-overview">Architecture Overview (Tensorlake)</a></li>
+  <li>🔓 <a href="https://github.com/ComposioHQ/open-claude-cowork">open-claude-cowork</a> — Version open source</li>
+</ul>
+
+</section>
+
+<!-- ==================== EXERCICES ==================== -->
+<section id="exercises">
+
+<h1>🎯 Exercices Pratiques</h1>
+<p style="color:var(--text2); font-size:1.1em;">Niveau progressif : Débutant → Intermédiaire → Avancé</p>
+
+<h2><span class="badge badge-green">🟢 Niveau 1</span> Premiers pas (15 min)</h2>
+
+<div class="exercise">
+<h3>Exercice 1.1 — Hello Cowork</h3>
+<p><strong>Objectif :</strong> Lancer ta première tâche simple</p>
+<ol>
+  <li>Ouvre Claude Desktop → Cowork</li>
+  <li>Sélectionne ton dossier <code>Downloads</code></li>
+  <li>Donne cette tâche :</li>
+</ol>
+<pre><code>Liste tous les fichiers dans ce dossier, triés par date de modification.
+Génère un fichier "inventory.txt" avec le résultat.</code></pre>
+<ol start="4">
+  <li>Observe le plan que Claude propose</li>
+  <li>Valide et laisse exécuter</li>
+  <li>Vérifie que <code>inventory.txt</code> existe</li>
+</ol>
+<p class="check">✅ Réussi si : Le fichier existe et contient la liste</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 1.2 — Organisation basique</h3>
+<p><strong>Objectif :</strong> Faire manipuler des fichiers</p>
+<ol>
+  <li>Crée un dossier test : <code>~/Desktop/CoworkTest</code></li>
+  <li>Mets-y 5-10 fichiers variés (pdf, jpg, txt)</li>
+  <li>Donne accès à ce dossier dans Cowork</li>
+  <li>Tâche :</li>
+</ol>
+<pre><code>Organise ce dossier :
+- Crée un sous-dossier par type de fichier
+- Déplace chaque fichier dans le bon sous-dossier
+- Génère un fichier "organization-report.md" résumant ce qui a été fait</code></pre>
+<p class="check">✅ Réussi si : Sous-dossiers créés, fichiers déplacés, rapport généré</p>
+</div>
+
+<h2><span class="badge badge-yellow">🟡 Niveau 2</span> Productivité réelle (30 min)</h2>
+
+<div class="exercise">
+<h3>Exercice 2.1 — Document Generation</h3>
+<p><strong>Objectif :</strong> Générer un document professionnel</p>
+<p>Crée un fichier <code>notes-brutes.txt</code> avec :</p>
+<pre><code>Réunion client Acme Corp
+- veulent refonte site web
+- budget 15-20k
+- deadline fin mars
+- contact: jean@acme.com
+- ils ont aimé notre portfolio
+- inquiets sur le SEO
+- concurrent: WebAgency</code></pre>
+<p>Tâche Cowork :</p>
+<pre><code>Transforme ces notes en un compte-rendu professionnel :
+- Format Markdown
+- Sections : Contexte, Besoins client, Budget, Timeline, Prochaines étapes
+- Ton professionnel
+- Sauve en "compte-rendu-acme.md"</code></pre>
+<p class="check">✅ Réussi si : Document structuré et professionnel</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 2.2 — Batch Renaming</h3>
+<p><strong>Objectif :</strong> Renommage intelligent en masse</p>
+<pre><code>Renomme tous les screenshots dans ce dossier avec le format :
+YYYY-MM-DD_HH-MM_screenshot.png</code></pre>
+<p class="check">✅ Réussi si : Tous les fichiers renommés correctement</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 2.3 — Research Synthesis</h3>
+<p><strong>Objectif :</strong> Synthèse de plusieurs documents</p>
+<pre><code>Lis tous les fichiers .txt dans ce dossier.
+Génère une synthèse structurée :
+- Thèmes principaux identifiés
+- Points de convergence
+- Contradictions éventuelles
+- Gaps dans la recherche
+Sauve en "synthese-recherche.md"</code></pre>
+<p class="check">✅ Réussi si : Synthèse pertinente qui croise les sources</p>
+</div>
+
+<h2><span class="badge badge-red">🔴 Niveau 3</span> Power User (45 min)</h2>
+
+<div class="exercise">
+<h3>Exercice 3.1 — Plugin Installation</h3>
+<p><strong>Objectif :</strong> Installer et utiliser un plugin</p>
+<ol>
+  <li>Va sur <code>claude.com/plugins</code></li>
+  <li>Installe le plugin <strong>productivity</strong></li>
+  <li>Configure au moins 1 connecteur (Notion ou autre)</li>
+  <li>Utilise une slash command du plugin</li>
+</ol>
+<p class="check">✅ Réussi si : Plugin fonctionnel avec un connecteur</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 3.2 — Global Instructions</h3>
+<p><strong>Objectif :</strong> Personnaliser le comportement de Claude</p>
+<pre><code>Contexte: Je suis consultant IA basé à Madrid
+Ton: Direct, pas de fluff, professionnel
+Format préféré: Markdown avec headers et bullet points
+Langue: Français sauf si je demande l'anglais
+Quand tu génères des fichiers, utilise le préfixe "cw_"</code></pre>
+<p class="check">✅ Réussi si : Le comportement reflète tes instructions</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 3.3 — Multi-step Complex Task</h3>
+<p><strong>Objectif :</strong> Tâche complexe multi-étapes</p>
+<pre><code>Analyse ce projet de données :
+1. Lis le README pour comprendre le contexte
+2. Analyse chaque CSV (structure, stats, qualité)
+3. Génère un rapport "data-audit.md"
+4. Crée un fichier "next-steps.md" avec les actions suggérées
+
+Travaille de manière autonome, je reviendrai voir le résultat.</code></pre>
+<p class="check">✅ Réussi si : Les 4 outputs sont générés et pertinents</p>
+</div>
+
+<div class="exercise">
+<h3>Exercice 3.4 — Cowork + Browser</h3>
+<p><strong>Objectif :</strong> Combiner Cowork avec navigation web</p>
+<pre><code>Fais une recherche sur les dernières tendances en IA agentique :
+- Cherche sur Google les articles récents (dernière semaine)
+- Identifie les 5 articles les plus pertinents
+- Extrais les points clés de chacun
+- Génère un brief "ai-agents-trends-feb-2026.md"</code></pre>
+<p class="check">✅ Réussi si : Brief généré avec infos provenant du web</p>
+</div>
+
+<h2>🏆 Challenge Final</h2>
+<div class="exercise">
+<h3>Le Projet Complet (1-2 heures)</h3>
+<p><strong>Contexte :</strong> Tu prépares une présentation pour un client sur "L'IA Agentique en 2026"</p>
+<ol>
+  <li><strong>Research</strong> (Cowork + Browser) → <code>sources.md</code></li>
+  <li><strong>Synthesis</strong> (Cowork) → <code>key-insights.md</code></li>
+  <li><strong>Content Creation</strong> → <code>presentation-outline.md</code> (10 slides)</li>
+  <li><strong>Document Generation</strong> → <code>executive-summary.md</code></li>
+  <li><strong>Organization</strong> → dossier <code>deliverables/</code> avec README</li>
+</ol>
+<p class="check">✅ Réussi si : Tu as un dossier deliverables/ complet et professionnel</p>
+</div>
+
+<h2>📊 Auto-évaluation</h2>
+<table class="progress-table">
+  <tr><th>Niveau</th><th>Exercices</th><th>Status</th></tr>
+  <tr><td>🟢 Débutant</td><td>2 exercices</td><td>⬜</td></tr>
+  <tr><td>🟡 Intermédiaire</td><td>3 exercices</td><td>⬜</td></tr>
+  <tr><td>🔴 Avancé</td><td>4 exercices</td><td>⬜</td></tr>
+  <tr><td>🏆 Challenge</td><td>1 projet</td><td>⬜</td></tr>
+</table>
+
+</section>
+
+<!-- ==================== CHEATSHEET ==================== -->
+<section id="cheatsheet">
+
+<h1>⚡ Cheatsheet</h1>
+<p style="color:var(--text2); font-size:1.1em;">Tout ce qu'il faut savoir sur une page</p>
+
+<h2>Setup Express</h2>
+<pre><code class="language-bash"># 1. Download
+open https://claude.com/download
+
+# 2. Subscribe (Pro $20 ou Max $100)
+open https://claude.ai/settings
+
+# 3. Enable Cowork
+# Claude Desktop → Settings → Features → Cowork ON
+
+# 4. Add folders → sélectionner
+
+# 5. Go! → New Cowork → tâche → valider</code></pre>
+
+<h2>Formule magique</h2>
+<pre><code>[Action] + [Quoi] + [Comment] + [Output attendu]</code></pre>
+
+<div class="grid">
+<div class="card">
+<h4>✅ Bon prompt</h4>
+<pre><code>Organise ~/Downloads :
+- PDFs → /PDFs
+- Images → /Images
+- Vidéos → /Videos
+- Génère un rapport</code></pre>
+</div>
+<div class="card">
+<h4>❌ Mauvais prompt</h4>
+<pre><code>Organise mes fichiers</code></pre>
+</div>
+</div>
+
+<h2>Slash Commands (plugins)</h2>
+<table>
+  <tr><th>Plugin</th><th>Commande</th><th>Action</th></tr>
+  <tr><td>sales</td><td><code>/sales:call-prep "Company"</code></td><td>Brief de prospection</td></tr>
+  <tr><td>data</td><td><code>/data:write-query</code></td><td>Générer SQL</td></tr>
+  <tr><td>productivity</td><td><code>/productivity:daily-brief</code></td><td>Résumé du jour</td></tr>
+  <tr><td>marketing</td><td><code>/marketing:campaign-brief</code></td><td>Brief campagne</td></tr>
+</table>
+
+<h2>Permissions</h2>
+<div class="grid">
+<div class="card">
+<h4>✅ Sûr</h4>
+<ul>
+  <li>~/Documents/Projets</li>
+  <li>~/Downloads</li>
+  <li>Dossier projet spécifique</li>
+</ul>
+</div>
+<div class="card">
+<h4>❌ Dangereux</h4>
+<ul>
+  <li>~ (home entier)</li>
+  <li>/Applications</li>
+  <li>~/.ssh</li>
+  <li>~/.aws</li>
+</ul>
+</div>
+</div>
+
+<h2>Consommation Tokens</h2>
+<table>
+  <tr><th>Type</th><th>Niveau</th></tr>
+  <tr><td>Chat simple</td><td><span class="badge badge-green">🟢 Low</span></td></tr>
+  <tr><td>Chat + fichier</td><td><span class="badge badge-yellow">🟡 Medium</span></td></tr>
+  <tr><td><strong>Cowork</strong></td><td><span class="badge badge-red">🔴 High</span></td></tr>
+</table>
+<p>→ Reserve Cowork pour les tâches complexes</p>
+
+<h2>Troubleshooting Express</h2>
+<table>
+  <tr><th>Problème</th><th>Fix</th></tr>
+  <tr><td>Cowork pas visible</td><td>Update app + check abo Pro/Max</td></tr>
+  <tr><td>VM lente à démarrer</td><td>Premier run = 2GB download, patience</td></tr>
+  <tr><td>Fichiers pas accessibles</td><td>Settings → ajouter le folder</td></tr>
+  <tr><td>Tâche bloquée</td><td>App fermée ou sleep = session morte</td></tr>
+  <tr><td>Limits atteintes</td><td>→ Max plan ou réduire complexité</td></tr>
+</table>
+
+<h2>Global Instructions Template</h2>
+<pre><code># Mon profil
+- Rôle: [ton rôle]
+- Langue: Français
+- Timezone: Europe/Madrid
+
+# Préférences output
+- Format: Markdown avec headers
+- Ton: Direct, professionnel
+- Fichiers: préfixe "cw_"
+
+# Contexte récurrent
+- [infos que Claude doit toujours savoir]</code></pre>
+
+<h2>Ce que Cowork peut / ne peut pas</h2>
+<div class="grid">
+<div class="card">
+<h4>✅ CAN</h4>
+<ul>
+  <li>Organiser fichiers</li>
+  <li>Générer documents (Word, Excel, MD)</li>
+  <li>Analyser données (CSV, JSON)</li>
+  <li>Synthétiser recherche</li>
+  <li>Créer rapports</li>
+  <li>Browser tasks (avec Chrome)</li>
+</ul>
+</div>
+<div class="card">
+<h4>❌ CAN'T</h4>
+<ul>
+  <li>Opérations système</li>
+  <li>Persistence entre sessions</li>
+  <li>Sync cross-device</li>
+  <li>Projets partagés</li>
+  <li>Windows (pour l'instant)</li>
+</ul>
+</div>
+</div>
+
+<h2>Liens Rapides</h2>
+<ul>
+  <li>📖 <a href="https://support.claude.com">Docs</a></li>
+  <li>🔌 <a href="https://github.com/anthropics/knowledge-work-plugins">Plugins</a></li>
+  <li>📥 <a href="https://claude.com/download">Download</a></li>
+  <li>💬 <a href="https://reddit.com/r/Anthropic">Community</a></li>
+</ul>
+
+</section>
+</main>
+
+<footer>
+  🧠 HyperLearner — Généré par Macmimi · Février 2026
+</footer>
+
+<script>
+hljs.highlightAll();
+
+function showTab(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav .tabs a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`nav .tabs a[href="#${id}"]`).classList.add('active');
+  window.scrollTo({top: 0});
+}
+
+// Handle hash navigation
+if(location.hash) {
+  const tab = location.hash.replace('#','');
+  if(['guide','exercises','cheatsheet'].includes(tab)) showTab(tab);
+}
+</script>
+</body>
+</html>
