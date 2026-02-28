@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🧠 HyperLearner — Claude Code</title>
+<title>🧠 HyperLearner — Claude Code Mastery</title>
 <style>
 :root {
   --bg: #0f0f1a; --bg2: #161625; --bg3: #1e1e32; --border: #2a2a45;
@@ -39,7 +39,6 @@ h4 { font-size: 1.05rem; margin: 1.2rem 0 0.4rem; color: #d4c5ff; }
 p { margin-bottom: 0.8rem; }
 ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
 li { margin-bottom: 0.3rem; }
-li ul, li ol { margin-top: 0.2rem; margin-bottom: 0.2rem; }
 
 /* CODE */
 pre { background: var(--code-bg); border: 1px solid var(--code-border); border-radius: 8px; padding: 1rem; overflow-x: auto; margin: 0.8rem 0 1.2rem; font-size: 0.88rem; line-height: 1.5; }
@@ -51,36 +50,18 @@ table { width: 100%; border-collapse: collapse; margin: 0.8rem 0 1.2rem; font-si
 th { background: var(--bg3); text-align: left; padding: 0.6rem 0.8rem; border: 1px solid var(--border); color: var(--accent2); }
 td { padding: 0.5rem 0.8rem; border: 1px solid var(--border); }
 
-/* CARDS */
-.card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; margin: 0.8rem 0; }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+/* BADGES */
 .badge { display: inline-block; padding: 0.15em 0.6em; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
 .badge-new { background: #22c55e22; color: var(--green); border: 1px solid #22c55e44; }
-.badge-security { background: #ef444422; color: var(--red); border: 1px solid #ef444444; }
-.badge-experimental { background: #eab30822; color: var(--yellow); border: 1px solid #eab30844; }
 
 /* TIPS */
-.tip, .warning, .note { border-radius: 8px; padding: 0.8rem 1rem; margin: 0.8rem 0; border-left: 4px solid; }
+.tip, .warning { border-radius: 8px; padding: 0.8rem 1rem; margin: 0.8rem 0; border-left: 4px solid; }
 .tip { background: #22c55e11; border-color: var(--green); }
 .warning { background: #ef444411; border-color: var(--red); }
-.note { background: #3b82f611; border-color: var(--blue); }
 .tip::before { content: "💡 "; }
 .warning::before { content: "⚠️ "; }
-.note::before { content: "📝 "; }
 
-/* TOC */
-.toc { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; margin: 1rem 0 2rem; }
-.toc summary { cursor: pointer; font-weight: 600; color: var(--accent2); }
-.toc ul { margin-top: 0.5rem; }
-.toc li { font-size: 0.9rem; }
-
-/* EXERCISE */
-.exercise { background: var(--bg2); border: 1px solid var(--accent); border-radius: 12px; padding: 1.2rem; margin: 1rem 0; }
-.exercise h4 { color: var(--accent2); margin-top: 0; }
-.difficulty { display: inline-block; font-size: 0.8rem; margin-left: 0.5rem; }
-.diff-easy { color: var(--green); }
-.diff-medium { color: var(--yellow); }
-.diff-hard { color: var(--red); }
+blockquote { background: var(--bg2); border-left: 3px solid var(--accent); padding: 0.8rem 1.2rem; margin: 0.8rem 0; border-radius: 0 8px 8px 0; font-style: italic; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -90,14 +71,6 @@ td { padding: 0.5rem 0.8rem; border: 1px solid var(--border); }
   h2 { font-size: 1.3rem; }
   .content { padding: 1rem; }
 }
-
-/* HIGHLIGHT */
-mark { background: #7c3aed33; color: var(--text); padding: 0.1em 0.2em; border-radius: 3px; }
-
-/* COLLAPSE */
-details { margin: 0.5rem 0; }
-details summary { cursor: pointer; color: var(--accent2); font-weight: 500; }
-details[open] summary { margin-bottom: 0.5rem; }
 </style>
 </head>
 <body>
@@ -106,11 +79,15 @@ details[open] summary { margin-bottom: 0.5rem; }
 <div class="topbar-inner">
 <div class="logo">🧠 HyperLearner</div>
 <div class="tab active" data-tab="fundamentals">Fondamentaux</div>
+<div class="tab" data-tab="commands">Commandes</div>
 <div class="tab" data-tab="advanced">Avancé</div>
-<div class="tab" data-tab="security">🔒 Sécurité</div>
-<div class="tab" data-tab="worktrees">🌳 Worktrees</div>
-<div class="tab" data-tab="exercises">🎯 Exercices</div>
+<div class="tab" data-tab="tips">Tips & Tricks</div>
+<div class="tab" data-tab="best">Best Practices</div>
+<div class="tab" data-tab="integrations">Intégrations</div>
+<div class="tab" data-tab="troubleshooting">Dépannage</div>
+<div class="tab" data-tab="hidden">Features Cachées</div>
 <div class="tab" data-tab="cheatsheet">📋 Cheatsheet</div>
+
 </div>
 </div>
 
@@ -118,1300 +95,2417 @@ details[open] summary { margin-bottom: 0.5rem; }
 <input type="text" id="search" placeholder="🔍 Rechercher dans le guide..." />
 </div>
 
-<!-- ======================= FUNDAMENTALS ======================= -->
 <div class="content active" id="fundamentals">
 <h1>Claude Code — Fondamentaux</h1>
-<p><span class="badge badge-new">2026</span> Le guide complet de l'outil CLI d'Anthropic pour le développement assisté par IA.</p>
 
-<details class="toc">
-<summary>📑 Table des matières</summary>
+<blockquote>Source principale : docs.anthropic.com (code.claude.com/docs) — Février 2026</blockquote>
+
+<h2>Qu'est-ce que Claude Code ?</h2>
+
+<p>Claude Code est un outil de codage agentique développé par Anthropic. Contrairement à un simple chatbot, il peut :</p>
 <ul>
-<li><a href="#f-what">Qu'est-ce que Claude Code ?</a></li>
-<li><a href="#f-install">Installation</a></li>
-<li><a href="#f-arch">Architecture</a></li>
-<li><a href="#f-commands">Commandes essentielles</a></li>
-<li><a href="#f-claudemd">CLAUDE.md — La mémoire projet</a></li>
-<li><a href="#f-models">Modèles & configuration</a></li>
-<li><a href="#f-modes">Modes de permission</a></li>
-</ul>
-</details>
-
-<h2 id="f-what">Qu'est-ce que Claude Code ?</h2>
-<p>Claude Code est un <strong>outil CLI agentique</strong> qui vit dans ton terminal et comprend ton codebase. Il peut :</p>
-<ul>
-<li><strong>Lire et écrire</strong> des fichiers dans ton projet</li>
-<li><strong>Exécuter des commandes</strong> shell (build, test, lint, deploy)</li>
-<li><strong>Chercher</strong> dans ta codebase (grep, glob, recherche sémantique)</li>
-<li><strong>Naviguer le web</strong> (fetch URLs, documentation)</li>
-<li><strong>Gérer Git</strong> (commits, branches, PRs)</li>
-<li><strong>Déléguer</strong> à des sous-agents spécialisés</li>
-</ul>
-<p>Contrairement à un chatbot classique, Claude Code a un <strong>accès direct à ton système</strong> et peut prendre des actions concrètes. Il fonctionne en boucle agentique : il réfléchit, appelle un outil, observe le résultat, et continue.</p>
-
-<h2 id="f-install">Installation</h2>
-<pre><code># Installer via npm
-npm install -g @anthropic-ai/claude-code
-
-# Vérifier l'installation
-claude --version
-
-# Premier lancement (setup auth)
-claude</code></pre>
-
-<h3>Prérequis</h3>
-<ul>
-<li><strong>Node.js 18+</strong></li>
-<li><strong>Git</strong> (pour worktrees, PR, etc.)</li>
-<li>Un compte <strong>Anthropic</strong> (Max, Pro, ou API key)</li>
+<li><strong>Lire</strong> votre codebase entière</li>
+<li><strong>Modifier</strong> des fichiers</li>
+<li><strong>Exécuter</strong> des commandes shell</li>
+<li><strong>S'intégrer</strong> à vos outils de développement</li>
 </ul>
 
-<h3>Authentification</h3>
-<table>
-<tr><th>Méthode</th><th>Config</th><th>Idéal pour</th></tr>
-<tr><td>Claude Max/Pro</td><td>OAuth automatique au premier lancement</td><td>Usage personnel</td></tr>
-<tr><td>API Key</td><td><code>ANTHROPIC_API_KEY</code> env var</td><td>CI/CD, automation</td></tr>
-<tr><td>AWS Bedrock</td><td><code>claude --provider bedrock</code></td><td>Enterprise</td></tr>
-<tr><td>Google Vertex</td><td><code>claude --provider vertex</code></td><td>Enterprise GCP</td></tr>
-</table>
+<blockquote>"Claude Code est un assistant de codage propulsé par l'IA qui vous aide à construire des fonctionnalités, corriger des bugs, et automatiser des tâches de développement." — Documentation officielle</blockquote>
 
-<h2 id="f-arch">Architecture</h2>
-<p>Claude Code fonctionne en <strong>boucle agentique</strong> :</p>
-<pre><code>┌─────────────────────────────────────────┐
-│  TON PROMPT                              │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌──────────────────────────────────────────┐
-│  CLAUDE (raisonnement + thinking)        │
-│  ┌────────────────────────────────────┐  │
-│  │ Extended Thinking (Opus 4.6)      │  │
-│  │ → Analyse, planifie, raisonne     │  │
-│  └────────────────────────────────────┘  │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌──────────────────────────────────────────┐
-│  TOOL CALLS (en boucle)                  │
-│  Read → Grep → Edit → Bash → WebFetch   │
-│  ↓ observe résultat ↓ continue          │
-└──────────────────┬──────────────────────┘
-                   ▼
-┌──────────────────────────────────────────┐
-│  RÉPONSE FINALE                          │
-└──────────────────────────────────────────┘</code></pre>
+<h2>Disponibilité multi-surface</h2>
 
-<h3>Outils intégrés</h3>
-<table>
-<tr><th>Outil</th><th>Permission</th><th>Description</th></tr>
-<tr><td><code>Read</code></td><td>Auto</td><td>Lire des fichiers</td></tr>
-<tr><td><code>Grep</code></td><td>Auto</td><td>Chercher dans les fichiers (regex)</td></tr>
-<tr><td><code>Glob</code></td><td>Auto</td><td>Lister des fichiers par pattern</td></tr>
-<tr><td><code>Edit</code></td><td>Session</td><td>Modifier des fichiers</td></tr>
-<tr><td><code>Write</code></td><td>Session</td><td>Créer/écraser des fichiers</td></tr>
-<tr><td><code>Bash</code></td><td>Permanent/projet</td><td>Exécuter des commandes shell</td></tr>
-<tr><td><code>WebFetch</code></td><td>Demande</td><td>Télécharger du contenu web</td></tr>
-<tr><td><code>Task</code></td><td>Demande</td><td>Lancer un sous-agent</td></tr>
-</table>
+<p>Claude Code est disponible sur plusieurs interfaces connectées au même moteur sous-jacent :</p>
 
-<h2 id="f-commands">Commandes essentielles</h2>
-<h3>Lancement</h3>
-<pre><code># Session interactive
-claude
+<p>| Surface | Description |</p>
+<p>|---------|-------------|</p>
+<p>| <strong>Terminal CLI</strong> | Outil complet en ligne de commande |</p>
+<p>| <strong>VS Code</strong> | Extension avec diffs inline, @-mentions, plan review |</p>
+<p>| <strong>JetBrains</strong> | Plugin pour IntelliJ, PyCharm, WebStorm |</p>
+<p>| <strong>App Desktop</strong> | App autonome pour macOS/Windows |</p>
+<p>| <strong>Web</strong> | claude.ai/code — sans installation locale |</p>
+<p>| <strong>Slack</strong> | Mentionner @Claude dans Slack pour créer des PRs |</p>
+<p>| <strong>GitHub Actions / GitLab CI/CD</strong> | Automatisation CI/CD |</p>
+<p>| <strong>Chrome</strong> | Débogage d'apps web en direct |</p>
 
-# One-shot (headless)
-claude -p "Explique l'architecture de ce projet"
+<h2>Installation</h2>
 
-# Reprendre la dernière session
-claude --continue
+<h3>macOS / Linux / WSL (recommandé)</h3>
+<pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+<p>L'installation native <strong>se met à jour automatiquement</strong> en arrière-plan.</p>
 
-# Reprendre par nom
-claude --resume auth-refactor
+<h3>Windows (PowerShell)</h3>
+<pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
 
-# Reprendre depuis une PR
-claude --from-pr 123
+<h3>Windows (CMD)</h3>
+<pre><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code></pre>
+<strong>Pré-requis Windows</strong> : [Git for Windows](https://git-scm.com/downloads/win) doit être installé.
 
-# Ajouter un répertoire supplémentaire
-claude --add-dir ../shared-lib</code></pre>
+<h3>Homebrew (macOS/Linux)</h3>
+<pre><code>brew install --cask claude-code</code></pre>
+<p>⚠️ Homebrew ne se met <strong>pas</strong> à jour automatiquement. Lancer <code>brew upgrade claude-code</code> périodiquement.</p>
 
-<h3>Commandes in-session (slash commands)</h3>
-<table>
-<tr><th>Commande</th><th>Action</th></tr>
-<tr><td><code>/help</code></td><td>Aide complète</td></tr>
-<tr><td><code>/compact</code></td><td>Compacter le contexte (libérer de la fenêtre)</td></tr>
-<tr><td><code>/permissions</code></td><td>Gérer les permissions</td></tr>
-<tr><td><code>/model</code></td><td>Changer de modèle / effort level</td></tr>
-<tr><td><code>/agents</code></td><td>Gérer les sous-agents</td></tr>
-<tr><td><code>/sandbox</code></td><td>Configurer le sandboxing</td></tr>
-<tr><td><code>/resume</code></td><td>Reprendre une session précédente</td></tr>
-<tr><td><code>/rename</code></td><td>Nommer la session courante</td></tr>
-<tr><td><code>/config</code></td><td>Configuration globale</td></tr>
-<tr><td><code>/statusline</code></td><td>Configurer la barre de status</td></tr>
-<tr><td><code>Shift+Tab</code></td><td>Cycler entre les modes de permission</td></tr>
-<tr><td><code>Ctrl+O</code></td><td>Toggle verbose (voir le thinking)</td></tr>
-</table>
+<h3>WinGet (Windows)</h3>
+<pre><code>winget install Anthropic.ClaudeCode</code></pre>
+<p>⚠️ WinGet ne se met <strong>pas</strong> à jour automatiquement. Lancer <code>winget upgrade Anthropic.ClaudeCode</code>.</p>
 
-<h2 id="f-claudemd">CLAUDE.md — La mémoire projet</h2>
-<p>Le fichier <code>CLAUDE.md</code> est la <strong>mémoire contextuelle</strong> de Claude Code. Il est automatiquement injecté dans le prompt système à chaque session.</p>
+<h3>NPM (Déprécié)</h3>
+<pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+<p>⚠️ L'installation via npm est <strong>dépréciée</strong>. Utiliser les méthodes ci-dessus.</p>
 
-<h3>Emplacements (par priorité)</h3>
-<table>
-<tr><th>Fichier</th><th>Portée</th><th>Partageable</th></tr>
-<tr><td><code>~/.claude/CLAUDE.md</code></td><td>Tous tes projets</td><td>Non</td></tr>
-<tr><td><code>.claude/CLAUDE.md</code></td><td>Ce projet (committé)</td><td>Oui</td></tr>
-<tr><td><code>.claude/CLAUDE.local.md</code></td><td>Ce projet (gitignored)</td><td>Non</td></tr>
-<tr><td><code>CLAUDE.md</code> (racine)</td><td>Ce projet</td><td>Oui</td></tr>
-</table>
+<h2>Comptes et Authentification</h2>
 
-<div class="tip">Quand tu travailles dans un sous-dossier, les <code>CLAUDE.md</code> des répertoires parents sont aussi chargés. Idéal pour les monorepos.</div>
+<p>Claude Code nécessite un compte. Options :</p>
 
-<h3>Que mettre dedans ?</h3>
-<pre><code># CLAUDE.md
+<ol>
+<li><strong>Claude Pro, Max, Teams ou Enterprise</strong> — Recommandé (claude.com/pricing)</li>
+<li><strong>Anthropic Console</strong> — Accès API avec crédits prépayés</li>
+<li><strong>Fournisseurs cloud tiers</strong> — Amazon Bedrock, Google Vertex AI, Microsoft Foundry</li>
+</ol>
 
-## Build & Test
-- `npm run build` pour builder
-- `npm test` pour les tests
-- `npm run lint` pour le linting
+<h3>Connexion</h3>
+<pre><code>claude         # Lance le mode interactif, invite à se connecter au 1er lancement
+<p>/login         # Commande pour se connecter dans une session</p>
+<p>claude auth login --email user@example.com --sso  # Login avec SSO</code></pre></p>
 
-## Conventions
-- TypeScript strict, pas de `any`
-- Tests avec Vitest
-- Commits conventionnels (feat:, fix:, etc.)
+<p>Les identifiants sont stockés après la première connexion. Pour changer de compte :</p>
+<pre><code>claude auth logout
+<p>claude auth login</code></pre></p>
 
-## Architecture
-- /src/api → Routes Express
-- /src/services → Business logic
-- /src/db → Prisma schemas</code></pre>
+<h2>Premier démarrage</h2>
 
-<h2 id="f-models">Modèles & configuration</h2>
-<table>
-<tr><th>Modèle</th><th>Force</th><th>Usage</th></tr>
-<tr><td><strong>Opus 4.6</strong></td><td>Raisonnement profond, adaptif</td><td>Tâches complexes, architecture</td></tr>
-<tr><td><strong>Sonnet 4.6</strong></td><td>Rapide, bon rapport qualité/prix</td><td>Tâches courantes, édition</td></tr>
-<tr><td><strong>Haiku</strong></td><td>Ultra-rapide, économique</td><td>Sous-agents Explore, recherche</td></tr>
-</table>
+<pre><code>cd /chemin/vers/votre-projet
+<p>claude</code></pre></p>
 
-<h3>Effort Level (Opus 4.6)</h3>
-<p>Opus 4.6 utilise le <strong>raisonnement adaptatif</strong> : il ajuste dynamiquement le thinking selon le niveau d'effort.</p>
-<table>
-<tr><th>Niveau</th><th>Thinking</th><th>Quand l'utiliser</th></tr>
-<tr><td><code>low</code></td><td>Minimal</td><td>Questions simples, grep, navigation</td></tr>
-<tr><td><code>medium</code></td><td>Modéré</td><td>Édition standard, bugs simples</td></tr>
-<tr><td><code>high</code> (défaut)</td><td>Maximum</td><td>Architecture, bugs complexes, planning</td></tr>
-</table>
+<p>Au démarrage, vous verrez :</p>
+<ul>
+<li>L'écran de bienvenue avec infos de session</li>
+<li>Les conversations récentes</li>
+<li>Les dernières mises à jour</li>
+<li>Tapez <code>/help</code> pour voir les commandes disponibles</li>
+<li>Tapez <code>/resume</code> pour continuer une conversation précédente</li>
+</ul>
 
-<h2 id="f-modes">Modes de permission</h2>
-<table>
-<tr><th>Mode</th><th>Key</th><th>Comportement</th></tr>
-<tr><td>Ask permissions</td><td><code>default</code></td><td>Demande avant chaque édition/commande</td></tr>
-<tr><td>Auto accept edits</td><td><code>acceptEdits</code></td><td>Auto-accepte les éditions, demande pour bash</td></tr>
-<tr><td>Plan mode</td><td><code>plan</code></td><td>Read-only, planifie sans modifier</td></tr>
-<tr><td>Don't ask</td><td><code>dontAsk</code></td><td>Auto-refuse sauf rules explicites</td></tr>
-<tr><td>Bypass</td><td><code>bypassPermissions</code></td><td>⚠️ Tout passe, containers uniquement</td></tr>
-</table>
-<div class="warning">Le mode <code>bypassPermissions</code> désactive TOUTES les vérifications. Uniquement dans des environnements isolés (containers, VMs).</div>
+<h2>Ce que Claude Code peut faire</h2>
+
+<h3>1. Automatiser les tâches répétitives</h3>
+<pre><code>claude "write tests for the auth module, run them, and fix any failures"</code></pre>
+
+<h3>2. Construire des fonctionnalités et corriger des bugs</h3>
+<ul>
+<li>Décrire en langage naturel</li>
+<li>Claude planifie, code sur plusieurs fichiers, vérifie</li>
+</ul>
+
+<h3>3. Git et Pull Requests</h3>
+<pre><code>claude "commit my changes with a descriptive message"</code></pre>
+
+<h3>4. Connexion aux outils via MCP</h3>
+<ul>
+<li>Google Drive, Jira, Slack, bases de données custom</li>
+<li>Protocole ouvert (Model Context Protocol)</li>
+</ul>
+
+<h3>5. Personnalisation</h3>
+<ul>
+<li><code>CLAUDE.md</code> — Instructions persistantes par projet</li>
+<li>Skills (slash commands) — Workflows réutilisables</li>
+<li>Hooks — Commandes shell déclenchées à des événements</li>
+</ul>
+
+<h3>6. Équipes d'agents (sub-agents)</h3>
+<pre><code><h1>Un agent principal coordonne plusieurs sous-agents</h1>
+<p>claude "spawn agents to work on the frontend and backend simultaneously"</code></pre></p>
+
+<h3>7. Scripting et automation Unix</h3>
+<pre><code><h1>Surveiller des logs</h1>
+<p>tail -f app.log | claude -p "Slack me if you see any anomalies"</p>
+
+<h1>Automatiser des traductions en CI</h1>
+<p>claude -p "translate new strings into French and raise a PR for review"</p>
+
+<h1>Opérations en masse</h1>
+<p>git diff main --name-only | claude -p "review these changed files for security issues"</code></pre></p>
+
+<h3>8. Travail mobile / multi-device</h3>
+<ul>
+<li>Remote Control : continuer depuis son téléphone</li>
+<li><code>/teleport</code> : passer du web au terminal</li>
+<li><code>/desktop</code> : passer au Desktop App pour review visuelle des diffs</li>
+</ul>
+
+<h2>Modèle mental</h2>
+
+<p>Claude Code suit une <strong>boucle agentique</strong> :</p>
+<ol>
+<li>Reçoit une instruction</li>
+<li>Explore le codebase (lecture de fichiers)</li>
+<li>Planifie l'approche</li>
+<li>Exécute (modifie fichiers, lance commandes)</li>
+<li>Vérifie le résultat</li>
+<li>Continue jusqu'à complétion</li>
+</ol>
+
+<p>Contrairement à un chatbot qui attend, Claude Code <strong>agit de manière autonome</strong> tout en permettant supervision et redirection.</p>
+
+<h2>Tarification et plans</h2>
+
+<p>Source : claude.com/pricing (Février 2026)</p>
+
+<ul>
+<li><strong>Pro</strong> : Accès Claude Code inclus</li>
+<li><strong>Max</strong> : Accès étendu, Cowork inclus</li>
+<li><strong>Teams</strong> : Pour équipes</li>
+<li><strong>Enterprise</strong> : Administration centralisée, contrôles IT</li>
+</ul>
+
+<p>Pour les APIs directes, Claude Console avec crédits prépayés.</p>
+
+<p>---</p>
+<p>*Sources : code.claude.com/docs/en/overview, github.com/anthropics/claude-code — 27 Février 2026*</p>
+
 </div>
 
-<!-- ======================= ADVANCED ======================= -->
+<div class="content" id="commands">
+<h1>Claude Code — Référence Complète des Commandes</h1>
+
+<blockquote>Source : code.claude.com/docs/en/cli-reference — Février 2026</blockquote>
+
+<h2>Commandes CLI principales</h2>
+
+<p>| Commande | Description | Exemple |</p>
+<p>|----------|-------------|---------|</p>
+<p>| <code>claude</code> | Démarrer une session interactive | <code>claude</code> |</p>
+<p>| <code>claude "query"</code> | Session interactive avec prompt initial | <code>claude "explain this project"</code> |</p>
+<p>| <code>claude -p "query"</code> | Requête via SDK puis exit (headless) | <code>claude -p "explain this function"</code> |</p>
+<p>| <code>cat file \| claude -p "query"</code> | Traiter du contenu pipé | <code>cat logs.txt \| claude -p "explain"</code> |</p>
+<p>| <code>claude -c</code> | Continuer la conversation la plus récente | <code>claude -c</code> |</p>
+<p>| <code>claude -c -p "query"</code> | Continuer via SDK | <code>claude -c -p "Check for type errors"</code> |</p>
+<p>| <code>claude -r "<session>" "query"</code> | Reprendre une session par ID ou nom | <code>claude -r "auth-refactor" "Finish this PR"</code> |</p>
+<p>| <code>claude update</code> | Mettre à jour vers la dernière version | <code>claude update</code> |</p>
+<p>| <code>claude commit</code> | Créer un commit Git | <code>claude commit</code> |</p>
+<p>| <code>claude auth login</code> | Se connecter à Anthropic | <code>claude auth login --email u@ex.com --sso</code> |</p>
+<p>| <code>claude auth logout</code> | Se déconnecter | <code>claude auth logout</code> |</p>
+<p>| <code>claude auth status</code> | Afficher le statut d'auth (JSON) | <code>claude auth status --text</code> |</p>
+<p>| <code>claude agents</code> | Lister tous les sous-agents configurés | <code>claude agents</code> |</p>
+<p>| <code>claude mcp</code> | Configurer les serveurs MCP | voir section MCP |</p>
+<p>| <code>claude remote-control</code> | Démarrer une session Remote Control | <code>claude remote-control</code> |</p>
+
+<h2>Flags CLI (Options de ligne de commande)</h2>
+
+<p>| Flag | Description | Exemple |</p>
+<p>|------|-------------|---------|</p>
+<p>| <code>--add-dir</code> | Ajouter des répertoires de travail supplémentaires | <code>claude --add-dir ../apps ../lib</code> |</p>
+<p>| <code>--agent</code> | Spécifier un agent pour la session | <code>claude --agent my-custom-agent</code> |</p>
+<p>| <code>--agents</code> | Définir des sous-agents dynamiquement en JSON | <code>claude --agents '{"reviewer":{"prompt":"..."}}' </code> |</p>
+<p>| <code>--allow-dangerously-skip-permissions</code> | Activer le bypass de permissions sans l'activer immédiatement | |</p>
+<p>| <code>--allowedTools</code> | Outils exécutés sans demander permission | <code>"Bash(git log *)" "Read"</code> |</p>
+<p>| <code>--append-system-prompt</code> | Ajouter du texte au prompt système par défaut | <code>--append-system-prompt "Always use TypeScript"</code> |</p>
+<p>| <code>--append-system-prompt-file</code> | Charger un prompt système depuis un fichier | <code>--append-system-prompt-file ./extra-rules.txt</code> |</p>
+<p>| <code>--betas</code> | Headers beta pour les requêtes API | <code>--betas interleaved-thinking</code> |</p>
+<p>| <code>--chrome</code> | Activer l'intégration Chrome | <code>claude --chrome</code> |</p>
+<p>| <code>--continue</code>, <code>-c</code> | Charger la conversation la plus récente | <code>claude --continue</code> |</p>
+<p>| <code>--dangerously-skip-permissions</code> | Ignorer toutes les demandes de permission (prudence!) | |</p>
+<p>| <code>--debug</code> | Mode debug avec filtrage optionnel | <code>claude --debug "api,mcp"</code> |</p>
+<p>| <code>--disable-slash-commands</code> | Désactiver tous les skills et slash commands | |</p>
+<p>| <code>--disallowedTools</code> | Outils retirés du contexte du modèle | <code>"Bash(rm *)" "Edit"</code> |</p>
+<p>| <code>--fallback-model</code> | Modèle de fallback si défaut surchargé (print mode) | <code>claude -p --fallback-model sonnet "query"</code> |</p>
+<p>| <code>--fork-session</code> | Créer un nouvel ID de session lors de la reprise | <code>claude --resume abc123 --fork-session</code> |</p>
+<p>| <code>--from-pr</code> | Reprendre les sessions liées à un PR GitHub | <code>claude --from-pr 123</code> |</p>
+<p>| <code>--ide</code> | Se connecter automatiquement à l'IDE | <code>claude --ide</code> |</p>
+<p>| <code>--init</code> | Lancer les hooks d'initialisation | <code>claude --init</code> |</p>
+<p>| <code>--init-only</code> | Lancer les hooks d'initialisation puis exit | <code>claude --init-only</code> |</p>
+<p>| <code>--include-partial-messages</code> | Inclure les événements de streaming partiels | |</p>
+<p>| <code>--input-format</code> | Format d'entrée pour print mode (text/stream-json) | |</p>
+<p>| <code>--json-schema</code> | Valider output JSON selon un schéma | <code>claude -p --json-schema '{...}' "query"</code> |</p>
+<p>| <code>--maintenance</code> | Lancer les hooks de maintenance | |</p>
+<p>| <code>--max-budget-usd</code> | Montant max en USD pour les appels API | <code>claude -p --max-budget-usd 5.00 "query"</code> |</p>
+<p>| <code>--permission-mode</code> | Mode de permission (normal/plan/auto) | <code>claude --permission-mode plan</code> |</p>
+<p>| <code>-p</code>, <code>--print</code> | Mode non-interactif (headless) | <code>claude -p "explain this"</code> |</p>
+<p>| <code>--resume</code>, <code>-r</code> | Reprendre une session spécifique | <code>claude --resume session-id</code> |</p>
+
+<h2>Commandes slash (dans la session interactive)</h2>
+
+<p>| Commande | Description |</p>
+<p>|----------|-------------|</p>
+<p>| <code>/help</code> | Afficher les commandes disponibles |</p>
+<p>| <code>/clear</code> | Effacer l'historique de conversation |</p>
+<p>| <code>/login</code> | Se connecter ou changer de compte |</p>
+<p>| <code>/logout</code> | Se déconnecter |</p>
+<p>| <code>/config</code> | Ouvrir l'interface de configuration (tabbed) |</p>
+<p>| <code>/init</code> | Générer un CLAUDE.md basé sur votre projet |</p>
+<p>| <code>/bug</code> | Signaler un bug directement depuis Claude Code |</p>
+<p>| <code>/agents</code> | Gérer les sous-agents (voir/créer) |</p>
+<p>| <code>/resume</code> | Reprendre une conversation précédente |</p>
+<p>| <code>/teleport</code> | Transférer une session vers le terminal local |</p>
+<p>| <code>/desktop</code> | Passer au Desktop App pour review visuelle |</p>
+<p>| <code>/permissions</code> | Voir et gérer les permissions |</p>
+<p>| <code>/commit-push-pr</code> | Skill : commit, push et ouvrir une PR en une étape |</p>
+<p>| <code>Ctrl+G</code> | Ouvrir le plan dans l'éditeur de texte par défaut |</p>
+<p>| <code>Shift+Tab</code> | Basculer entre les modes de permission |</p>
+
+<h2>Modes de permission</h2>
+
+<pre><code>Normal Mode  →  (Shift+Tab)  →  Auto-Accept Mode  →  (Shift+Tab)  →  Plan Mode</code></pre>
+
+<ul>
+<li><strong>Normal Mode</strong> : Claude demande confirmation avant chaque action</li>
+<li><strong>Auto-Accept Mode</strong> : Claude accepte automatiquement les éditions (<code>⏵⏵ accept edits on</code>)</li>
+<li><strong>Plan Mode</strong> : Claude analyse et planifie sans modifier (<code>⏸ plan mode on</code>)</li>
+</ul>
+
+<h3>Activer Plan Mode au démarrage</h3>
+<pre><code>claude --permission-mode plan</code></pre>
+
+<h3>Configurer Plan Mode par défaut</h3>
+<pre><code>// .claude/settings.json
+<p>{</p>
+<p>  "permissions": {</p>
+<p>    "defaultMode": "plan"</p>
+<p>  }</p>
+<p>}</code></pre></p>
+
+<h2>Raccourcis clavier</h2>
+
+<p>| Raccourci | Action |</p>
+<p>|-----------|--------|</p>
+<p>| <code>?</code> | Voir tous les raccourcis disponibles |</p>
+<p>| <code>Tab</code> | Autocomplétion des commandes |</p>
+<p>| <code>↑</code> | Historique des commandes |</p>
+<p>| <code>/</code> | Voir toutes les commandes et skills |</p>
+<p>| <code>Ctrl+C</code> | Interrompre / Quitter |</p>
+<p>| <code>Ctrl+G</code> | Ouvrir le plan dans l'éditeur de texte |</p>
+<p>| <code>Shift+Tab</code> | Basculer les modes de permission |</p>
+
+<h2>Exemples de workflows en ligne de commande</h2>
+
+<h3>Mode headless (scripting)</h3>
+<pre><code><h1>Requête simple</h1>
+<p>claude -p "explain this function" < myfile.js</p>
+
+<h1>Pipeline Unix</h1>
+<p>cat error.log | claude -p "summarize the errors and suggest fixes"</p>
+
+<h1>Audit de sécurité</h1>
+<p>git diff main --name-only | claude -p "review these changed files for security issues"</p>
+
+<h1>Monitoring de logs</h1>
+<p>tail -f app.log | claude -p "alert me to any critical errors"</p>
+
+<h1>Automatisation CI</h1>
+<p>claude -p "translate new strings into French and raise a PR for review"</code></pre></p>
+
+<h3>Gestion des sessions</h3>
+<pre><code><h1>Reprendre la dernière session du répertoire courant</h1>
+<p>claude -c</p>
+
+<h1>Reprendre une session par nom</h1>
+<p>claude -r "auth-refactor" "Continue implementing the OAuth flow"</p>
+
+<h1>Reprendre une session liée à un PR GitHub</h1>
+<p>claude --from-pr 123</p>
+
+<h1>Créer un fork de session pour expérimenter</h1>
+<p>claude --resume abc123 --fork-session</code></pre></p>
+
+<h3>Budget et contrôle des coûts</h3>
+<pre><code><h1>Limiter les dépenses API</h1>
+<p>claude -p --max-budget-usd 5.00 "analyze the entire codebase"</p>
+
+<h1>Voir le statut d'authentification</h1>
+<p>claude auth status --text</p>
+
+<h1>Mode debug pour diagnostiquer</h1>
+<p>claude --debug "api,hooks"</code></pre></p>
+
+<h3>MCP (Model Context Protocol)</h3>
+<pre><code><h1>Ajouter un serveur HTTP distant</h1>
+<p>claude mcp add --transport http notion https://mcp.notion.com/mcp</p>
+
+<h1>Ajouter un serveur avec authentification</h1>
+<p>claude mcp add --transport http secure-api https://api.example.com/mcp \</p>
+<p>  --header "Authorization: Bearer your-token"</p>
+
+<h1>Ajouter un serveur stdio local</h1>
+<p>claude mcp add --transport stdio --env AIRTABLE_API_KEY=YOUR_KEY airtable \</p>
+<p>  -- npx -y airtable-mcp-server</code></pre></p>
+
+<h2>Référence de syntaxe pour les permissions</h2>
+
+<pre><code>Bash(git log *)        # Toutes les commandes git log
+<p>Bash(npm run test *)   # Tous les scripts test npm</p>
+<p>Read(~/.zshrc)         # Lecture du fichier zshrc</p>
+<p>Edit(src/**/*.ts)      # Édition de tous les .ts dans src</code></pre></p>
+
+<p>---</p>
+<p>*Source : code.claude.com/docs/en/cli-reference — 27 Février 2026*</p>
+
+</div>
+
 <div class="content" id="advanced">
-<h1>Claude Code — Fonctionnalités Avancées</h1>
+<h1>Claude Code — Techniques Avancées</h1>
 
-<details class="toc">
-<summary>📑 Table des matières</summary>
-<ul>
-<li><a href="#a-subagents">Sous-agents</a></li>
-<li><a href="#a-teams">Agent Teams</a></li>
-<li><a href="#a-hooks">Hooks</a></li>
-<li><a href="#a-skills">Skills</a></li>
-<li><a href="#a-mcp">MCP (Model Context Protocol)</a></li>
-<li><a href="#a-headless">Mode Headless & CI/CD</a></li>
-<li><a href="#a-desktop">Claude Code Desktop</a></li>
-<li><a href="#a-context">Gestion du contexte</a></li>
-</ul>
-</details>
+<blockquote>Sources : code.claude.com/docs — Février 2026</blockquote>
 
-<h2 id="a-subagents">Sous-agents</h2>
-<p>Les sous-agents sont des <strong>assistants IA spécialisés</strong> qui tournent dans leur propre fenêtre de contexte avec un prompt système custom, des outils spécifiques, et des permissions indépendantes.</p>
+<h2>1. Skills (Slash Commands étendus)</h2>
 
-<h3>Sous-agents built-in</h3>
-<div class="card-grid">
-<div class="card">
-<h4>🔍 Explore</h4>
-<p><strong>Modèle :</strong> Haiku (rapide)</p>
-<p><strong>Outils :</strong> Read-only</p>
-<p>Recherche et analyse de codebase. Claude y délègue quand il doit chercher sans modifier.</p>
-</div>
-<div class="card">
-<h4>📋 Plan</h4>
-<p><strong>Modèle :</strong> Hérité</p>
-<p><strong>Outils :</strong> Read-only</p>
-<p>Recherche en mode plan. Utilisé pour rassembler le contexte avant de proposer un plan.</p>
-</div>
-<div class="card">
-<h4>🛠️ General-purpose</h4>
-<p><strong>Modèle :</strong> Hérité</p>
-<p><strong>Outils :</strong> Tous</p>
-<p>Pour les tâches complexes multi-étapes nécessitant exploration ET modification.</p>
-</div>
-</div>
+<p>Les Skills sont des fichiers Markdown qui définissent des comportements personnalisés. Ils remplacent et étendent les anciens "custom slash commands".</p>
 
-<h3>Créer un sous-agent custom</h3>
-<pre><code># ~/.claude/agents/code-reviewer.md
----
-name: code-reviewer
-description: Reviews code for quality and best practices
-tools: Read, Glob, Grep
-model: sonnet
----
+<h3>Anatomie d'un Skill</h3>
 
-You are a code reviewer. Analyze the code and provide
-specific, actionable feedback on quality, security,
-and best practices.</code></pre>
+<pre><code>my-skill/
+<p>├── SKILL.md           # Instructions principales (requis)</p>
+<p>├── template.md        # Template que Claude remplit</p>
+<p>├── examples/</p>
+<p>│   └── sample.md      # Exemple de sortie attendue</p>
+<p>└── scripts/</p>
+<p>    └── validate.sh    # Script que Claude peut exécuter</code></pre></p>
 
-<h3>Emplacements (par priorité)</h3>
-<table>
-<tr><th>Emplacement</th><th>Portée</th><th>Priorité</th></tr>
-<tr><td><code>--agents</code> CLI flag</td><td>Session courante</td><td>1 (max)</td></tr>
-<tr><td><code>.claude/agents/</code></td><td>Projet</td><td>2</td></tr>
-<tr><td><code>~/.claude/agents/</code></td><td>Personnel</td><td>3</td></tr>
-<tr><td>Plugin agents</td><td>Où le plugin est actif</td><td>4</td></tr>
-</table>
+<h3>Créer un skill</h3>
 
-<h3>Frontmatter disponible</h3>
-<table>
-<tr><th>Champ</th><th>Description</th></tr>
-<tr><td><code>name</code></td><td>Identifiant unique (requis)</td></tr>
-<tr><td><code>description</code></td><td>Quand déléguer à cet agent (requis)</td></tr>
-<tr><td><code>tools</code></td><td>Outils autorisés</td></tr>
-<tr><td><code>disallowedTools</code></td><td>Outils interdits</td></tr>
-<tr><td><code>model</code></td><td>sonnet, opus, haiku, inherit</td></tr>
-<tr><td><code>permissionMode</code></td><td>Mode de permission</td></tr>
-<tr><td><code>maxTurns</code></td><td>Nombre max de tours</td></tr>
-<tr><td><code>skills</code></td><td>Skills à charger</td></tr>
-<tr><td><code>mcpServers</code></td><td>Serveurs MCP dédiés</td></tr>
-<tr><td><code>hooks</code></td><td>Hooks spécifiques</td></tr>
-</table>
+<pre><code><h1>1. Créer le répertoire du skill</h1>
+<p>mkdir -p ~/.claude/skills/explain-code</p>
 
-<h2 id="a-teams">Agent Teams <span class="badge badge-experimental">EXPERIMENTAL</span></h2>
-<p>Les Agent Teams permettent de coordonner <strong>plusieurs instances Claude Code</strong> travaillant ensemble. Un session "lead" coordonne, les "teammates" travaillent indépendamment et communiquent directement entre eux.</p>
+<h1>2. Créer SKILL.md avec frontmatter YAML</h1>
+<p>cat > ~/.claude/skills/explain-code/SKILL.md << 'EOF'</p>
+<p>---</p>
+<p>name: explain-code</p>
+<p>description: Explains code with visual diagrams and analogies. Use when explaining how code works.</p>
+<p>---</p>
 
-<h3>Activer</h3>
-<pre><code>// settings.json
-{
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
-}</code></pre>
+<p>When explaining code, always include:</p>
+<ol>
+<li><strong>Start with an analogy</strong>: Compare the code to something from everyday life</li>
+<li><strong>Draw a diagram</strong>: Use ASCII art to show the flow</li>
+<li><strong>Walk through the code</strong>: Step-by-step explanation</li>
+<li><strong>Highlight a gotcha</strong>: Common mistake or misconception</li>
+</ol>
+<p>EOF</code></pre></p>
 
-<h3>Agent Teams vs Sous-agents</h3>
-<table>
-<tr><th></th><th>Sous-agents</th><th>Agent Teams</th></tr>
-<tr><td><strong>Contexte</strong></td><td>Propre, résultats retournés au parent</td><td>Propre, totalement indépendant</td></tr>
-<tr><td><strong>Communication</strong></td><td>Rapport au parent uniquement</td><td>Communication directe entre teammates</td></tr>
-<tr><td><strong>Coordination</strong></td><td>Agent principal gère tout</td><td>Task list partagée, auto-coordination</td></tr>
-<tr><td><strong>Coût tokens</strong></td><td>Moins cher</td><td>Plus cher (chaque teammate = instance Claude)</td></tr>
-<tr><td><strong>Idéal pour</strong></td><td>Tâches focalisées</td><td>Travail nécessitant collaboration</td></tr>
-</table>
+<h3>Emplacements des skills</h3>
 
-<h3>Cas d'usage</h3>
-<ul>
-<li><strong>Research & review</strong> — Explorer un problème sous plusieurs angles simultanément</li>
-<li><strong>Nouveaux modules</strong> — Chaque teammate gère une pièce indépendante</li>
-<li><strong>Debug avec hypothèses concurrentes</strong> — Tester différentes théories en parallèle</li>
-<li><strong>Cross-layer</strong> — Frontend, backend, tests : un teammate par couche</li>
-</ul>
+<p>| Emplacement | Chemin | Portée |</p>
+<p>|-------------|--------|--------|</p>
+<p>| Enterprise | Via managed settings | Tous les users de l'organisation |</p>
+<p>| Personnel | <code>~/.claude/skills/<nom>/SKILL.md</code> | Tous vos projets |</p>
+<p>| Projet | <code>.claude/skills/<nom>/SKILL.md</code> | Ce projet uniquement |</p>
+<p>| Plugin | <code><plugin>/skills/<nom>/SKILL.md</code> | Où le plugin est activé |</p>
 
-<h3>Modes d'affichage</h3>
-<table>
-<tr><th>Mode</th><th>Description</th></tr>
-<tr><td><code>in-process</code></td><td>Tous dans le même terminal. <code>Shift+Down</code> pour naviguer.</td></tr>
-<tr><td><code>tmux</code></td><td>Chaque teammate dans son propre pane split.</td></tr>
-<tr><td><code>auto</code> (défaut)</td><td>Split si déjà dans tmux, sinon in-process.</td></tr>
-</table>
+<h3>Frontmatter SKILL.md — Champs disponibles</h3>
 
-<h2 id="a-hooks">Hooks</h2>
-<p>Les hooks sont des <strong>commandes shell ou prompts LLM</strong> qui s'exécutent automatiquement à des points spécifiques du cycle de vie de Claude Code.</p>
+<pre><code>---
+<p>name: my-skill                      # Nom (optionnel, défaut = nom du dossier)</p>
+<p>description: What this skill does   # Recommandé (aide Claude à décider)</p>
+<p>argument-hint: [filename] [format]  # Hint d'autocomplétion</p>
+<p>disable-model-invocation: true      # Empêche Claude de le charger auto</p>
+<p>user-invocable: false               # Cacher du menu /</p>
+<p>allowed-tools: Read, Grep           # Outils autorisés sans permission</p>
+<p>model: claude-opus-4-6              # Modèle spécifique pour ce skill</p>
+<p>context: fork                       # Exécuter dans un sous-agent forké</p>
+<p>hooks:                              # Hooks scoped à ce skill</p>
+<p>  ...</p>
+<p>---</code></pre></p>
+
+<h3>Variables de substitution dans les skills</h3>
+
+<pre><code>{{USER}}          # Nom de l'utilisateur courant
+<p>{{SESSION_ID}}    # ID de session actuelle</p>
+<p>{{CWD}}           # Répertoire de travail courant</code></pre></p>
+
+<h3>Exécuter un skill dans un sous-agent</h3>
+
+<pre><code>---
+<p>name: deploy</p>
+<p>context: fork</p>
+<p>agent: deploy-specialist</p>
+<p>---</code></pre></p>
+
+<h2>2. Hooks — Automation Avancée</h2>
+
+<p>Les Hooks sont des commandes shell, endpoints HTTP ou prompts LLM déclenchés automatiquement à des points spécifiques du cycle de vie de Claude Code.</p>
 
 <h3>Événements disponibles</h3>
-<table>
-<tr><th>Événement</th><th>Quand</th><th>Peut bloquer ?</th></tr>
-<tr><td><code>SessionStart</code></td><td>Début/reprise de session</td><td>Non</td></tr>
-<tr><td><code>UserPromptSubmit</code></td><td>Avant traitement du prompt</td><td>Non</td></tr>
-<tr><td><code>PreToolUse</code></td><td>Avant un appel d'outil</td><td>✅ Oui</td></tr>
-<tr><td><code>PostToolUse</code></td><td>Après un appel d'outil réussi</td><td>Non</td></tr>
-<tr><td><code>PermissionRequest</code></td><td>Dialog de permission</td><td>✅ Oui</td></tr>
-<tr><td><code>Stop</code></td><td>Claude finit de répondre</td><td>Non</td></tr>
-<tr><td><code>SubagentStart/Stop</code></td><td>Lancement/fin d'un sous-agent</td><td>Non</td></tr>
-<tr><td><code>WorktreeCreate</code></td><td>Création d'un worktree</td><td>Remplace le comportement par défaut</td></tr>
-<tr><td><code>WorktreeRemove</code></td><td>Suppression d'un worktree</td><td>Remplace le comportement par défaut</td></tr>
-<tr><td><code>PreCompact</code></td><td>Avant compaction du contexte</td><td>Non</td></tr>
-<tr><td><code>SessionEnd</code></td><td>Fin de session</td><td>Non</td></tr>
-</table>
 
-<h3>Exemple : Bloquer rm -rf</h3>
+<p>| Événement | Quand il se déclenche |</p>
+<p>|-----------|----------------------|</p>
+<p>| <code>SessionStart</code> | Début ou reprise d'une session |</p>
+<p>| <code>UserPromptSubmit</code> | Soumission d'un prompt (avant traitement) |</p>
+<p>| <code>PreToolUse</code> | Avant l'exécution d'un outil (peut bloquer) |</p>
+<p>| <code>PermissionRequest</code> | Quand une dialog de permission apparaît |</p>
+<p>| <code>PostToolUse</code> | Après la réussite d'un outil |</p>
+<p>| <code>PostToolUseFailure</code> | Après l'échec d'un outil |</p>
+<p>| <code>Notification</code> | Quand Claude envoie une notification |</p>
+<p>| <code>SubagentStart</code> | Création d'un sous-agent |</p>
+<p>| <code>SubagentStop</code> | Fin d'un sous-agent |</p>
+<p>| <code>Stop</code> | Fin de la réponse de Claude |</p>
+<p>| <code>TeammateIdle</code> | Quand un agent de l'équipe va devenir inactif |</p>
+<p>| <code>TaskCompleted</code> | Quand une tâche est marquée complète |</p>
+<p>| <code>ConfigChange</code> | Changement de fichier de config pendant une session |</p>
+<p>| <code>WorktreeCreate</code> | Création d'un worktree |</p>
+<p>| <code>WorktreeRemove</code> | Suppression d'un worktree |</p>
+<p>| <code>PreCompact</code> | Avant la compaction du contexte |</p>
+<p>| <code>SessionEnd</code> | Fin de session |</p>
+
+<h3>Exemple : Bloquer les commandes dangereuses</h3>
+
 <pre><code>// .claude/settings.json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/block-rm.sh"
-          }
-        ]
-      }
-    ]
-  }
-}</code></pre>
+<p>{</p>
+<p>  "hooks": {</p>
+<p>    "PreToolUse": [</p>
+<p>      {</p>
+<p>        "matcher": "Bash",</p>
+<p>        "hooks": [</p>
+<p>          {</p>
+<p>            "type": "command",</p>
+<p>            "command": ".claude/hooks/block-rm.sh"</p>
+<p>          }</p>
+<p>        ]</p>
+<p>      }</p>
+<p>    ]</p>
+<p>  }</p>
+<p>}</code></pre></p>
+
 <pre><code>#!/bin/bash
-# .claude/hooks/block-rm.sh
-COMMAND=$(jq -r '.tool_input.command')
+<h1>.claude/hooks/block-rm.sh</h1>
+<p>COMMAND=$(jq -r '.tool_input.command')</p>
 
-if echo "$COMMAND" | grep -q 'rm -rf'; then
-  jq -n '{
-    hookSpecificOutput: {
-      hookEventName: "PreToolUse",
-      permissionDecision: "deny",
-      permissionDecisionReason: "Destructive command blocked"
-    }
-  }'
-else
-  exit 0
-fi</code></pre>
+<p>if echo "$COMMAND" | grep -q 'rm -rf'; then</p>
+<p>  jq -n '{</p>
+<p>    hookSpecificOutput: {</p>
+<p>      hookEventName: "PreToolUse",</p>
+<p>      permissionDecision: "deny",</p>
+<p>      permissionDecisionReason: "Destructive command blocked by hook"</p>
+<p>    }</p>
+<p>  }'</p>
+<p>else</p>
+<p>  exit 0  # Autoriser la commande</p>
+<p>fi</code></pre></p>
 
-<h2 id="a-skills">Skills</h2>
-<p>Les skills étendent les capacités de Claude Code avec des instructions réutilisables. Chaque skill est un fichier <code>SKILL.md</code> avec un frontmatter YAML.</p>
+<h3>Types de hooks</h3>
 
-<h3>Créer une skill</h3>
-<pre><code># ~/.claude/skills/explain-code/SKILL.md
----
-name: explain-code
-description: Explains code with visual diagrams and analogies
----
+<ol>
+<li><strong>Command hooks</strong> : Scripts shell (input via stdin)</li>
+<li><strong>HTTP hooks</strong> : Endpoints POST (input via body)</li>
+<li><strong>Prompt hooks</strong> : Prompts LLM évalués par Claude</li>
+<li><strong>MCP tool hooks</strong> : Outils MCP déclenchés comme hooks</li>
+</ol>
 
-When explaining code, always include:
-1. **Start with an analogy**
-2. **Draw a diagram** (ASCII art)
-3. **Walk through the code** step-by-step
-4. **Highlight a gotcha**</code></pre>
+<h3>Emplacements des hooks</h3>
 
-<h3>Portées</h3>
-<table>
-<tr><th>Emplacement</th><th>Portée</th></tr>
-<tr><td><code>~/.claude/skills/</code></td><td>Tous tes projets</td></tr>
-<tr><td><code>.claude/skills/</code></td><td>Ce projet</td></tr>
-<tr><td>Plugin skills</td><td>Où le plugin est actif</td></tr>
-</table>
+<p>| Emplacement | Portée | Partageable |</p>
+<p>|-------------|--------|-------------|</p>
+<p>| <code>~/.claude/settings.json</code> | Tous vos projets | Non |</p>
+<p>| <code>.claude/settings.json</code> | Projet unique | Oui (git) |</p>
+<p>| <code>.claude/settings.local.json</code> | Projet unique | Non (gitignored) |</p>
+<p>| Managed policy settings | Organisation | Oui (admin) |</p>
 
-<h3>Frontmatter</h3>
-<table>
-<tr><th>Champ</th><th>Description</th></tr>
-<tr><td><code>name</code></td><td>Nom (devient /slash-command)</td></tr>
-<tr><td><code>description</code></td><td>Quand utiliser (pour invocation auto)</td></tr>
-<tr><td><code>disable-model-invocation</code></td><td>Empêcher l'invocation auto par Claude</td></tr>
-<tr><td><code>allowed-tools</code></td><td>Outils autorisés</td></tr>
-<tr><td><code>context</code></td><td><code>fork</code> = exécuter dans un sous-agent</td></tr>
-</table>
+<h2>3. Plan Mode — Exploration Sécurisée</h2>
 
-<h2 id="a-mcp">MCP (Model Context Protocol)</h2>
-<p>Claude Code peut se connecter à des <strong>serveurs MCP</strong> pour accéder à des outils et resources externes (GitHub, Slack, bases de données, etc.).</p>
+<p>Plan Mode empêche Claude de modifier quoi que ce soit — il analyse, planifie, et pose des questions.</p>
+
+<h3>Activer Plan Mode</h3>
+
+<pre><code><h1>Au démarrage</h1>
+<p>claude --permission-mode plan</p>
+
+<h1>En session (Shift+Tab deux fois)</h1>
+<h1>Normal → Auto-Accept → Plan Mode</h1>
+
+<h1>Mode headless</h1>
+<p>claude --permission-mode plan -p "Analyze the auth system"</code></pre></p>
+
+<h3>Configurer Plan Mode par défaut</h3>
+
 <pre><code>// .claude/settings.json
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"]
-    }
-  }
-}</code></pre>
+<p>{</p>
+<p>  "permissions": {</p>
+<p>    "defaultMode": "plan"</p>
+<p>  }</p>
+<p>}</code></pre></p>
 
-<h2 id="a-headless">Mode Headless & CI/CD</h2>
-<p>Utiliser Claude Code sans interaction dans des pipelines CI/CD :</p>
-<pre><code># Mode headless avec prompt
-claude -p "Run all tests and fix failures" --output-format json
+<h3>Workflow recommandé (4 phases)</h3>
 
-# Avec mode permission bypass (containers uniquement !)
-claude -p "..." --dangerously-skip-permissions
+<ol>
+<li><strong>Explorer</strong> : Activer Plan Mode. Claude lit les fichiers sans modifier.</li>
+<li><strong>Planifier</strong> : Demander un plan d'implémentation détaillé. <code>Ctrl+G</code> pour éditer le plan.</li>
+<li><strong>Implémenter</strong> : Revenir en Normal Mode. Claude code en suivant le plan.</li>
+<li><strong>Valider</strong> : Demander commit et PR.</li>
+</ol>
 
-# Avec un fichier de sortie structuré
-claude -p "Analyze security of this PR" --output-format stream-json</code></pre>
+<pre><code><h1>Phase 1 (Plan Mode activé)</h1>
+<blockquote>read /src/auth and understand how we handle sessions</blockquote>
 
-<h2 id="a-desktop">Claude Code Desktop <span class="badge badge-new">NEW</span></h2>
-<p>L'onglet Code dans Claude Desktop ajoute une interface graphique sur Claude Code :</p>
+<h1>Phase 2 (Plan Mode)</h1>
+<blockquote>I want to add Google OAuth. What files need to change?</blockquote>
+<blockquote>Create a detailed plan.</blockquote>
+<h1>Ctrl+G pour éditer le plan manuellement</h1>
+
+<h1>Phase 3 (Normal Mode)</h1>
+<blockquote>implement the OAuth flow from your plan. Write tests and fix failures.</blockquote>
+
+<h1>Phase 4 (Normal Mode)</h1>
+<blockquote>commit with a descriptive message and open a PR</blockquote></code></pre>
+
+<h2>4. Sous-agents (Multi-agent)</h2>
+
+<p>Claude Code peut orchestrer plusieurs sous-agents en parallèle.</p>
+
+<h3>Voir les sous-agents disponibles</h3>
+
+<pre><code>/agents     # Dans la session interactive
+<p>claude agents   # En ligne de commande</code></pre></p>
+
+<h3>Lancer des sous-agents automatiquement</h3>
+
+<pre><code><blockquote>review my recent code changes for security issues</blockquote>
+<blockquote>run all tests and fix any failures</blockquote></code></pre>
+
+<h3>Demander un sous-agent spécifique</h3>
+
+<pre><code><blockquote>use the code-reviewer subagent to check the auth module</blockquote>
+<blockquote>have the debugger subagent investigate why users can't log in</blockquote></code></pre>
+
+<h3>Créer un sous-agent personnalisé</h3>
+
+<pre><code><blockquote>/agents</blockquote></code></pre>
+<p>Puis "Create New subagent" :</p>
 <ul>
-<li><strong>Visual diff review</strong> avec commentaires inline</li>
-<li><strong>Live app preview</strong> avec dev servers intégrés</li>
-<li><strong>GitHub PR monitoring</strong> avec auto-fix et auto-merge</li>
-<li><strong>Sessions parallèles</strong> avec isolation Git worktree automatique</li>
-<li><strong>Connecteurs</strong> : GitHub, Slack, Linear, Notion, etc.</li>
-<li><strong>Environments</strong> : Local, SSH, ou Cloud (remote)</li>
+<li>Identifiant unique (ex: <code>code-reviewer</code>)</li>
+<li>Quand Claude doit l'utiliser</li>
+<li>Quels outils il peut accéder</li>
+<li>System prompt décrivant son rôle</li>
 </ul>
 
-<h2 id="a-context">Gestion du contexte</h2>
-<h3>Compaction automatique</h3>
-<p>Quand la fenêtre de contexte se remplit, Claude résume automatiquement la conversation et continue. Tu peux aussi forcer :</p>
-<pre><code>/compact</code></pre>
+<h3>Fichier de sous-agent</h3>
 
-<h3>Extended Thinking</h3>
-<p>Le thinking est activé par défaut. Avec <strong>Opus 4.6</strong>, il est adaptatif (ajusté selon l'effort level). Avec les autres modèles, budget fixe de 31,999 tokens max.</p>
-<table>
-<tr><th>Action</th><th>Comment</th></tr>
-<tr><td>Toggle on/off</td><td><code>Option+T</code> (macOS) / <code>Alt+T</code></td></tr>
-<tr><td>Voir le thinking</td><td><code>Ctrl+O</code> (verbose mode)</td></tr>
-<tr><td>Limiter le budget</td><td><code>MAX_THINKING_TOKENS=10000</code></td></tr>
-<tr><td>Ajuster l'effort</td><td><code>/model</code> → effort level</td></tr>
-</table>
-</div>
+<pre><code><h1>.claude/agents/security-reviewer.md</h1>
+<p>---</p>
+<p>name: security-reviewer</p>
+<p>description: Reviews code for security vulnerabilities, OWASP compliance, and injection risks</p>
+<p>allowed-tools: Read, Grep, Bash(git diff *)</p>
+<p>model: claude-opus-4-6</p>
+<p>---</p>
 
-<!-- ======================= SECURITY ======================= -->
-<div class="content" id="security">
-<h1>🔒 Sécurité — Claude Code</h1>
-<p><span class="badge badge-security">CRITIQUE</span> <span class="badge badge-new">NOUVEAU</span> Tout ce que tu dois savoir sur le modèle de sécurité de Claude Code : permissions, sandboxing, managed settings, et protection contre l'injection.</p>
+<p>You are a security expert. When reviewing code:</p>
+<ol>
+<li>Check for SQL injection vulnerabilities</li>
+<li>Look for XSS attack vectors</li>
+<li>Verify authentication and authorization</li>
+<li>Check secrets/credentials exposure</li>
+<li>Review input validation</code></pre></li>
+</ol>
 
-<details class="toc">
-<summary>📑 Table des matières</summary>
+<h2>5. Remote Control</h2>
+
+<p>Permet de contrôler Claude Code depuis claude.ai ou l'app Claude tout en l'exécutant localement.</p>
+
+<pre><code>claude remote-control</code></pre>
+
+<p>Utile pour :</p>
 <ul>
-<li><a href="#s-model">Modèle de sécurité</a></li>
-<li><a href="#s-permissions">Système de permissions</a></li>
-<li><a href="#s-rules">Syntaxe des règles</a></li>
-<li><a href="#s-sandbox">Sandboxing</a></li>
-<li><a href="#s-managed">Managed Settings (Enterprise)</a></li>
-<li><a href="#s-injection">Protection prompt injection</a></li>
-<li><a href="#s-best">Bonnes pratiques</a></li>
+<li>Continuer depuis un téléphone mobile</li>
+<li>Démarrer une session depuis le web, continuer en terminal</li>
+<li><code>/teleport</code> — transférer une session web vers le terminal</li>
 </ul>
-</details>
 
-<h2 id="s-model">Modèle de sécurité — Vue d'ensemble</h2>
-<p>Claude Code utilise une <strong>défense en profondeur</strong> avec deux couches complémentaires :</p>
-<div class="card-grid">
-<div class="card">
-<h4>🔑 Permissions</h4>
-<p>Contrôlent <strong>quels outils</strong> Claude peut utiliser et <strong>quels fichiers/domaines</strong> il peut accéder. S'appliquent à TOUS les outils.</p>
-</div>
-<div class="card">
-<h4>🏖️ Sandboxing</h4>
-<p>Fournit une <strong>isolation OS-level</strong> (filesystem + réseau) pour les commandes Bash. S'applique uniquement à Bash et ses processus enfants.</p>
-</div>
-</div>
+<h2>6. Intégration Chrome</h2>
 
-<h2 id="s-permissions">Système de permissions</h2>
-<h3>Types de permissions</h3>
-<table>
-<tr><th>Type d'outil</th><th>Exemple</th><th>Approbation</th><th>"Don't ask again"</th></tr>
-<tr><td>Read-only</td><td>Lecture fichiers, Grep</td><td>Non requise</td><td>N/A</td></tr>
-<tr><td>Commandes Bash</td><td>Exécution shell</td><td>Oui</td><td>Permanent par projet + commande</td></tr>
-<tr><td>Modification fichiers</td><td>Edit/Write</td><td>Oui</td><td>Jusqu'à fin de session</td></tr>
-</table>
+<pre><code>claude --chrome</code></pre>
 
-<h3>Types de règles</h3>
+<p>Permet à Claude de :</p>
 <ul>
-<li><strong>Allow</strong> — Autorise sans demander confirmation</li>
-<li><strong>Ask</strong> — Demande confirmation à chaque fois</li>
-<li><strong>Deny</strong> — Bloque complètement</li>
+<li>Ouvrir de nouveaux onglets</li>
+<li>Tester l'UI directement dans le navigateur</li>
+<li>Comparer screenshots avant/après</li>
+<li>Débugger des apps web en live</li>
 </ul>
-<div class="note">Ordre d'évaluation : <strong>deny → ask → allow</strong>. La première règle qui matche gagne. Les deny sont TOUJOURS prioritaires.</div>
 
-<h2 id="s-rules">Syntaxe des règles de permission</h2>
+<p>Exemple : "implement this design. Take a screenshot and compare to the original. Fix differences."</p>
 
-<h3>Bash — Wildcards</h3>
+<h2>7. Worktrees Git — Isolation parallèle</h2>
+
+<pre><code><h1>Activer l'isolation par worktree</h1>
+<p>claude --permission-mode auto --worktree</p>
+
+<h1>Ou dans settings</h1>
+<p>{</p>
+<p>  "isolation": "worktree"</p>
+<p>}</code></pre></p>
+
+<p>Chaque session peut travailler dans un worktree Git séparé, permettant :</p>
+<ul>
+<li>Plusieurs features en parallèle sans conflit</li>
+<li>Isolation complète des changements</li>
+<li>Retour facile à l'état d'origine</li>
+</ul>
+
+<h2>8. Gestion du contexte (context window)</h2>
+
+<p>La fenêtre de contexte est la ressource la plus critique. Elle se remplit rapidement.</p>
+
+<h3>Surveiller l'usage du contexte</h3>
+
+<p>Créer un status line personnalisé (cf. documentation <code>/en/statusline</code>).</p>
+
+<h3>Réduire l'usage des tokens</h3>
+
+<pre><code><h1>Compacter le contexte (résumé des échanges précédents)</h1>
+<blockquote>/compact</blockquote>
+
+<h1>Ou configurer la compaction automatique</h1>
+<p>{</p>
+<p>  "autoCompact": true,</p>
+<p>  "autoCompactThreshold": 0.8  # Compacter à 80% de remplissage</p>
+<p>}</code></pre></p>
+
+<h3>Bonnes pratiques contexte</h3>
+<ul>
+<li>Garder CLAUDE.md court et précis</li>
+<li>Utiliser des skills pour la connaissance domaine (chargée à la demande)</li>
+<li>Commencer une nouvelle session pour des tâches indépendantes</li>
+<li>Utiliser <code>-c</code> pour continuer une session existante (préserve le contexte)</li>
+</ul>
+
+<h2>9. Outputs structurés (JSON Schema)</h2>
+
+<pre><code><h1>Obtenir une sortie JSON validée</h1>
+<p>claude -p --json-schema '{</p>
+<p>  "type": "object",</p>
+<p>  "properties": {</p>
+<p>    "bugs": {"type": "array", "items": {"type": "string"}},</p>
+<p>    "severity": {"type": "string", "enum": ["low", "medium", "high"]}</p>
+<p>  }</p>
+<p>}' "analyze this code for bugs"</code></pre></p>
+
+<h2>10. Équipes d'agents (Agent Teams)</h2>
+
+<p>Organiser plusieurs agents en équipes pour des tâches complexes :</p>
+
+<pre><code>// .claude/settings.json
+<p>{</p>
+<p>  "agentTeam": {</p>
+<p>    "frontend": {</p>
+<p>      "description": "Handles React components",</p>
+<p>      "tools": ["Read", "Edit", "Bash(npm *)"]</p>
+<p>    },</p>
+<p>    "backend": {</p>
+<p>      "description": "Handles API and database",</p>
+<p>      "tools": ["Read", "Edit", "Bash(python *)", "Bash(psql *)"]</p>
+<p>    }</p>
+<p>  }</p>
+<p>}</code></pre></p>
+
+<p>---</p>
+<p>*Sources : code.claude.com/docs/en/skills, /hooks, /common-workflows, /sub-agents — 27 Février 2026*</p>
+
+</div>
+
+<div class="content" id="tips">
+<h1>Claude Code — Trucs, Astuces et Raccourcis</h1>
+
+<blockquote>Sources : Reddit r/ClaudeAI (25 tips, 11 mois d'utilisation intensive), Substack, Geeky-Gadgets — Janvier-Février 2026</blockquote>
+
+<h2>Tip 0 : Personnaliser le Status Line (Barre de statut)</h2>
+
+<p>Afficher des informations utiles en bas de Claude Code :</p>
+
+<pre><code>Opus 4.5 | 📁claude-code-tips | 🔀main (uncommitted, synced 12m ago) | ██░░░░░░░░ 18% of 200k tokens
+<p>💬 This is good. I don't think we need to change the documentation...</code></pre></p>
+
+<p>Ce status line montre :</p>
+<ul>
+<li>Le modèle actif</li>
+<li>Le répertoire courant</li>
+<li>La branche Git et l'état des fichiers</li>
+<li>La barre de progression des tokens (crucial !)</li>
+<li>Le dernier message pour se souvenir du contexte</li>
+</ul>
+
+<strong>Script de référence</strong> : https://github.com/ykdojo/claude-code-tips/blob/main/scripts/context-bar.sh (10 thèmes de couleur disponibles)
+
+<p>---</p>
+
+<h2>Tip 1 : Commandes Slash essentielles</h2>
+
+<pre><code>/         # Voir toutes les commandes et skills disponibles
+<p>/usage    # Vérifier ses limites de débit et la semaine en cours</p>
+<p>/chrome   # Activer/désactiver l'intégration Chrome native</p>
+<p>/mcp      # Gérer les serveurs MCP</p>
+<p>/stats    # Statistiques d'utilisation (graphique style GitHub)</p>
+<p>/clear    # Effacer la conversation et repartir de zéro</p>
+<p>/cost     # Usage tokens de la session (API users)</p>
+<p>/compact  # Compacter la conversation</p>
+<p>/rename   # Renommer la session avant de la clear</p>
+<p>/resume   # Reprendre une conversation précédente</p>
+<p>/config   # Interface de configuration (tabbed)</code></pre></p>
+
+<strong>Rafraîchir <code>/usage</code></strong> : Tab puis Shift+Tab, ou ← puis →
+
+<p>---</p>
+
+<h2>Tip 2 : Parler à Claude avec sa voix 🎤</h2>
+
+<p>Plus rapide que taper. Sur Mac, utiliser :</p>
+<ul>
+<li><strong>Superwhisper</strong> (payant)</li>
+<li><strong>MacWhisper</strong> (gratuit/payant)</li>
+<li><strong>Super Voice Assistant</strong> (open source) : https://github.com/ykdojo/super-voice-assistant</li>
+</ul>
+
+<p>Astuce : Chuchoter avec des écouteurs Apple EarPods — fonctionne même en avion.</p>
+
+<p>Claude est assez intelligent pour comprendre les mauvaises transcriptions. Ex : "ExcelElanishMark" → "exclamation mark".</p>
+
+<p>---</p>
+
+<h2>Tip 3 : Décomposer les gros problèmes</h2>
+
+<p>L'une des compétences les plus importantes :</p>
+
+<pre><code>Problème → A1 → A2 → A3 → Solution finale</code></pre>
+
+<p>Au lieu de demander à Claude de tout faire d'un coup, décomposer en sous-tâches. Exemple (construction d'un système de transcription vocale) :</p>
+<ol>
+<li>Créer un exécutable pour télécharger un modèle</li>
+<li>Créer un exécutable pour enregistrer la voix</li>
+<li>Créer un exécutable pour transcrire l'audio</li>
+<li>Combiner le tout</li>
+</ol>
+
+<strong>Les compétences en software engineering restent cruciales</strong> même avec Claude Code.
+
+<p>---</p>
+
+<h2>Tip 4 : Maîtriser Git et GitHub CLI</h2>
+
+<p>Laisser Claude gérer :</p>
+<ul>
+<li>Les commits (plus de messages à écrire manuellement)</li>
+<li>Les branches (create/switch/merge)</li>
+<li>Les pull/push (mais superviser le push !)</li>
+<li>Les PRs via <code>gh</code> CLI</li>
+</ul>
+
+<strong>Stratégie recommandée</strong> : Autoriser <code>pull</code> automatiquement, superviser <code>push</code>.
+
+<strong>Utiliser des draft PRs</strong> : Risque faible, Claude crée, vous reviewez avant de merger.
+
+<pre><code><h1>Requêtes GraphQL via gh</h1>
+<p>gh api graphql -f query='</p>
+<p>  query {</p>
+<p>    repository(owner: "owner", name: "repo") {</p>
+<p>      pullRequest(number: 123) {</p>
+<p>        userContentEdits(first: 100) {</p>
+<p>          nodes { editedAt editor { login } }</p>
+<p>        }</p>
+<p>      }</p>
+<p>    }</p>
+<p>  }'</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 5 : Le contexte est comme du lait — frais et condensé</h2>
+
+<p>Les performances baissent avec l'accumulation du contexte.</p>
+
+<strong>Règle d'or</strong> : Nouvelle conversation pour chaque nouveau sujet, ou quand les performances baissent.
+
+<pre><code>/clear    # Repartir à zéro
+<p>/compact  # Compacter (résumé)</p>
+<p>/rename   # Renommer avant de clear (retrouver plus tard)</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 6 : Extraire les sorties du terminal</h2>
+
+<pre><code><h1>Copier vers le clipboard (Mac)</h1>
+<blockquote>use pbcopy to send the output to clipboard</blockquote>
+
+<h1>Ouvrir dans VS Code</h1>
+<blockquote>write this to a temp file and open it in VS Code at line 42</blockquote>
+
+<h1>Ouvrir une URL dans le navigateur (Mac)</h1>
+<blockquote>open this URL in my browser using the open command</blockquote>
+
+<h1>Ouvrir dans GitHub Desktop</h1>
+<blockquote>open this repo in GitHub Desktop</blockquote></code></pre>
+
+<p>---</p>
+
+<h2>Tip 7 : Utiliser les Git Worktrees pour le développement parallèle</h2>
+
+<pre><code><h1>Claude gère les worktrees automatiquement avec --worktree</h1>
+<p>claude --worktree</p>
+
+<h1>Ou manuellement</h1>
+<p>git worktree add ../feature-branch feature-branch</p>
+<p>cd ../feature-branch && claude</p>
+
+<h1>Dans GitHub Desktop : ouvrir un worktree créé par Claude</h1>
+<blockquote>open this worktree in GitHub Desktop</blockquote></code></pre>
+
+<p>Chaque worktree = isolation complète = pas de conflit entre features.</p>
+
+<p>---</p>
+
+<h2>Tip 8 : Donner des "garde-fous" à Claude</h2>
+
+<p>Pour les tâches risquées, utiliser des hooks pour bloquer les commandes dangereuses :</p>
+
+<pre><code><h1>Dans CLAUDE.md</h1>
+<p>Never run destructive commands (rm -rf, DROP TABLE) without asking me first.</p>
+<p>Always create a backup before modifying database schemas.</code></pre></p>
+
+<p>Ou avec un hook PreToolUse (voir 03-advanced-usage.md).</p>
+
+<p>---</p>
+
+<h2>Tip 9 : Piping Unix — Puissance maximale</h2>
+
+<pre><code><h1>Analyser des logs en temps réel</h1>
+<p>tail -f app.log | claude -p "alert me if you see any critical errors"</p>
+
+<h1>Audit de sécurité sur les changements</h1>
+<p>git diff main --name-only | claude -p "review for security issues"</p>
+
+<h1>Résumer un diff</h1>
+<p>git diff HEAD~5 | claude -p "summarize what changed in these 5 commits"</p>
+
+<h1>Analyser les tests qui échouent</h1>
+<p>npm test 2>&1 | claude -p "tell me what tests failed and suggest fixes"</p>
+
+<h1>Review de code en masse</h1>
+<p>find . -name "*.py" | xargs cat | claude -p "find code smells"</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 10 : Maîtriser les modes de permission</h2>
+
+<pre><code>Shift+Tab (depuis Normal) → Auto-Accept → Shift+Tab → Plan Mode</code></pre>
+
+<ul>
+<li><strong>Normal</strong> : Claude demande avant chaque action (prudent)</li>
+<li><strong>Auto-Accept</strong> : Idéal pour des tâches claires et bien définies</li>
+<li><strong>Plan Mode</strong> : Parfait pour explorer et planifier (aucun fichier modifié)</li>
+</ul>
+
+<strong>Config dans settings.json</strong> :
 <pre><code>{
-  "permissions": {
-    "allow": [
-      "Bash(npm run *)",       // npm run build, npm run test, etc.
-      "Bash(git commit *)",    // git commit -m "..."
-      "Bash(* --version)",     // node --version, python --version
-      "Bash(* --help *)"       // commande --help [args]
-    ],
-    "deny": [
-      "Bash(git push *)"      // Interdit push
-    ]
-  }
-}</code></pre>
-<div class="warning"><strong>L'espace avant <code>*</code> compte !</strong> <code>Bash(ls *)</code> matche <code>ls -la</code> mais PAS <code>lsof</code>. <code>Bash(ls*)</code> matche les deux.</div>
+<p>  "permissions": {</p>
+<p>    "defaultMode": "auto"  // "normal", "auto", ou "plan"</p>
+<p>  }</p>
+<p>}</code></pre></p>
 
-<div class="warning"><strong>Claude connait les opérateurs shell !</strong> Une règle <code>Bash(safe-cmd *)</code> ne donnera PAS permission pour <code>safe-cmd && other-cmd</code>.</div>
+<p>---</p>
 
-<h3>Read & Edit — Patterns gitignore</h3>
-<table>
-<tr><th>Pattern</th><th>Signification</th><th>Exemple</th></tr>
-<tr><td><code>//path</code></td><td>Chemin absolu filesystem</td><td><code>Read(//Users/alice/secrets/**)</code></td></tr>
-<tr><td><code>~/path</code></td><td>Depuis le home</td><td><code>Read(~/Documents/*.pdf)</code></td></tr>
-<tr><td><code>/path</code></td><td>Relatif au fichier settings</td><td><code>Edit(/src/**/*.ts)</code></td></tr>
-<tr><td><code>path</code></td><td>Relatif au CWD</td><td><code>Read(*.env)</code></td></tr>
-</table>
-<div class="warning"><code>/Users/alice/file</code> n'est PAS un chemin absolu ! C'est relatif au settings. Utilisez <code>//Users/alice/file</code> pour un chemin absolu.</div>
+<h2>Tip 11 : <code>@</code> pour référencer les fichiers</h2>
 
-<h3>WebFetch</h3>
-<pre><code>"allow": ["WebFetch(domain:example.com)"]
-"deny": ["WebFetch(domain:evil.com)"]</code></pre>
+<pre><code><blockquote>look at @src/auth/login.ts and explain the session flow</blockquote>
+<blockquote>compare @old-component.tsx with @new-component.tsx</blockquote>
+<blockquote>update @package.json to add the dependency I just described</blockquote></code></pre>
 
-<h3>MCP</h3>
-<pre><code>"allow": ["mcp__puppeteer"]              // tous les outils du serveur
-"allow": ["mcp__puppeteer__navigate"]    // un outil spécifique</code></pre>
+<p>---</p>
 
-<h3>Task (sous-agents)</h3>
-<pre><code>"deny": ["Task(Explore)"]    // Désactiver le sous-agent Explore
-"deny": ["Task(Plan)"]       // Désactiver le sous-agent Plan</code></pre>
+<h2>Tip 12 : Historique et recherche dans la session</h2>
 
-<h2 id="s-sandbox">Sandboxing <span class="badge badge-new">NOUVEAU</span></h2>
-<p>Le sandboxing utilise des <strong>primitives OS-level</strong> pour isoler les commandes Bash :</p>
+<pre><code>↑        # Historique des commandes précédentes
+<p>Tab      # Autocomplétion (commandes, skills, fichiers)</p>
+<p>/        # Voir toutes les commandes/skills disponibles</code></pre></p>
 
-<h3>Implémentation par OS</h3>
-<table>
-<tr><th>OS</th><th>Technologie</th><th>Notes</th></tr>
-<tr><td>macOS</td><td>Seatbelt</td><td>Fonctionne out-of-the-box</td></tr>
-<tr><td>Linux/WSL2</td><td>Bubblewrap</td><td>Installer : <code>apt install bubblewrap socat</code></td></tr>
-<tr><td>WSL1</td><td>—</td><td>Non supporté</td></tr>
-</table>
+<p>---</p>
 
-<h3>Activer</h3>
-<pre><code>/sandbox</code></pre>
+<h2>Tip 13 : Prompts "headless" pour CI/CD</h2>
 
-<h3>Modes sandbox</h3>
-<table>
-<tr><th>Mode</th><th>Comportement</th></tr>
-<tr><td><strong>Auto-allow</strong></td><td>Commandes sandboxées = auto-approuvées. Commandes impossibles à sandboxer = flow de permission normal.</td></tr>
-<tr><td><strong>Regular permissions</strong></td><td>Toutes les commandes passent par le flow de permission, même sandboxées.</td></tr>
-</table>
+<pre><code><h1>Requête simple non-interactive</h1>
+<p>claude -p "what does this function do?" < function.py</p>
 
-<h3>Isolation filesystem</h3>
+<h1>Avec budget limité</h1>
+<p>claude -p --max-budget-usd 2.00 "analyze security vulnerabilities"</p>
+
+<h1>Sortie JSON structurée</h1>
+<p>claude -p --json-schema '{"type":"object","properties":{"severity":{"type":"string"}}}' \</p>
+<p>  "classify the severity of this bug"</p>
+
+<h1>Continuer la dernière session</h1>
+<p>claude -c -p "did the tests pass?"</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 14 : Utiliser <code>/stats</code> pour gamifier la productivité</h2>
+
+<pre><code>Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+<p>············▒▒▒▓▒░█</p>
+<p>Mon ············▒█░▓░█</p>
+
+<p>Favorite model: Opus 4.5    Total tokens: 12.1m</p>
+<p>Sessions: 1.8k              Longest session: 20h 40m 45s</p>
+<p>Current streak: 44 days     Longest streak: 45 days</p>
+<p>Peak hour: 17:00-18:00</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 15 : Exploiter <code>Ctrl+G</code> pour éditer les plans</h2>
+
+<p>En Plan Mode, quand Claude crée un plan :</p>
 <ul>
-<li>✅ Lecture/écriture dans le répertoire de travail et sous-répertoires</li>
-<li>✅ Lecture sur tout le disque (sauf répertoires deny)</li>
-<li>❌ Modification hors du répertoire de travail sans permission explicite</li>
+<li><code>Ctrl+G</code> → ouvre le plan dans votre éditeur de texte</li>
+<li>Modifier directement le plan</li>
+<li>Fermer l'éditeur → Claude continue avec le plan modifié</li>
 </ul>
 
-<h3>Isolation réseau</h3>
-<ul>
-<li>Proxy réseau tournant <strong>en dehors</strong> du sandbox</li>
-<li>Seuls les domaines approuvés sont accessibles</li>
-<li>Nouvelles requêtes de domaine → prompt de permission</li>
-<li>Les restrictions s'appliquent à <strong>tous les sous-processus</strong></li>
-</ul>
+<p>---</p>
 
-<h3>Protection contre l'injection</h3>
-<div class="card">
-<h4>🛡️ Même si un attaquant manipule Claude Code via prompt injection :</h4>
-<ul>
-<li>❌ Ne peut PAS modifier <code>~/.bashrc</code>, <code>/bin/</code>, ou fichiers système</li>
-<li>❌ Ne peut PAS exfiltrer de données vers des serveurs non-approuvés</li>
-<li>❌ Ne peut PAS télécharger de scripts malveillants</li>
-<li>❌ Ne peut PAS contacter de domaines non explicitement autorisés</li>
-<li>✅ Toutes les tentatives d'accès hors sandbox sont bloquées au niveau OS</li>
-<li>✅ Notifications immédiates quand les limites sont testées</li>
-</ul>
-</div>
+<h2>Tip 16 : Utiliser Remote Control depuis mobile</h2>
 
-<h3>Limitations de sécurité</h3>
-<div class="warning">
-<strong>Risques à connaître :</strong>
-<ul>
-<li><strong>Domaines larges</strong> : autoriser <code>github.com</code> pourrait permettre l'exfiltration de données</li>
-<li><strong>Domain fronting</strong> : possible de contourner le filtrage réseau dans certains cas</li>
-<li><strong>Unix sockets</strong> : <code>allowUnixSockets</code> avec <code>/var/run/docker.sock</code> = accès au host via Docker</li>
-<li><strong>Permissions filesystem larges</strong> : écriture dans <code>$PATH</code> ou <code>.bashrc</code> = escalade de privilèges</li>
-<li><strong>Linux nested sandbox</strong> : <code>enableWeakerNestedSandbox</code> réduit significativement la sécurité</li>
-</ul>
-</div>
+<pre><code><h1>Démarrer depuis le terminal</h1>
+<p>claude remote-control</p>
 
-<h3>Config avancée</h3>
-<pre><code>{
-  "sandbox": {
-    "network": {
-      "httpProxyPort": 8080,
-      "socksProxyPort": 8081
-    }
-  }
-}</code></pre>
-<p>Pour les organisations avec des besoins réseau avancés : proxy custom pour décrypter/inspecter HTTPS, logging, intégration avec l'infra sécurité existante.</p>
+<h1>→ Continuer depuis claude.ai sur mobile</h1>
+<h1>→ /teleport pour revenir au terminal</h1></code></pre>
 
-<h3>Open Source</h3>
-<p>Le runtime sandbox est disponible en package npm open source :</p>
-<pre><code>npx @anthropic-ai/sandbox-runtime &lt;commande-à-sandboxer&gt;</code></pre>
-<p>Utile pour sandboxer n'importe quel programme, pas seulement Claude Code (ex: serveurs MCP).</p>
+<p>---</p>
 
-<h2 id="s-managed">Managed Settings (Enterprise) <span class="badge badge-new">NOUVEAU</span></h2>
-<p>Pour les organisations nécessitant un contrôle centralisé :</p>
+<h2>Tip 17 : CLAUDE.md Hiérarchique</h2>
 
-<h3>Emplacements des fichiers managed</h3>
-<table>
-<tr><th>OS</th><th>Chemin</th></tr>
-<tr><td>macOS</td><td><code>/Library/Application Support/ClaudeCode/managed-settings.json</code></td></tr>
-<tr><td>Linux/WSL</td><td><code>/etc/claude-code/managed-settings.json</code></td></tr>
-<tr><td>Windows</td><td><code>C:\Program Files\ClaudeCode\managed-settings.json</code></td></tr>
-</table>
-<div class="note">Ce sont des chemins système (pas <code>~/Library/...</code>) qui requièrent des privilèges admin. Déployés par l'IT.</div>
+<p>Plusieurs niveaux d'instructions :</p>
 
-<h3>Settings managed-only</h3>
-<table>
-<tr><th>Setting</th><th>Description</th></tr>
-<tr><td><code>disableBypassPermissionsMode</code></td><td>Empêche le mode bypass et <code>--dangerously-skip-permissions</code></td></tr>
-<tr><td><code>allowManagedPermissionRulesOnly</code></td><td>Seules les rules des managed settings s'appliquent</td></tr>
-<tr><td><code>allowManagedHooksOnly</code></td><td>Seuls les hooks managed et SDK sont chargés</td></tr>
-<tr><td><code>strictKnownMarketplaces</code></td><td>Contrôle quels marketplaces de plugins sont autorisés</td></tr>
-</table>
+<pre><code>~/.claude/CLAUDE.md          # Instructions globales (tous projets)
+<p>./CLAUDE.md                  # Instructions du projet</p>
+<p>./CLAUDE.local.md            # Overrides personnels (gitignored)</p>
+<p>./src/components/CLAUDE.md   # Instructions pour ce sous-répertoire</code></pre></p>
 
-<h3>Précédence des settings</h3>
-<pre><code>Managed (max) → CLI args → Local project → Shared project → User (min)</code></pre>
+<p>Claude charge les CLAUDE.md de manière hiérarchique (projet root → sous-répertoire).</p>
 
-<h2 id="s-injection">Protection contre le prompt injection</h2>
-<div class="card">
-<h4>Défense en profondeur</h4>
+<p>---</p>
+
+<h2>Tip 18 : Utiliser des skills pour les workflows répétitifs</h2>
+
+<pre><code><h1>Créer un skill de review de code</h1>
+<p>mkdir -p .claude/skills/code-review</p>
+<p>cat > .claude/skills/code-review/SKILL.md << 'EOF'</p>
+<p>---</p>
+<p>name: review</p>
+<p>description: Perform a thorough code review following our team standards</p>
+<p>---</p>
+<p>Review the code changes for:</p>
 <ol>
-<li><strong>Permissions</strong> — Bloquent les tentatives d'accès avant même l'exécution</li>
-<li><strong>Sandboxing</strong> — Isolation OS-level même si Claude est manipulé</li>
-<li><strong>Hooks PreToolUse</strong> — Validation custom avant chaque outil</li>
-<li><strong>Managed settings</strong> — Politiques organisationnelles non-overridables</li>
-<li><strong>Deny rules prioritaires</strong> — deny gagne TOUJOURS sur allow</li>
-</ol>
-</div>
-
-<h2 id="s-best">Bonnes pratiques sécurité</h2>
-<ol>
-<li><strong>Commence restrictif</strong> — Minimal d'abord, élargis selon les besoins</li>
-<li><strong>Active le sandboxing</strong> — Réduit drastiquement la surface d'attaque</li>
-<li><strong>Utilise les deny rules</strong> — Bloque explicitement ce qui ne doit JAMAIS être accessible</li>
-<li><strong>Monitore les violations</strong> — Review les tentatives d'accès sandbox</li>
-<li><strong>Sépare les configs par environnement</strong> — Dev ≠ Prod</li>
-<li><strong>Combine permissions + sandbox</strong> — Deux couches indépendantes</li>
-<li><strong>Review les commandes Bash</strong> — Le plus grand vecteur de risque</li>
-<li><strong>Utilise <code>dontAsk</code> mode</strong> — Pour les environnements de production, auto-deny sauf allowlist</li>
+<li>Security vulnerabilities (injection, XSS, CSRF)</li>
+<li>Performance issues (N+1 queries, unnecessary loops)</li>
+<li>Code style compliance (ESLint rules, naming conventions)</li>
+<li>Test coverage gaps</li>
+<li>Documentation completeness</li>
 </ol>
 
-<div class="card">
-<h4>🔥 Configuration sécurisée recommandée</h4>
-<pre><code>{
-  "permissions": {
-    "defaultMode": "default",
-    "allow": [
-      "Bash(npm run *)",
-      "Bash(git status)",
-      "Bash(git diff *)",
-      "Bash(git log *)"
-    ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Bash(curl *)",
-      "Bash(wget *)",
-      "Bash(ssh *)",
-      "Read(~/.ssh/**)",
-      "Read(~/.aws/**)",
-      "Read(**/.env)",
-      "Edit(//etc/**)"
-    ]
-  }
-}</code></pre>
+<p>Format: Executive summary, then detailed findings with line references.</p>
+<p>EOF</p>
+
+<h1>Utiliser le skill</h1>
+<blockquote>/review src/auth/</blockquote></code></pre>
+
+<p>---</p>
+
+<h2>Tip 19 : Aliases shell utiles</h2>
+
+<pre><code><h1>~/.zshrc ou ~/.bashrc</h1>
+<p>alias cc="claude"</p>
+<p>alias ccp="claude -p"</p>
+<p>alias ccc="claude -c"</p>
+<p>alias ccr="claude -r"</p>
+
+<h1>Workflow rapide</h1>
+<p>alias review-pr="git diff main | claude -p 'review this PR for issues'"</p>
+<p>alias explain-last="git log -1 --format=%B | claude -p 'explain this commit'"</p>
+<p>alias fix-tests="npm test 2>&1 | claude 'fix the failing tests'"</code></pre></p>
+
+<p>---</p>
+
+<h2>Tip 20 : Model Context Protocol — Power Tips</h2>
+
+<pre><code><h1>Voir les serveurs MCP configurés</h1>
+<p>/mcp</p>
+
+<h1>Ajouter Notion</h1>
+<p>claude mcp add --transport http notion https://mcp.notion.com/mcp</p>
+
+<h1>Ajouter Slack avec bearer token</h1>
+<p>claude mcp add --transport http slack https://mcp.slack.com/mcp \</p>
+<p>  --header "Authorization: Bearer xoxb-your-token"</p>
+
+<h1>Lister les serveurs configurés</h1>
+<p>claude mcp list</p>
+
+<h1>Activer/désactiver un serveur</h1>
+<p>claude mcp disable expensive-server</p>
+<p>claude mcp enable expensive-server</code></pre></p>
+
+<p>---</p>
+
+<h2>Hacks Avancés</h2>
+
+<h3>Traiter du contenu externe</h3>
+
+<pre><code><h1>Analyser une page web</h1>
+<p>curl -s https://example.com/api/docs | claude -p "summarize the API endpoints"</p>
+
+<h1>Analyser un fichier PDF (avec pdftotext)</h1>
+<p>pdftotext rapport.pdf - | claude -p "summarize the key points"</code></pre></p>
+
+<h3>Multi-terminal parallèle</h3>
+
+<pre><code><h1>Terminal 1 : Feature A</h1>
+<p>cd project && git worktree add ../feature-a feature-a && claude -r "feature-a"</p>
+
+<h1>Terminal 2 : Feature B  </h1>
+<p>cd project && git worktree add ../feature-b feature-b && claude -r "feature-b"</p>
+
+<h1>Terminal 3 : Tests</h1>
+<p>cd project && claude -p "run the full test suite and summarize"</code></pre></p>
+
+<h3>Précharger le contexte en bulk</h3>
+
+<pre><code><h1>Pré-loader plusieurs fichiers clés dans CLAUDE.md</h1>
+<p>cat >> CLAUDE.md << 'EOF'</p>
+<p>@src/types/index.ts</p>
+<p>@src/config/constants.ts</p>
+<p>@database/schema.sql</p>
+<p>EOF</code></pre></p>
+
+<p>---</p>
+<p>*Sources : Reddit r/ClaudeAI (user: ykdojo, 11 mois d'utilisation), github.com/ykdojo/claude-code-tips, Substack mlearning, Geeky-Gadgets — Janvier-Février 2026*</p>
+
 </div>
-</div>
 
-<!-- ======================= WORKTREES ======================= -->
-<div class="content" id="worktrees">
-<h1>🌳 Git Worktrees — Claude Code</h1>
-<p><span class="badge badge-new">NOUVEAU</span> Le système de worktrees permet des <strong>sessions parallèles isolées</strong>, chacune sur sa propre branche Git.</p>
+<div class="content" id="best">
+<h1>Claude Code — Bonnes Pratiques</h1>
 
-<details class="toc">
-<summary>📑 Table des matières</summary>
-<ul>
-<li><a href="#w-what">Qu'est-ce qu'un Git Worktree ?</a></li>
-<li><a href="#w-claude">Worktrees dans Claude Code</a></li>
-<li><a href="#w-desktop">Worktrees dans Claude Desktop</a></li>
-<li><a href="#w-cli">Worktrees en CLI</a></li>
-<li><a href="#w-hooks">Hooks de Worktree</a></li>
-<li><a href="#w-teams">Worktrees + Agent Teams</a></li>
-<li><a href="#w-best">Bonnes pratiques</a></li>
-</ul>
-</details>
+<blockquote>Sources : code.claude.com/docs/en/best-practices — Février 2026</blockquote>
 
-<h2 id="w-what">Qu'est-ce qu'un Git Worktree ?</h2>
-<p>Un <strong>git worktree</strong> est une copie de travail secondaire de ton repo, liée au même dépôt Git mais avec sa propre branche et son propre répertoire de travail.</p>
-<pre><code># Sans worktrees (classique)
-~/project/          ← 1 seul checkout, 1 branche à la fois
+<h2>Principe fondamental</h2>
 
-# Avec worktrees
-~/project/                      ← branche main
-~/project/.claude/worktrees/
-  ├── session-abc/              ← branche feature-auth
-  └── session-def/              ← branche fix-login</code></pre>
+<p>La fenêtre de contexte est la ressource la plus critique. Elle se remplit vite et les performances dégradent quand elle est pleine. Toutes les bonnes pratiques gravitent autour de ce fait.</p>
 
-<h3>Avantages</h3>
-<ul>
-<li><strong>Isolation parfaite</strong> — Chaque session a ses propres fichiers modifiés</li>
-<li><strong>Pas de conflits</strong> — Deux sessions ne marchent jamais sur les mêmes fichiers</li>
-<li><strong>Commit indépendant</strong> — Chaque worktree peut commit/push séparément</li>
-<li><strong>Pas de stash/switch</strong> — Plus besoin de jongler entre branches</li>
-<li><strong>Ressources partagées</strong> — Les worktrees partagent le .git du repo principal (économie disque)</li>
-</ul>
+<p>---</p>
 
-<h2 id="w-claude">Worktrees dans Claude Code</h2>
-<p>Claude Code intègre nativement les worktrees pour permettre le <strong>travail parallèle isolé</strong>.</p>
+<h2>1. Donner à Claude un moyen de vérifier son travail</h2>
 
-<h3>Activation automatique</h3>
-<p>Dans <strong>Claude Desktop</strong>, quand tu cliques "+ New session", un worktree est automatiquement créé. En CLI, utilise le flag <code>--worktree</code>.</p>
+<blockquote><strong>C'est le levier le plus puissant que vous puissiez activer.</strong></blockquote>
 
-<h3>Cycle de vie</h3>
-<pre><code>1. Nouvelle session  →  Création worktree + branche
-2. Travail           →  Modifications isolées dans le worktree
-3. Commit + PR       →  Commit dans la branche du worktree
-4. Archivage         →  Suppression du worktree (optionnel)</code></pre>
+<p>Claude performe dramatiquement mieux quand il peut vérifier son propre travail (tests, screenshots, sorties attendues).</p>
 
-<h2 id="w-desktop">Worktrees dans Claude Desktop <span class="badge badge-new">NEW</span></h2>
-<p>L'intégration la plus fluide est dans Claude Desktop :</p>
+<p>| Stratégie | Avant | Après |</p>
+<p>|-----------|-------|-------|</p>
+<p>| <strong>Fournir des critères de vérification</strong> | "implement email validation" | "write validateEmail function. Test: user@example.com=true, invalid=false. Run tests after." |</p>
+<p>| <strong>Vérifier visuellement les changements UI</strong> | "make the dashboard look better" | "[paste screenshot] implement this design. Take a screenshot and compare. List differences and fix them." |</p>
+<p>| <strong>Adresser la cause racine, pas le symptôme</strong> | "the build is failing" | "the build fails with: [error]. Fix it and verify the build succeeds. Address root cause, don't suppress the error." |</p>
 
-<h3>Sessions parallèles</h3>
-<ul>
-<li><strong>Click "+ New session"</strong> → Worktree automatique créé</li>
-<li>Chaque session = sa propre branche</li>
-<li>Les changements d'une session n'affectent PAS les autres</li>
-<li>Stockage par défaut : <code>&lt;project-root&gt;/.claude/worktrees/</code></li>
-</ul>
+<p>Pour les changements UI, utiliser l'extension <strong>Claude in Chrome</strong> — il ouvre de nouveaux onglets et itère jusqu'à ce que le code fonctionne.</p>
 
-<h3>Configuration Desktop</h3>
-<table>
-<tr><th>Option</th><th>Description</th><th>Où</th></tr>
-<tr><td>Worktree location</td><td>Répertoire de stockage des worktrees</td><td>Settings → Claude Code</td></tr>
-<tr><td>Branch prefix</td><td>Préfixe pour les branches créées</td><td>Settings → Claude Code</td></tr>
-</table>
-<div class="tip">Utilise un préfixe de branche comme <code>claude/</code> pour organiser les branches créées par Claude : <code>claude/feature-auth</code>, <code>claude/fix-login</code>, etc.</div>
+<p>---</p>
 
-<h3>Archiver un worktree</h3>
-<p>Hover sur la session dans la sidebar → cliquer l'icône archive. Le worktree est supprimé mais la branche Git reste.</p>
+<h2>2. Explorer d'abord, planifier ensuite, coder en dernier</h2>
 
-<h2 id="w-cli">Worktrees en CLI</h2>
+<p>Le workflow optimal en 4 phases :</p>
 
-<h3>Lancer avec worktree</h3>
-<pre><code># Nouvelle session avec isolation worktree
-claude --worktree
+<pre><code>Phase 1: Explore (Plan Mode) → Phase 2: Plan (Plan Mode + Ctrl+G)
+<p>→ Phase 3: Implement (Normal Mode) → Phase 4: Commit</code></pre></p>
 
-# Avec un nom de branche spécifique
-claude --worktree --branch feature-auth
+<h3>Exemple concret</h3>
 
-# Worktree dans un répertoire custom
-claude --worktree --worktree-path /tmp/my-worktree</code></pre>
+<pre><code><h1>Phase 1 - En Plan Mode</h1>
+<blockquote>read /src/auth and understand how we handle sessions and login.</blockquote>
+<p>  also look at how we manage environment variables for secrets.</p>
 
-<h3>Commandes Git utiles</h3>
-<pre><code># Lister tous les worktrees
-git worktree list
+<h1>Phase 2 - En Plan Mode</h1>
+<blockquote>I want to add Google OAuth. What files need to change?</blockquote>
+<p>  What's the session flow? Create a plan.</p>
+<h1>→ Ctrl+G pour éditer le plan directement dans votre éditeur</h1>
 
-# Ajouter un worktree manuellement
-git worktree add ../my-feature feature-branch
+<h1>Phase 3 - En Normal Mode</h1>
+<blockquote>implement the OAuth flow from your plan. write tests for the</blockquote>
+<p>  callback handler, run the test suite and fix any failures.</p>
 
-# Supprimer un worktree
-git worktree remove ../my-feature
+<h1>Phase 4 - En Normal Mode</h1>
+<blockquote>commit with a descriptive message and open a PR</blockquote></code></pre>
 
-# Nettoyer les worktrees orphelins
-git worktree prune</code></pre>
+<strong>⚠️ Quand sauter le Plan Mode</strong> : Pour des tâches simples (typo, ajout d'un log, renommage de variable), passez directement à l'implémentation.
 
-<h2 id="w-hooks">Hooks de Worktree <span class="badge badge-new">NOUVEAU</span></h2>
-<p>Deux hooks spécifiques permettent de personnaliser le comportement des worktrees :</p>
+<p>---</p>
 
-<h3>WorktreeCreate</h3>
-<p>Se déclenche quand un worktree est créé via <code>--worktree</code> ou <code>isolation: "worktree"</code>. <strong>Remplace le comportement git par défaut.</strong></p>
-<pre><code>{
-  "hooks": {
-    "WorktreeCreate": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": ".claude/hooks/setup-worktree.sh"
-          }
-        ]
-      }
-    ]
-  }
-}</code></pre>
-<p>Cas d'usage :</p>
-<ul>
-<li>Installer des dépendances dans le nouveau worktree</li>
-<li>Copier des fichiers de config locaux</li>
-<li>Configurer des symlinks</li>
-<li>Lancer un build initial</li>
-</ul>
+<h2>3. Fournir un contexte spécifique</h2>
 
-<h3>WorktreeRemove</h3>
-<p>Se déclenche quand un worktree est supprimé (à la fin de session ou quand un sous-agent finit).</p>
-<p>Cas d'usage :</p>
-<ul>
-<li>Nettoyage de fichiers temporaires</li>
-<li>Suppression de containers Docker liés</li>
-<li>Archivage de logs</li>
-</ul>
+<p>| Stratégie | Avant | Après |</p>
+<p>|-----------|-------|-------|</p>
+<p>| <strong>Cibler la tâche</strong> | "add tests for foo.py" | "write a test for foo.py covering the edge case where the user is logged out. avoid mocks." |</p>
+<p>| <strong>Pointer vers les sources</strong> | "why does ExecutionFactory have a weird api?" | "look through ExecutionFactory's git history and summarize how its api came to be" |</p>
+<p>| <strong>Référencer les patterns existants</strong> | "add a calendar widget" | "look at HotDogWidget.php as example. Follow the pattern to implement a new calendar widget..." |</p>
+<p>| <strong>Décrire le symptôme</strong> | "fix the login bug" | "users report login fails after session timeout. check src/auth/, especially token refresh. Write a failing test, then fix." |</p>
 
-<h2 id="w-teams">Worktrees + Agent Teams</h2>
-<p>La combinaison worktrees + agent teams est <strong>extrêmement puissante</strong> :</p>
-
-<pre><code>┌────────────────────────────────────────────┐
-│  TEAM LEAD (branche main)                   │
-│  Coordonne, assigne, synthétise             │
-├────────────────────────────────────────────┤
-│  TEAMMATE 1 (worktree → claude/frontend)    │
-│  → Travaille sur le UI                      │
-├────────────────────────────────────────────┤
-│  TEAMMATE 2 (worktree → claude/backend)     │
-│  → Travaille sur l'API                      │
-├────────────────────────────────────────────┤
-│  TEAMMATE 3 (worktree → claude/tests)       │
-│  → Écrit les tests                          │
-└────────────────────────────────────────────┘</code></pre>
+<h3>Enrichir le contexte</h3>
 
 <ul>
-<li>Chaque teammate a son propre worktree isolé</li>
-<li>Pas de conflits de fichiers entre teammates</li>
-<li>Chacun peut commit/push indépendamment</li>
-<li>Le lead merge les branches à la fin</li>
+<li><strong><code>@</code></strong> : référencer des fichiers (<code>@src/auth.js</code>)</li>
+<li><strong>Images</strong> : coller des screenshots directement</li>
+<li><strong>URLs</strong> : donner des liens de documentation</li>
+<li><strong>Pipe</strong> : <code>cat error.log | claude</code> pour passer des données</li>
+<li><strong>Commandes</strong> : "run <code>git log --oneline -20</code> to get context"</li>
 </ul>
 
-<h2 id="w-best">Bonnes pratiques Worktrees</h2>
+<p>---</p>
 
-<h3>✅ À faire</h3>
+<h2>4. Configurer l'environnement</h2>
+
+<h3>CLAUDE.md — Instructions persistantes</h3>
+
+<p>Créé une fois avec <code>/init</code>, affiné en continu. Chargé à chaque session.</p>
+
+<strong>Format recommandé</strong> (court, pertinent) :
+<pre><code><h1>Code style</h1>
 <ul>
-<li><strong>Utilise un préfixe de branche</strong> — <code>claude/</code> pour identifier facilement les branches créées par Claude</li>
-<li><strong>Nettoie régulièrement</strong> — <code>git worktree prune</code> pour supprimer les références orphelines</li>
-<li><strong>Utilise des hooks</strong> — <code>WorktreeCreate</code> pour setup automatique (npm install, etc.)</li>
-<li><strong>Commit souvent</strong> — Chaque worktree a sa propre branche, profites-en</li>
-<li><strong>Monitore le disque</strong> — Les worktrees partagent le .git mais dupliquent les fichiers de travail</li>
+<li>Use ES modules (import/export), not CommonJS (require)</li>
+<li>Destructure imports when possible</li>
 </ul>
 
-<h3>❌ À éviter</h3>
+<h1>Workflow</h1>
 <ul>
-<li><strong>Trop de worktrees actifs</strong> — Chacun consomme de l'espace disque</li>
-<li><strong>Modifier le même fichier</strong> dans deux worktrees → conflits au merge</li>
-<li><strong>Oublier de supprimer</strong> — Les worktrees s'accumulent dans <code>.claude/worktrees/</code></li>
-<li><strong>Ignorer les conflits de merge</strong> — Résoudre tôt plutôt que tard</li>
+<li>Typecheck after making code changes</li>
+<li>Prefer running single tests for performance</li>
 </ul>
 
-<h3>Patterns recommandés</h3>
-<div class="card-grid">
-<div class="card">
-<h4>🏗️ Feature Parallèles</h4>
-<p>1 worktree = 1 feature. Le lead coordonne et merge. Idéal pour plusieurs features indépendantes.</p>
-</div>
-<div class="card">
-<h4>🧪 Test + Implémentation</h4>
-<p>1 worktree pour les tests, 1 pour l'implémentation. Le testeur vérifie en continu. TDD assisté par IA.</p>
-</div>
-<div class="card">
-<h4>🔍 Exploration + Action</h4>
-<p>1 worktree read-only (Plan mode) pour explorer, 1 pour implémenter. Séparation analyse/action.</p>
-</div>
-</div>
-</div>
+<h1>Repository conventions</h1>
+<ul>
+<li>Branch naming: feature/*, fix/*, chore/*</li>
+<li>Always run lint before committing</code></pre></li>
+</ul>
 
-<!-- ======================= EXERCISES ======================= -->
-<div class="content" id="exercises">
-<h1>🎯 Exercices Pratiques</h1>
-<p>20 exercices progressifs pour maîtriser Claude Code, de débutant à expert.</p>
+<strong>À inclure</strong> ✅ vs <strong>À exclure</strong> ❌ :
 
-<h2>🟢 Débutant — Premiers pas</h2>
+<p>| ✅ Inclure | ❌ Exclure |</p>
+<p>|-----------|-----------|</p>
+<p>| Commandes Bash que Claude ne peut pas deviner | Ce que Claude peut déduire du code |</p>
+<p>| Règles de style qui diffèrent des défauts | Conventions standard du langage |</p>
+<p>| Instructions de test et test runner préféré | Documentation API détaillée (mettre un lien) |</p>
+<p>| Conventions du repo (branches, PRs) | Informations qui changent fréquemment |</p>
+<p>| Décisions architecturales spécifiques | Longues explications ou tutoriels |</p>
+<p>| Particularités de l'environnement de dev | Descriptions fichier par fichier du codebase |</p>
+<p>| Pièges courants et comportements non-évidents | Pratiques évidentes comme "write clean code" |</p>
 
-<div class="exercise">
-<h4>Exercice 1 — Hello Claude Code <span class="difficulty diff-easy">🟢 FACILE</span></h4>
-<p><strong>Objectif :</strong> Installer Claude Code et lancer ta première session.</p>
+<strong>Import d'autres fichiers</strong> :
+<pre><code><h1>CLAUDE.md</h1>
+<p>See @README.md for project overview and @package.json for available commands.</p>
+
+<h1>Additional Instructions</h1>
+<ul>
+<li>Git workflow: @docs/git-instructions.md</li>
+<li>Personal overrides: @~/.claude/my-project-instructions.md</code></pre></li>
+</ul>
+
+<strong>Règles d'or</strong> :
+<ul>
+<li>Si retirer une ligne ne cause pas d'erreurs → la retirer</li>
+<li>Si Claude pose des questions répondues dans CLAUDE.md → la formulation est ambiguë</li>
+<li>Traiter CLAUDE.md comme du code : reviewer quand ça va mal, élaguer régulièrement</li>
+<li><code>IMPORTANT</code> ou <code>YOU MUST</code> pour améliorer l'adhérence</li>
+<li>Committer CLAUDE.md dans git pour que l'équipe contribue</li>
+</ul>
+
+<strong>Emplacements de CLAUDE.md</strong> :
+<ul>
+<li><code>~/.claude/CLAUDE.md</code> — Toutes les sessions</li>
+<li><code>CLAUDE.md</code> ou <code>.claude/CLAUDE.md</code> — Projet entier</li>
+<li><code>src/CLAUDE.md</code> — Sous-répertoire spécifique</li>
+<li><code>CLAUDE.local.md</code> — Overrides personnels (gitignored)</li>
+</ul>
+
+<h3>Skills vs CLAUDE.md</h3>
+
+<p>| CLAUDE.md | Skills |</p>
+<p>|-----------|--------|</p>
+<p>| Chargé à chaque session | Chargé à la demande |</p>
+<p>| Instructions toujours actives | Connaissance domaine-spécifique |</p>
+<p>| Garder court | Peut être détaillé |</p>
+
+<p>---</p>
+
+<h2>5. Exploiter les features avancées</h2>
+
+<h3>Extensions et plugins</h3>
+
+<ul>
+<li><strong>Extensions VS Code/JetBrains</strong> : Diffs inline, review de plan dans l'IDE</li>
+<li><strong>Claude in Chrome</strong> : Test UI direct en navigateur</li>
+<li><strong>Code intelligence plugins</strong> : Navigation précise des symboles (Go to Definition, Find References), réduction des lectures de fichiers inutiles</li>
+<li><strong>Moniteur de performance</strong> : Status line personnalisé pour suivre l'usage du contexte</li>
+</ul>
+
+<h3>Travailler en parallèle</h3>
+
+<pre><code><h1>Plusieurs sessions git worktree</h1>
+<p>claude --worktree</p>
+
+<h1>Plusieurs instances dans des terminaux séparés</h1>
+<h1>Terminal 1: Feature A</h1>
+<p>cd project && git checkout -b feature-a && claude</p>
+
+<h1>Terminal 2: Bug fix</h1>
+<p>cd project && git checkout -b fix-bug && claude</code></pre></p>
+
+<p>---</p>
+
+<h2>6. Gestion des coûts</h2>
+
+<h3>Coûts moyens (API directe)</h3>
+<ul>
+<li><strong>Moyenne</strong> : ~$6/développeur/jour</li>
+<li><strong>90e percentile</strong> : <$12/jour</li>
+<li><strong>Mensuel avec Sonnet</strong> : ~$100-200/développeur</li>
+</ul>
+
+<h3>Réduire les coûts</h3>
+
 <ol>
-<li>Installe Claude Code : <code>npm install -g @anthropic-ai/claude-code</code></li>
-<li>Lance <code>claude</code> dans un projet existant</li>
-<li>Demande : "Give me an overview of this codebase"</li>
-<li>Demande : "What are the main dependencies?"</li>
+<li><strong>Vider entre les tâches</strong> : <code>/clear</code> pour démarrer frais</li>
+<li><strong>Choisir le bon modèle</strong> :</li>
 </ol>
-<p><strong>Validation :</strong> Claude devrait lister les fichiers principaux et les dépendances sans erreur.</p>
-</div>
-
-<div class="exercise">
-<h4>Exercice 2 — CLAUDE.md <span class="difficulty diff-easy">🟢 FACILE</span></h4>
-<p><strong>Objectif :</strong> Créer un fichier CLAUDE.md pour ton projet.</p>
+<p>   - Sonnet : tâches de codage standard</p>
+<p>   - Opus : décisions architecturales complexes</p>
+<p>   - Haiku : sous-agents simples</p>
 <ol>
-<li>Crée un fichier <code>CLAUDE.md</code> à la racine de ton projet</li>
-<li>Ajoute : commandes build/test, conventions de code, architecture</li>
-<li>Relance Claude Code et vérifie qu'il utilise ces infos</li>
-<li>Demande : "What are our coding conventions?"</li>
+<li><strong>Désactiver les serveurs MCP inutilisés</strong> : <code>claude mcp disable <server></code></li>
+<li><strong>Filtrer avec des hooks</strong> : préprocesser les grosses sorties (logs, tests)</li>
+<li><strong>Installer les plugins d'intelligence de code</strong> : évite les greps/lectures multiples</li>
+<li><strong>Auto-compaction</strong> :</li>
 </ol>
-<p><strong>Validation :</strong> Claude reprend tes conventions définies dans CLAUDE.md.</p>
+<pre><code>// settings.json
+<p>{</p>
+<p>  "autoCompact": true</p>
+<p>}</code></pre></p>
+
+<h3>Commandes de suivi</h3>
+
+<pre><code>/cost      # Usage tokens de la session (API users)
+<p>/stats     # Patterns d'usage (subscribers)</p>
+<p>/context   # Voir ce qui consomme de l'espace dans le contexte</code></pre></p>
+
+<p>---</p>
+
+<h2>7. Limites à connaître</h2>
+
+<ul>
+<li>La fenêtre de contexte se remplit — surveiller avec un status line</li>
+<li>Performances dégradent à ~80% de remplissage</li>
+<li>Les sessions longues accumulent du contexte inutile (utiliser <code>/clear</code> ou <code>/compact</code>)</li>
+<li>Trop de serveurs MCP = overhead même au repos (tool definitions dans le contexte)</li>
+<li>Agent teams = coût x nombre d'agents actifs</li>
+<li>CLAUDE.md trop long = Claude ignore les instructions importantes</li>
+</ul>
+
+<p>---</p>
+<p>*Sources : code.claude.com/docs/en/best-practices, /costs — 27 Février 2026*</p>
+
 </div>
 
-<div class="exercise">
-<h4>Exercice 3 — Plan Mode <span class="difficulty diff-easy">🟢 FACILE</span></h4>
-<p><strong>Objectif :</strong> Utiliser Plan Mode pour analyser sans modifier.</p>
+<div class="content" id="integrations">
+<h1>Claude Code — Intégrations</h1>
+
+<blockquote>Sources : code.claude.com/docs/en/github-actions, github.com/anthropics/claude-code-action — Février 2026</blockquote>
+
+<h2>GitHub Actions</h2>
+
+<h3>Installation rapide</h3>
+
+<pre><code><h1>Dans une session Claude Code</h1>
+<p>/install-github-app</code></pre></p>
+
+<p>Claude guide l'installation complète (GitHub App + secrets).</p>
+
+<h3>Installation manuelle</h3>
+
 <ol>
-<li>Lance : <code>claude --permission-mode plan</code></li>
-<li>Demande : "Create a plan to add user authentication to this app"</li>
-<li>Review le plan proposé</li>
-<li>Affine avec : "What about password hashing?"</li>
+<li><strong>Installer l'app GitHub Claude</strong> : https://github.com/apps/claude</li>
 </ol>
-<p><strong>Validation :</strong> Claude propose un plan détaillé SANS modifier aucun fichier.</p>
-</div>
-
-<div class="exercise">
-<h4>Exercice 4 — Fix a Bug <span class="difficulty diff-easy">🟢 FACILE</span></h4>
-<p><strong>Objectif :</strong> Utiliser Claude Code pour debug et fix.</p>
+<p>   - Permissions requises : Contents (R/W), Issues (R/W), Pull Requests (R/W)</p>
+   
 <ol>
-<li>Trouve un bug dans un de tes projets (ou crée un test qui fail)</li>
-<li>Demande : "I'm seeing this error when I run npm test: [colle l'erreur]"</li>
-<li>Laisse Claude analyser, proposer et appliquer le fix</li>
-<li>Vérifie que les tests passent</li>
+<li><strong>Ajouter le secret</strong> <code>ANTHROPIC_API_KEY</code> dans les secrets du repo</li>
 </ol>
-<p><strong>Validation :</strong> Le bug est corrigé et les tests passent.</p>
-</div>
 
-<h2>🟡 Intermédiaire — Maîtrise des outils</h2>
-
-<div class="exercise">
-<h4>Exercice 5 — Permissions Custom <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Configurer des règles de permission granulaires.</p>
 <ol>
-<li>Crée un <code>.claude/settings.json</code></li>
-<li>Ajoute des allow rules pour npm et git</li>
-<li>Ajoute des deny rules pour rm, curl, et .env</li>
-<li>Teste que Claude est bien bloqué pour les commandes deny</li>
+<li><strong>Créer le workflow</strong> <code>.github/workflows/claude.yml</code></li>
 </ol>
-<p><strong>Config attendue :</strong></p>
-<pre><code>{
-  "permissions": {
-    "allow": ["Bash(npm *)", "Bash(git status)", "Bash(git diff *)"],
-    "deny": ["Bash(rm *)", "Bash(curl *)", "Read(*.env)"]
-  }
-}</code></pre>
-</div>
 
-<div class="exercise">
-<h4>Exercice 6 — Sous-agent Custom <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Créer un sous-agent spécialisé.</p>
+<h3>Workflow de base</h3>
+
+<pre><code>name: Claude Code
+<p>on:</p>
+<p>  issue_comment:</p>
+<p>    types: [created]</p>
+<p>  pull_request_review_comment:</p>
+<p>    types: [created]</p>
+<p>jobs:</p>
+<p>  claude:</p>
+<p>    runs-on: ubuntu-latest</p>
+<p>    steps:</p>
+<p>      - uses: anthropics/claude-code-action@v1</p>
+<p>        with:</p>
+<p>          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}</p>
+<p>          # Responds to @claude mentions in comments</code></pre></p>
+
+<h3>Utilisation dans les PRs/Issues</h3>
+
+<pre><code><h1>Dans un commentaire de PR/Issue</h1>
+<p>@claude implement this feature based on the issue description</p>
+<p>@claude how should I implement user authentication for this endpoint?</p>
+<p>@claude fix the TypeError in the user dashboard component</p>
+<p>@claude review this PR for security issues</code></pre></p>
+
+<h3>Workflow de code review automatique</h3>
+
+<pre><code>name: Code Review
+<p>on:</p>
+<p>  pull_request:</p>
+<p>    types: [opened, synchronize]</p>
+<p>jobs:</p>
+<p>  review:</p>
+<p>    runs-on: ubuntu-latest</p>
+<p>    steps:</p>
+<p>      - uses: anthropics/claude-code-action@v1</p>
+<p>        with:</p>
+<p>          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}</p>
+<p>          prompt: "/review"</p>
+<p>          claude_args: "--max-turns 5"</code></pre></p>
+
+<h3>Rapport quotidien automatique</h3>
+
+<pre><code>name: Daily Standup Report
+<p>on:</p>
+<p>  schedule:</p>
+<p>    - cron: "0 9 * * 1-5"  # Lundi-Vendredi à 9h</p>
+<p>jobs:</p>
+<p>  standup:</p>
+<p>    runs-on: ubuntu-latest</p>
+<p>    steps:</p>
+<p>      - uses: anthropics/claude-code-action@v1</p>
+<p>        with:</p>
+<p>          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}</p>
+<p>          prompt: "Summarize yesterday's merged PRs and open issues needing attention"</p>
+<p>          claude_args: "--model claude-opus-4-6"</code></pre></p>
+
+<h3>Avec AWS Bedrock ou Google Vertex AI</h3>
+
+<pre><code>- uses: anthropics/claude-code-action@v1
+<p>  with:</p>
+<p>    prompt: "Review this PR"</p>
+<p>    use_bedrock: "true"</p>
+<p>    # Ou</p>
+<p>    use_vertex: "true"</code></pre></p>
+
+<h3>Migration depuis la version Beta</h3>
+
+<pre><code><h1>AVANT (beta)</h1>
+<ul>
+<li>uses: anthropics/claude-code-action@beta</li>
+</ul>
+<p>  with:</p>
+<p>    mode: "tag"</p>
+<p>    direct_prompt: "Review this PR"</p>
+<p>    custom_instructions: "Follow our coding standards"</p>
+<p>    max_turns: "10"</p>
+<p>    model: "claude-sonnet-4-6"</p>
+
+<h1>APRÈS (v1.0)</h1>
+<ul>
+<li>uses: anthropics/claude-code-action@v1</li>
+</ul>
+<p>  with:</p>
+<p>    prompt: "Review this PR"</p>
+<p>    claude_args: |</p>
+<p>      --append-system-prompt "Follow our coding standards"</p>
+<p>      --max-turns 10</p>
+<p>      --model claude-sonnet-4-6</code></pre></p>
+
+<h3>Solutions pré-configurées disponibles</h3>
+
+<ul>
+<li>🔍 Code Review automatique (PR complète)</li>
+<li>📂 Review par path (fichiers critiques seulement)</li>
+<li>👥 Review contributeurs externes</li>
+<li>📝 Checklist de review customisée</li>
+<li>🔄 Maintenance automatisée du repo</li>
+<li>🏷️ Triage et labeling d'issues</li>
+<li>📖 Synchronisation de documentation</li>
+<li>🔒 Review sécurité (OWASP)</li>
+<li>📊 Tracking de progression</li>
+</ul>
+
+<p>---</p>
+
+<h2>GitLab CI/CD</h2>
+
+<pre><code><h1>.gitlab-ci.yml</h1>
+<p>claude-review:</p>
+<p>  stage: review</p>
+<p>  script:</p>
+<p>    - pip install anthropic</p>
+<p>    - |</p>
+<p>      git diff origin/main...HEAD | claude -p "Review these changes for:</p>
+<p>        1. Security vulnerabilities</p>
+<p>        2. Performance issues  </p>
+<p>        3. Code quality</p>
+<p>      Output as markdown with severity ratings."</p>
+<p>  only:</p>
+<p>    - merge_requests</code></pre></p>
+
+<p>---</p>
+
+<h2>VS Code Extension</h2>
+
+<h3>Installation</h3>
+
 <ol>
-<li>Crée <code>.claude/agents/security-checker.md</code></li>
-<li>Configure-le en read-only avec description claire</li>
-<li>Utilise-le : "Use the security-checker agent to audit auth.ts"</li>
-<li>Review les résultats</li>
+<li>VS Code → Extensions → Chercher "Claude Code"</li>
+<li>Installer l'extension officielle Anthropic</li>
+<li>Se connecter avec son compte Claude</li>
 </ol>
-</div>
 
-<div class="exercise">
-<h4>Exercice 7 — Skill Personnalisée <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Créer une skill réutilisable.</p>
+<h3>Fonctionnalités</h3>
+
+<ul>
+<li><strong>Diffs inline</strong> : Voir les changements dans l'éditeur</li>
+<li><strong>Plan review</strong> : Valider le plan de Claude avant implémentation</li>
+<li><strong>@-mentions</strong> : Référencer des fichiers directement dans VS Code</li>
+<li><strong>Palette de commandes</strong> : <code>Ctrl+Shift+P</code> → "Claude Code: ..."</li>
+</ul>
+
+<h3>Connexion depuis le terminal</h3>
+
+<pre><code>claude --ide</code></pre>
+
+<p>Claude Code se connecte automatiquement à l'IDE ouvert.</p>
+
+<p>---</p>
+
+<h2>JetBrains (IntelliJ, PyCharm, WebStorm...)</h2>
+
+<h3>Installation</h3>
+
 <ol>
-<li>Crée <code>~/.claude/skills/doc-generator/SKILL.md</code></li>
-<li>Écris les instructions pour générer de la doc JSDoc</li>
-<li>Ajoute <code>disable-model-invocation: true</code></li>
-<li>Teste avec : <code>/doc-generator src/auth.ts</code></li>
+<li>File → Settings → Plugins → Marketplace</li>
+<li>Chercher "Claude Code"</li>
+<li>Installer et redémarrer l'IDE</li>
 </ol>
-</div>
 
-<div class="exercise">
-<h4>Exercice 8 — Hook PreToolUse <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Créer un hook qui bloque les commandes dangereuses.</p>
+<h3>Fonctionnalités similaires VS Code</h3>
+
+<ul>
+<li>Navigation de code intelligente (Go to Definition)</li>
+<li>Suggestions dans le contexte du fichier actif</li>
+<li>Intégration avec les outils de test intégrés</li>
+</ul>
+
+<p>---</p>
+
+<h2>Slack</h2>
+
+<pre><code><h1>Configurer Claude dans Slack</h1>
+<h1>1. Ajouter @Claude à votre workspace</h1>
+<h1>2. Mentionner dans n'importe quel canal</h1>
+<p>@Claude write tests for this function [coller le code]</p>
+<p>@Claude what does this error mean? [coller l'erreur]</code></pre></p>
+
+<p>Claude peut créer des PRs directement depuis Slack.</p>
+
+<p>---</p>
+
+<h2>Claude in Chrome</h2>
+
+<h3>Activation</h3>
+
+<pre><code>claude --chrome
+<h1>ou dans la session interactive</h1>
+<p>/chrome</code></pre></p>
+
+<h3>Ce que cela permet</h3>
+
+<pre><code><blockquote>implement this design. Take a screenshot and compare to the original.</blockquote>
+<p>  Fix all differences.</p>
+
+<blockquote>test the login flow. Try edge cases: wrong password, empty email, SQL injection.</blockquote>
+
+<blockquote>debug why the animations are janky on mobile. Check performance.</blockquote>
+
+<blockquote>scrape competitor pricing from these 5 URLs and save to competitor-prices.json</blockquote></code></pre>
+
+<h3>Workflow de débogage UI</h3>
+
+<pre><code><blockquote>open http://localhost:3000/dashboard in Chrome</blockquote>
+<p>  compare with /designs/dashboard-mockup.png</p>
+<p>  list all visual differences</p>
+<p>  fix the top 3 most impactful ones</code></pre></p>
+
+<p>---</p>
+
+<h2>MCP (Model Context Protocol) — Vue d'ensemble</h2>
+
+<p>MCP est le protocole standard pour connecter Claude à des services externes.</p>
+
+<h3>Serveurs MCP populaires</h3>
+
+<p>| Service | Command |</p>
+<p>|---------|---------|</p>
+<p>| Notion | <code>claude mcp add --transport http notion https://mcp.notion.com/mcp</code> |</p>
+<p>| Linear | <code>claude mcp add --transport http linear https://mcp.linear.app/mcp</code> |</p>
+<p>| GitHub | <code>claude mcp add --transport http github https://mcp.github.com/mcp</code> |</p>
+<p>| Playwright (Browser) | <code>claude mcp add --transport stdio playwright -- npx @playwright/mcp</code> |</p>
+<p>| Database (Postgres) | <code>claude mcp add --transport stdio postgres -- npx postgres-mcp-server</code> |</p>
+<p>| Airtable | <code>claude mcp add --transport stdio --env AIRTABLE_API_KEY=xxx airtable -- npx airtable-mcp-server</code> |</p>
+<p>| Jira | Configurer avec HTTP transport + bearer token |</p>
+
+<h3>MCP avec authentication</h3>
+
+<pre><code><h1>Bearer token</h1>
+<p>claude mcp add --transport http secure-api https://api.example.com/mcp \</p>
+<p>  --header "Authorization: Bearer your-token"</p>
+
+<h1>Variable d'environnement</h1>
+<p>claude mcp add --transport stdio --env API_KEY=xxx tool-name -- ./tool-binary</p>
+
+<h1>Multiple headers</h1>
+<p>claude mcp add --transport http api https://api.example.com/mcp \</p>
+<p>  --header "Authorization: Bearer token" \</p>
+<p>  --header "X-API-Version: 2026-01"</code></pre></p>
+
+<h3>Créer un serveur MCP custom</h3>
+
+<pre><code><h1>Exemple simple de serveur MCP en Python</h1>
+<p>from anthropic.mcp import MCPServer, Tool</p>
+
+<p>server = MCPServer("my-custom-tool")</p>
+
+<p>@server.tool("get-internal-data")</p>
+<p>def get_data(query: str) -> dict:</p>
+<p>    """Query our internal database"""</p>
+<p>    return internal_db.query(query)</p>
+
+<p>@server.tool("post-to-slack")</p>
+<p>def post_slack(channel: str, message: str) -> bool:</p>
+<p>    """Post a message to Slack"""</p>
+<p>    return slack_client.post(channel, message)</p>
+
+<p>server.run()</code></pre></p>
+
+<p>---</p>
+
+<h2>Plugins (Marketplace)</h2>
+
+<h3>Marketplace officiel</h3>
+
+<pre><code>https://claude.com/plugins</code></pre>
+
+<h3>Types de plugins</h3>
+
 <ol>
-<li>Crée <code>.claude/hooks/guard.sh</code></li>
-<li>Le hook doit bloquer tout <code>rm -rf</code> et <code>sudo</code></li>
-<li>Configure le hook dans settings.json</li>
-<li>Teste en demandant à Claude une commande bloquée</li>
+<li><strong>Plugins Claude Code</strong> : Skills, hooks, sous-agents, MCP servers</li>
+<li><strong>Plugins Cowork</strong> : Agents métier (Finance, HR, Design...)</li>
+<li><strong>Plugins tiers</strong> : Créés par des entreprises (Thomson Reuters, LSEG, S&P Global...)</li>
 </ol>
+
+<h3>Installer un plugin</h3>
+
+<pre><code><h1>Via marketplace</h1>
+<p>claude plugin install plugin-name</p>
+
+<h1>Via URL</h1>
+<p>claude plugin install https://plugins.example.com/my-plugin</p>
+
+<h1>Via GitHub</h1>
+<p>claude plugin install github:username/my-plugin</code></pre></p>
+
+<h3>Créer et publier un plugin</h3>
+
+<pre><code><h1>Soumettre au marketplace</h1>
+<p>https://claude.com/plugins/submit</code></pre></p>
+
+<p>---</p>
+
+<h2>Providers Cloud Alternatifs</h2>
+
+<h3>AWS Bedrock</h3>
+
+<pre><code>export AWS_REGION=us-east-1
+<p>export AWS_ACCESS_KEY_ID=xxx</p>
+<p>export AWS_SECRET_ACCESS_KEY=xxx</p>
+<p>claude --use-bedrock</code></pre></p>
+
+<h3>Google Vertex AI</h3>
+
+<pre><code>export GOOGLE_CLOUD_PROJECT=my-project
+<p>gcloud auth application-default login</p>
+<p>claude --use-vertex</code></pre></p>
+
+<h3>Microsoft Azure Foundry</h3>
+
+<pre><code>export AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com
+<p>export AZURE_OPENAI_KEY=xxx</p>
+<p>claude --use-azure</code></pre></p>
+
+<p>---</p>
+<p>*Sources : code.claude.com/docs/en/github-actions, github.com/anthropics/claude-code-action — 27 Février 2026*</p>
+
 </div>
 
-<div class="exercise">
-<h4>Exercice 9 — Reprise de session <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Maîtriser la gestion des sessions.</p>
+<div class="content" id="troubleshooting">
+<h1>Claude Code — Résolution de Problèmes</h1>
+
+<blockquote>Source : code.claude.com/docs/en/troubleshooting — Février 2026</blockquote>
+
+<h2>Tableau de référence rapide</h2>
+
+<p>| Symptôme | Solution |</p>
+<p>|----------|----------|</p>
+<p>| <code>command not found: claude</code> | Corriger le PATH |</p>
+<p>| <code>syntax error near unexpected token '<'</code> | Script d'install retourne du HTML |</p>
+<p>| <code>curl: (56) Failure writing output</code> | Télécharger le script d'abord, puis l'exécuter |</p>
+<p>| <code>Killed</code> pendant l'install sur Linux | Ajouter du swap (serveurs low-memory) |</p>
+<p>| <code>TLS connect error</code> / <code>SSL/TLS secure channel</code> | Mettre à jour les certificats CA |</p>
+<p>| <code>Failed to fetch version</code> | Vérifier réseau et proxy |</p>
+<p>| <code>irm is not recognized</code> / <code>&& is not valid</code> | Utiliser la bonne commande pour votre shell |</p>
+<p>| <code>Claude Code on Windows requires git-bash</code> | Installer/configurer Git Bash |</p>
+<p>| <code>Error loading shared library</code> | Mauvaise variante binaire (musl/glibc mismatch) |</p>
+<p>| <code>Illegal instruction</code> sur Linux | Architecture mismatch |</p>
+<p>| <code>dyld: cannot load</code> / <code>Abort trap</code> sur macOS | Incompatibilité binaire |</p>
+<p>| <code>App unavailable in region</code> | Claude Code non disponible dans votre pays |</p>
+<p>| <code>unable to get local issuer certificate</code> | Configurer les certificats CA d'entreprise |</p>
+<p>| <code>OAuth error</code> / <code>403 Forbidden</code> | Corriger l'authentification |</p>
+
+<h2>Problèmes d'installation</h2>
+
+<h3><code>command not found: claude</code></h3>
+
+<p>Claude Code s'installe dans <code>~/.local/bin/</code>. Vérifier que ce répertoire est dans le PATH :</p>
+
+<pre><code><h1>Vérifier</h1>
+<p>echo $PATH | tr ':' '\n' | grep local/bin</p>
+
+<h1>Si absent - Zsh (macOS par défaut)</h1>
+<p>echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc</p>
+<p>source ~/.zshrc</p>
+
+<h1>Si absent - Bash (Linux par défaut)</h1>
+<p>echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc</p>
+<p>source ~/.bashrc</p>
+
+<h1>Vérifier la correction</h1>
+<p>claude --version</code></pre></p>
+
+<strong>Windows PowerShell</strong> :
+<pre><code>$env:PATH -split ';' | Select-String 'local\\bin'
+
+<h1>Si absent</h1>
+<p>$currentPath = [Environment]::GetEnvironmentVariable('PATH', 'User')</p>
+<p>[Environment]::SetEnvironmentVariable('PATH', "$currentPath;$env:USERPROFILE\.local\bin", 'User')</code></pre></p>
+
+<h3>Script d'install retourne du HTML</h3>
+
+<p>Symptôme : <code>syntax error near unexpected token '<'</code> ou <code>Invoke-Expression: Missing argument</code></p>
+
+<p>Le script a téléchargé du HTML au lieu du script. Vérifier la connectivité réseau :</p>
+
+<pre><code>curl -sI https://storage.googleapis.com</code></pre>
+
+<p>Si échec → firewall ou proxy bloquant Google Cloud Storage. Solution avec proxy :</p>
+<pre><code>export HTTP_PROXY=http://proxy.example.com:8080
+<p>export HTTPS_PROXY=http://proxy.example.com:8080</p>
+<p>curl -fsSL https://claude.ai/install.sh | bash</code></pre></p>
+
+<h3>Vérifier les installations conflictuelles</h3>
+
+<pre><code><h1>Voir tous les binaires claude dans PATH</h1>
+<p>which -a claude</p>
+
+<h1>Vérifier les emplacements</h1>
+<p>ls -la ~/.local/bin/claude</p>
+<p>ls -la ~/.claude/local/</p>
+<p>npm -g ls @anthropic-ai/claude-code 2>/dev/null</p>
+
+<h1>Désinstaller l'installation npm (dépréciée)</h1>
+<p>npm uninstall -g @anthropic-ai/claude-code</p>
+
+<h1>Désinstaller Homebrew</h1>
+<p>brew uninstall --cask claude-code</code></pre></p>
+
+<h3>Vérifier les permissions du répertoire</h3>
+
+<pre><code>test -w ~/.local/bin && echo "writable" || echo "not writable"
+<p>test -w ~/.claude && echo "writable" || echo "not writable"</p>
+
+<h1>Corriger</h1>
+<p>sudo mkdir -p ~/.local/bin</p>
+<p>sudo chown -R $(whoami) ~/.local</code></pre></p>
+
+<h3>Installation sur serveur Linux low-memory</h3>
+
+<p>Symptôme : <code>Killed</code> pendant l'installation.</p>
+
+<pre><code><h1>Créer un swap temporaire</h1>
+<p>sudo fallocate -l 2G /swapfile</p>
+<p>sudo chmod 600 /swapfile</p>
+<p>sudo mkswap /swapfile</p>
+<p>sudo swapon /swapfile</p>
+
+<h1>Réinstaller</h1>
+<p>curl -fsSL https://claude.ai/install.sh | bash</p>
+
+<h1>Optionnel : supprimer le swap après</h1>
+<p>sudo swapoff /swapfile</p>
+<p>sudo rm /swapfile</code></pre></p>
+
+<h3>Erreurs TLS/SSL</h3>
+
+<pre><code><h1>macOS - Mettre à jour les certificats</h1>
+<p>brew install ca-certificates</p>
+
+<h1>Linux (Debian/Ubuntu)</h1>
+<p>sudo apt-get update && sudo apt-get install ca-certificates</p>
+
+<h1>Linux (RHEL/CentOS)</h1>
+<p>sudo yum update ca-certificates</p>
+
+<h1>Variable pour certificats d'entreprise</h1>
+<p>export NODE_EXTRA_CA_CERTS=/path/to/corporate-ca.crt</code></pre></p>
+
+<h2>Problèmes d'authentification</h2>
+
+<h3><code>OAuth error</code> / <code>403 Forbidden</code></h3>
+
+<pre><code><h1>Se déconnecter et reconnecter</h1>
+<p>claude auth logout</p>
+<p>claude auth login</p>
+
+<h1>Vérifier le statut</h1>
+<p>claude auth status --text</p>
+
+<h1>Login avec SSO d'entreprise</h1>
+<p>claude auth login --email user@company.com --sso</p>
+
+<h1>Si les credentials sont corrompus</h1>
+<p>rm -rf ~/.claude/auth*</p>
+<p>claude auth login</code></pre></p>
+
+<h2>Problèmes de performance</h2>
+
+<h3>Contexte plein / Performances dégradées</h3>
+
+<pre><code><h1>Dans une session</h1>
+<p>/cost        # Voir l'usage actuel</p>
+<p>/compact     # Compacter (résumé des échanges)</p>
+<p>/clear       # Repartir de zéro</p>
+
+<h1>Avec instructions spécifiques</h1>
+<p>/compact Focus on code changes and test results only</code></pre></p>
+
+<h3>Serveurs MCP ne répondent pas</h3>
+
+<pre><code><h1>Vérifier les serveurs configurés</h1>
+<p>/mcp</p>
+
+<h1>Redémarrer un serveur MCP</h1>
+<p>claude mcp restart <nom-serveur></p>
+
+<h1>Désactiver temporairement</h1>
+<p>claude mcp disable <nom-serveur></p>
+
+<h1>Logs de debug</h1>
+<p>claude --debug "mcp"</code></pre></p>
+
+<h3>Claude boucle ou ne progresse pas</h3>
+
 <ol>
-<li>Nomme ta session : <code>/rename my-refactor</code></li>
-<li>Quitte Claude Code</li>
-<li>Reprends : <code>claude --resume my-refactor</code></li>
-<li>Vérifie que le contexte est conservé</li>
-<li>Explore le picker : <code>claude --resume</code></li>
+<li><code>Ctrl+C</code> pour interrompre</li>
+<li>Reformuler la demande avec des critères de vérification clairs</li>
+<li>Utiliser Plan Mode pour explorer d'abord</li>
+<li>Décomposer en sous-tâches</li>
 </ol>
-</div>
 
-<div class="exercise">
-<h4>Exercice 10 — PR Automatique <span class="difficulty diff-medium">🟡 MOYEN</span></h4>
-<p><strong>Objectif :</strong> Utiliser Claude Code pour créer une PR complète.</p>
+<h2>Problèmes Windows</h2>
+
+<h3><code>Claude Code on Windows requires git-bash</code></h3>
+
+<p>Installer Git for Windows : https://git-scm.com/downloads/win</p>
+
+<p>Configurer le shell par défaut :</p>
+<pre><code>// .claude/settings.json
+<p>{</p>
+<p>  "shell": "git-bash"</p>
+<p>}</code></pre></p>
+
+<h3><code>irm is not recognized</code> dans CMD</h3>
+
+<p>Utiliser PowerShell ou la commande curl compatible CMD :</p>
+<pre><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code></pre>
+
+<h2>Problèmes macOS</h2>
+
+<h3><code>dyld: cannot load</code> / <code>Abort trap</code></h3>
+
+<pre><code><h1>Vérifier la compatibilité architecture</h1>
+<p>file $(which claude)</p>
+
+<h1>Vérifier la signature</h1>
+<p>codesign -vv $(which claude)</p>
+
+<h1>Réinstaller</h1>
+<p>curl -fsSL https://claude.ai/install.sh | bash</code></pre></p>
+
+<h2>Problèmes Linux</h2>
+
+<h3>Mauvaise variante binaire (musl/glibc)</h3>
+
+<pre><code><h1>Vérifier les librairies manquantes</h1>
+<p>ldd $(which claude) | grep "not found"</p>
+
+<h1>Alpine Linux / musl-based</h1>
+<h1>Voir: code.claude.com/docs/en/setup#alpine-linux-and-musl-based-distributions</h1></code></pre>
+
+<h3><code>Illegal instruction</code></h3>
+
+<p>Architecture non supportée. Vérifier :</p>
+<pre><code>uname -m   # Doit retourner x86_64 ou aarch64</code></pre>
+
+<h2>Problèmes d'IDE</h2>
+
+<h3>VS Code — Extension ne se connecte pas</h3>
+
+<pre><code><h1>Vérifier que claude est installé et fonctionnel</h1>
+<p>claude --version</p>
+
+<h1>Connecter l'IDE</h1>
+<p>claude --ide</p>
+
+<h1>Vérifier les logs de l'extension</h1>
+<h1>VS Code → Output panel → Claude Code</h1></code></pre>
+
+<h3>JetBrains — Plugin non trouvé</h3>
+
 <ol>
-<li>Fais des modifications (ou demande à Claude)</li>
-<li>Lance : <code>/commit-push-pr</code></li>
-<li>Ou étape par étape : "summarize changes" → "create a PR"</li>
-<li>Vérifie la PR sur GitHub</li>
+<li>File > Settings > Plugins > Marketplace</li>
+<li>Chercher "Claude Code"</li>
+<li>Installer et redémarrer l'IDE</li>
 </ol>
+
+<h2>Debug avancé</h2>
+
+<h3>Activer les logs de debug</h3>
+
+<pre><code><h1>Debug général</h1>
+<p>claude --debug</p>
+
+<h1>Debug spécifique</h1>
+<p>claude --debug "api"           # Requêtes API</p>
+<p>claude --debug "mcp"           # Serveurs MCP</p>
+<p>claude --debug "hooks"         # Hooks</p>
+<p>claude --debug "api,mcp"       # Plusieurs catégories</code></pre></p>
+
+<h3>Vérifier la version</h3>
+
+<pre><code>claude --version
+<p>claude update   # Mettre à jour vers la dernière version</code></pre></p>
+
+<h3>Signaler un bug</h3>
+
+<pre><code><h1>Dans une session interactive</h1>
+<p>/bug</p>
+
+<h1>Ou directement sur GitHub</h1>
+<h1>https://github.com/anthropics/claude-code/issues</h1></code></pre>
+
+<h2>Ressources supplémentaires</h2>
+
+<ul>
+<li><strong>Documentation officielle</strong> : code.claude.com/docs</li>
+<li><strong>Support Anthropic</strong> : support.claude.com</li>
+<li><strong>GitHub Issues</strong> : github.com/anthropics/claude-code/issues</li>
+<li><strong>Discussions GitHub</strong> : github.com/anthropics/claude-code/discussions</li>
+<li><strong>Pays supportés</strong> : anthropic.com/supported-countries</li>
+</ul>
+
+<p>---</p>
+<p>*Source : code.claude.com/docs/en/troubleshooting — 27 Février 2026*</p>
+
 </div>
 
-<h2>🔴 Avancé — Sécurité & Architecture</h2>
+<div class="content" id="hidden">
+<h1>Claude Code — Features Peu Connues et Easter Eggs</h1>
 
-<div class="exercise">
-<h4>Exercice 11 — Sandboxing Complet <span class="difficulty diff-hard">🔴 AVANCÉ</span></h4>
-<p><strong>Objectif :</strong> Configurer et tester le sandboxing.</p>
-<ol>
-<li>Active le sandboxing : <code>/sandbox</code></li>
-<li>Choisis le mode "Auto-allow"</li>
-<li>Demande à Claude d'exécuter des commandes variées</li>
-<li>Vérifie que les commandes nécessitant réseau non-approuvé sont bloquées</li>
-<li>Teste l'accès à un fichier hors du répertoire de travail</li>
-</ol>
+<blockquote>Sources : dev.to/akari_iku (Février 2026), petegypps.uk, r/ClaudeAI, aicodingdaily.substack.com</blockquote>
+
+<h2>⚠️ Note de fiabilité</h2>
+
+<p>Certaines commandes ci-dessous sont non-officielles ou peu documentées. Toujours vérifier avec la documentation officielle. Claude Code est mis à jour très fréquemment — des features apparaissent parfois sans être documentées.</p>
+
+<p>---</p>
+
+<h2>Commandes officielles peu documentées</h2>
+
+<h3><code>/rewind</code> — Time Travel Debugging</h3>
+
+<p>Introduit récemment, <code>/rewind</code> permet de rebobiner <strong>séparément</strong> le code et la conversation.</p>
+
+<pre><code><h1>Activer le menu de rewind</h1>
+<p>Esc+Esc</p>
+
+<h1>Options :</h1>
+<h1>- Rewind code only (le code revient en arrière, la conversation reste)</h1>
+<h1>- Rewind conversation only</h1></code></pre>
+
+<strong>Auto-checkpoints</strong> : Sauvegardé automatiquement à chaque prompt.
+
+<strong>Cas d'usage</strong> :
+<pre><code>→ Essayer un refactoring expérimental
+<p>→ Ça ne marche pas</p>
+<p>→ Esc+Esc → "Rewind code only"</p>
+<p>→ Code revient à l'état précédent, conversation préservée</code></pre></p>
+
+<p>Documentation officielle : code.claude.com/docs/en/checkpointing</p>
+
+<p>---</p>
+
+<h3><code>/insights</code> — Analyse de vos habitudes de codage</h3>
+
+<p>La commande la plus impressionnante et la moins connue.</p>
+
+<pre><code>/insights
+<h1>Génère un rapport HTML dans ~/.claude/usage-data/report.html</h1></code></pre>
+
+<p>Ce rapport analyse le dernier mois d'utilisation et génère :</p>
+<ul>
+<li>Fréquence d'utilisation des commandes</li>
+<li>Patterns détectés dans votre façon de travailler</li>
+<li><strong>Recommandations personnalisées de Skills et Hooks</strong> adaptées à VOS habitudes</li>
+<li>Analyse de vos habitudes de codage (niveau de détail quasi-roast 😅)</li>
+</ul>
+
+<strong>Utilisation recommandée</strong> : Une fois par mois, pour optimiser votre workflow.
+
+<p>Deep dive : zolkos.com/2026/02/04/deep-dive-how-claude-codes-insights-command-works.html</p>
+
+<p>---</p>
+
+<h3><code>/context</code> — Visualiser la fenêtre de contexte</h3>
+
+<pre><code>/context</code></pre>
+
+<p>Affiche une visualisation détaillée de ce qui occupe le contexte :</p>
+<ul>
+<li>Quels fichiers sont chargés</li>
+<li>Combien de tokens chaque élément consomme</li>
+<li>Un graphique de l'espace utilisé</li>
+</ul>
+
+<p>---</p>
+
+<h3><code>/doctor</code> — Diagnostics d'environnement</h3>
+
+<pre><code>/doctor</code></pre>
+
+<p>Comme un bilan de santé pour votre installation :</p>
+<ul>
+<li>Dépendances manquantes</li>
+<li>Problèmes de configuration</li>
+<li>Conflits d'installation</li>
+</ul>
+
+<p>---</p>
+
+<h3><code>/review</code> — Code review intégrée</h3>
+
+<pre><code>/review
+<p>/review src/auth/</p>
+<p>/review @src/components/Button.tsx</code></pre></p>
+
+<p>---</p>
+
+<h3><code>/export</code> — Exporter la conversation</h3>
+
+<pre><code>/export conversation.md
+<p>/export  # vers le clipboard</code></pre></p>
+
+<p>---</p>
+
+<h3><code>/stats</code> — Gamification</h3>
+
+<pre><code>/stats</code></pre>
+
+<pre><code>Favorite model: Opus 4.5    Total tokens: 12.1m
+<p>Sessions: 1.8k              Longest session: 20h 40m 45s</p>
+<p>Current streak: 44 days     Longest streak: 45 days</p>
+<p>Peak hour: 17:00-18:00</code></pre></p>
+
+<p>---</p>
+
+<h3>Task Lists Persistantes (v2.1.16+)</h3>
+
+<p>Depuis v2.1.16 (Janvier 2026), les task lists survivent à la fermeture de session.</p>
+
+<p>Si vous fermez Claude Code accidentellement, ses tâches sont préservées :</p>
+<pre><code>claude -c  # La task list réapparaît
+<p>/resume    # Sélectionner la session avec la task list</code></pre></p>
+
+<p>---</p>
+
+<h2>Commandes peu documentées (à utiliser avec précaution)</h2>
+
+<p>Source : petegypps.uk (Novembre 2025) — <strong>statut non-officiel</strong></p>
+
+<pre><code>!help          # Afficher les commandes cachées
+<p>!state         # Dump de l'état interne</p>
+<p>!memory        # Voir l'utilisation mémoire</p>
+<p>!tokens        # Afficher le nombre de tokens</p>
+<p>!cost          # Coût API jusqu'ici</p>
+<p>!export        # Exporter la conversation</p>
+<p>!import        # Importer une conversation</p>
+<p>!checkpoint    # Créer un checkpoint manuel</p>
+<p>!rollback      # Rollback vers un checkpoint</p>
+<p>!parallel      # Toggle mode parallèle</p>
+<p>!verbose       # Toggle sortie verbose</p>
+<p>!profile       # Démarrer le profiling</p>
+<p>!metrics       # Métriques de performance</p>
+<p>!debug         # Entrer en mode debug</p>
+<p>!tools         # Lister les outils disponibles</p>
+<p>!permissions   # Voir les permissions actuelles</p>
+<p>!workers       # Voir les threads workers actifs</code></pre></p>
+
+<p>---</p>
+
+<h2>Tricks & Hacks peu connus</h2>
+
+<h3>Le "Secret Word" dans CLAUDE.md</h3>
+
+<p>Source : aicodingdaily.substack.com (Janvier 2026)</p>
+
+<pre><code><h1>CLAUDE.md</h1>
+<p>IMPORTANT: When you see the phrase "ULTRATHINK", use extended thinking</p>
+<p>mode and think at least 5000 tokens before responding.</code></pre></p>
+
+<p>Session :</p>
+<pre><code><blockquote>ULTRATHINK — analyze the security implications of this architecture</blockquote></code></pre>
+
+<p>---</p>
+
+<h3>Status Line Personnalisé</h3>
+
+<pre><code>Opus 4.5 | 📁my-project | 🔀main (uncommitted) | ██░░░░░░░░ 18% | Working on auth...</code></pre>
+
+<p>Script : github.com/ykdojo/claude-code-tips/blob/main/scripts/context-bar.sh  </p>
+<p>10 thèmes de couleur disponibles.</p>
+
+<p>---</p>
+
+<h3>Debug Mode Avancé</h3>
+
+<pre><code>claude --debug "api"       # Requêtes API uniquement
+<p>claude --debug "mcp"       # MCP uniquement</p>
+<p>claude --debug "hooks"     # Hooks uniquement</p>
+<p>claude --debug "api,mcp"   # Plusieurs catégories</code></pre></p>
+
+<p>---</p>
+
+<h3>Streaming JSON en sortie</h3>
+
+<pre><code>claude -p "analyze this code" --output-format stream-json | jq</code></pre>
+
+<p>Idéal pour construire des intégrations custom.</p>
+
+<p>---</p>
+
+<h3>Variables d'environnement peu connues</h3>
+
+<pre><code>CLAUDE_NO_AUTO_COMPACT=1 claude       # Désactiver auto-compaction
+<p>ANTHROPIC_MODEL=claude-opus-4-6 claude # Forcer un modèle</p>
+<p>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude  # Agent Teams</p>
+<p>CLAUDE_DATA_DIR=~/my-claude-data claude  # Custom storage</code></pre></p>
+
+<p>---</p>
+
+<h3>Agent Teams expérimental (tmux)</h3>
+
+<pre><code>// .claude/settings.json
+<p>{</p>
+<p>  "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" },</p>
+<p>  "teammateMode": "tmux"</p>
+<p>}</code></pre></p>
+
+<p>Navigation entre panes tmux :</p>
+<pre><code>Shift+Down   # Prochain teammate
+<p>Shift+Up     # Teammate précédent</code></pre></p>
+
+<p>---</p>
+
+<h3><code>Ctrl+G</code> — Éditer le plan dans votre éditeur</h3>
+
+<p>En Plan Mode, <code>Ctrl+G</code> ouvre le plan dans votre éditeur de texte par défaut :</p>
+<ul>
+<li>Modifier directement les étapes</li>
+<li>Ajouter des contraintes</li>
+<li>Fermer → Claude continue avec votre plan modifié</li>
+</ul>
+
+<p>---</p>
+
+<h3>Teleport entre surfaces</h3>
+
+<pre><code>/teleport    # Transfère la session web vers le terminal local
+<p>/desktop     # Ouvre le Desktop App pour review visuelle des diffs</code></pre></p>
+
+<p>---</p>
+
+<h2>Où trouver les nouvelles features non-documentées</h2>
+
+<p>L'équipe Claude Code poste souvent des tips sans les mettre dans la doc :</p>
+
+<ul>
+<li><strong>@claudeai</strong> sur X/Twitter</li>
+<li><strong>@AnthropicAI</strong> sur X/Twitter</li>
+<li><strong>Release notes GitHub</strong> : github.com/anthropics/claude-code/releases</li>
+<li><strong>r/ClaudeCode</strong> et <strong>r/ClaudeAI</strong></li>
+<li><strong>Discord Anthropic</strong> #claude-code</li>
+</ul>
+
+<blockquote>"The dev team will casually drop 'oh yeah, that exists' or ship things without mentioning them in the release notes, so I highly recommend following them on Twitter." — dev.to/akari_iku</blockquote>
+
+<p>---</p>
+
+<h2>Bugs connus (Février 2026)</h2>
+
+<p>| Bug | Workaround |</p>
+<p>|-----|------------|</p>
+<p>| Shift+Tab ne montre pas Plan Mode sur Windows (v2.1.3+) | Utiliser <code>/plan</code> ou dire "let's plan this" |</p>
+<p>| [Issue #17344] | Voir github.com/anthropics/claude-code/issues/17344 |</p>
+
+<p>---</p>
+<p>*Sources : dev.to/akari_iku (Fév 2026), petegypps.uk (Nov 2025), aicodingdaily.substack.com (Jan 2026), r/ClaudeAI — 27 Février 2026*</p>
+
 </div>
 
-<div class="exercise">
-<h4>Exercice 12 — Worktrees Parallèles <span class="difficulty diff-hard">🔴 AVANCÉ</span></h4>
-<p><strong>Objectif :</strong> Travailler en parallèle avec des worktrees.</p>
-<ol>
-<li>Lance : <code>claude --worktree</code></li>
-<li>Dans cette session, travaille sur une feature</li>
-<li>Ouvre un autre terminal et lance : <code>claude --worktree</code></li>
-<li>Travaille sur une autre feature en parallèle</li>
-<li>Vérifie avec <code>git worktree list</code> que les deux existent</li>
-<li>Commit dans chaque worktree séparément</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 13 — Agent Team <span class="difficulty diff-hard">🔴 AVANCÉ</span></h4>
-<p><strong>Objectif :</strong> Lancer une équipe d'agents.</p>
-<ol>
-<li>Active agent teams dans settings.json</li>
-<li>Demande : "Create a team with 3 teammates to refactor the auth module: one for the API layer, one for the database layer, one for tests"</li>
-<li>Observe la coordination</li>
-<li>Interagis directement avec un teammate (<code>Shift+Down</code>)</li>
-<li>Clean up : "Clean up the team"</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 14 — Managed Settings <span class="difficulty diff-hard">🔴 AVANCÉ</span></h4>
-<p><strong>Objectif :</strong> Simuler une config enterprise.</p>
-<ol>
-<li>Crée un fichier managed settings au bon emplacement pour ton OS</li>
-<li>Ajoute <code>disableBypassPermissionsMode: "disable"</code></li>
-<li>Ajoute des deny rules globales</li>
-<li>Vérifie que les restrictions sont en place et non-overridables</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 15 — MCP Server <span class="difficulty diff-hard">🔴 AVANCÉ</span></h4>
-<p><strong>Objectif :</strong> Connecter Claude Code à un serveur MCP.</p>
-<ol>
-<li>Configure un serveur MCP GitHub dans settings.json</li>
-<li>Utilise <code>mcp__github</code> tools dans Claude Code</li>
-<li>Demande : "List my open PRs using the GitHub MCP server"</li>
-<li>Configure les permissions MCP appropriées</li>
-</ol>
-</div>
-
-<h2>🟣 Expert — Workflows avancés</h2>
-
-<div class="exercise">
-<h4>Exercice 16 — CI/CD Pipeline <span class="difficulty diff-hard">🔴 EXPERT</span></h4>
-<p><strong>Objectif :</strong> Intégrer Claude Code dans un pipeline CI.</p>
-<ol>
-<li>Crée un GitHub Action utilisant Claude Code headless</li>
-<li>Claude doit : analyser une PR, reviewer le code, poster un commentaire</li>
-<li>Utilise <code>--dangerously-skip-permissions</code> dans le container CI</li>
-<li>Configure <code>--output-format json</code> pour parser les résultats</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 17 — Hook Prompt LLM <span class="difficulty diff-hard">🔴 EXPERT</span></h4>
-<p><strong>Objectif :</strong> Créer un hook qui utilise un prompt LLM au lieu d'un script.</p>
-<ol>
-<li>Crée un hook PostToolUse de type "prompt"</li>
-<li>Le prompt doit vérifier que le code édité respecte tes conventions</li>
-<li>Si non-conforme, le hook ajoute un message de feedback</li>
-<li>Teste sur une modification qui viole les conventions</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 18 — Multi-Repo Workflow <span class="difficulty diff-hard">🔴 EXPERT</span></h4>
-<p><strong>Objectif :</strong> Travailler sur plusieurs repos simultanément.</p>
-<ol>
-<li>Utilise <code>--add-dir</code> pour ajouter un deuxième repo</li>
-<li>Demande à Claude de modifier les deux repos de manière cohérente</li>
-<li>Ou utilise les sessions cloud avec multiple repos (Desktop)</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 19 — Sécurité Maximale <span class="difficulty diff-hard">🔴 EXPERT</span></h4>
-<p><strong>Objectif :</strong> Mettre en place la config de sécurité la plus restrictive possible.</p>
-<ol>
-<li>Active le sandboxing en mode "Regular permissions"</li>
-<li>Crée des deny rules pour tous les répertoires sensibles</li>
-<li>Configure <code>dontAsk</code> mode avec une allowlist minimale</li>
-<li>Crée un hook PreToolUse qui valide chaque commande bash</li>
-<li>Teste que tout fonctionne pour le développement normal</li>
-<li>Teste que les accès non-autorisés sont bien bloqués</li>
-</ol>
-</div>
-
-<div class="exercise">
-<h4>Exercice 20 — Team + Worktrees + Hooks <span class="difficulty diff-hard">🔴 EXPERT</span></h4>
-<p><strong>Objectif :</strong> Combiner toutes les fonctionnalités avancées.</p>
-<ol>
-<li>Active agent teams + sandboxing</li>
-<li>Crée un hook <code>WorktreeCreate</code> qui setup les dépendances</li>
-<li>Crée un hook <code>TaskCompleted</code> qui lance les tests</li>
-<li>Lance une team de 3 agents avec worktrees isolés</li>
-<li>Observe que chaque teammate travaille dans son worktree</li>
-<li>Vérifie que les hooks se déclenchent correctement</li>
-<li>Clean up et merge les résultats</li>
-</ol>
-<p><strong>Validation :</strong> Tout fonctionne de bout en bout. Félicitations, tu es expert Claude Code ! 🏆</p>
-</div>
-</div>
-
-<!-- ======================= CHEATSHEET ======================= -->
 <div class="content" id="cheatsheet">
-<h1>📋 Cheatsheet — Claude Code</h1>
-<p>Référence rapide de toutes les commandes, raccourcis, et configurations.</p>
+<h1>Cheatsheet — Claude Code + Cowork</h1>
 
-<h2>🚀 Lancement</h2>
-<table>
-<tr><th>Commande</th><th>Action</th></tr>
-<tr><td><code>claude</code></td><td>Session interactive</td></tr>
-<tr><td><code>claude -p "..."</code></td><td>One-shot headless</td></tr>
-<tr><td><code>claude --continue</code></td><td>Reprendre dernière session</td></tr>
-<tr><td><code>claude --resume [name]</code></td><td>Reprendre par nom</td></tr>
-<tr><td><code>claude --from-pr 123</code></td><td>Reprendre depuis PR</td></tr>
-<tr><td><code>claude --worktree</code></td><td>Session avec worktree isolé</td></tr>
-<tr><td><code>claude --add-dir ../lib</code></td><td>Ajouter un répertoire</td></tr>
-<tr><td><code>claude --permission-mode plan</code></td><td>Démarrer en Plan Mode</td></tr>
-<tr><td><code>claude agents</code></td><td>Lister les agents configurés</td></tr>
-</table>
+<blockquote>Référence condensée — Février 2026</blockquote>
 
-<h2>⌨️ Raccourcis in-session</h2>
-<table>
-<tr><th>Raccourci</th><th>Action</th></tr>
-<tr><td><code>Shift+Tab</code></td><td>Cycler modes permission (default → acceptEdits → plan)</td></tr>
-<tr><td><code>Ctrl+O</code></td><td>Toggle verbose mode (voir thinking)</td></tr>
-<tr><td><code>Option+T / Alt+T</code></td><td>Toggle thinking on/off</td></tr>
-<tr><td><code>Shift+Down</code></td><td>Naviguer entre teammates (agent teams)</td></tr>
-<tr><td><code>Ctrl+T</code></td><td>Toggle task list (agent teams)</td></tr>
-<tr><td><code>Ctrl+G</code></td><td>Ouvrir le plan dans l'éditeur</td></tr>
-<tr><td><code>Ctrl+V</code></td><td>Coller image (pas Cmd+V !)</td></tr>
-<tr><td><code>Escape</code></td><td>Interrompre le tour d'un teammate</td></tr>
-</table>
+<p>---</p>
 
-<h2>/ Slash Commands</h2>
-<table>
-<tr><th>Commande</th><th>Action</th></tr>
-<tr><td><code>/help</code></td><td>Aide</td></tr>
-<tr><td><code>/compact</code></td><td>Compacter le contexte</td></tr>
-<tr><td><code>/permissions</code></td><td>Voir/gérer les permissions</td></tr>
-<tr><td><code>/model</code></td><td>Changer modèle / effort</td></tr>
-<tr><td><code>/agents</code></td><td>Gérer les sous-agents</td></tr>
-<tr><td><code>/sandbox</code></td><td>Configurer sandboxing</td></tr>
-<tr><td><code>/resume</code></td><td>Picker de sessions</td></tr>
-<tr><td><code>/rename</code></td><td>Nommer la session</td></tr>
-<tr><td><code>/config</code></td><td>Config globale</td></tr>
-<tr><td><code>/statusline</code></td><td>Barre de status</td></tr>
-<tr><td><code>/commit-push-pr</code></td><td>Commit + push + PR</td></tr>
-</table>
+<h2>⚡ CLAUDE CODE — Commandes essentielles</h2>
 
-<h2>📁 Fichiers importants</h2>
-<table>
-<tr><th>Fichier</th><th>Rôle</th></tr>
-<tr><td><code>CLAUDE.md</code></td><td>Mémoire projet (injectée dans le prompt)</td></tr>
-<tr><td><code>.claude/settings.json</code></td><td>Config projet (permissions, hooks, sandbox)</td></tr>
-<tr><td><code>.claude/settings.local.json</code></td><td>Config locale (gitignored)</td></tr>
-<tr><td><code>~/.claude/settings.json</code></td><td>Config utilisateur globale</td></tr>
-<tr><td><code>~/.claude/agents/*.md</code></td><td>Sous-agents personnels</td></tr>
-<tr><td><code>.claude/agents/*.md</code></td><td>Sous-agents projet</td></tr>
-<tr><td><code>~/.claude/skills/*/SKILL.md</code></td><td>Skills personnelles</td></tr>
-<tr><td><code>.claude/skills/*/SKILL.md</code></td><td>Skills projet</td></tr>
-<tr><td><code>.claude/worktrees/</code></td><td>Worktrees des sessions parallèles</td></tr>
-</table>
+<h3>Démarrer</h3>
+<pre><code>claude                        # Session interactive
+<p>claude "query"                # Démarrer avec prompt</p>
+<p>claude -p "query"             # Mode headless (non-interactif)</p>
+<p>claude -c                     # Continuer la dernière session</p>
+<p>claude -r "nom" "suite"       # Reprendre session par nom</p>
+<p>cat file | claude -p "query"  # Piper du contenu</code></pre></p>
 
-<h2>🔒 Permissions — Quick Ref</h2>
-<pre><code>{
-  "permissions": {
-    "defaultMode": "default",    // default|acceptEdits|plan|dontAsk|bypassPermissions
-    "allow": [
-      "Bash(npm *)",             // wildcard command
-      "Bash(git commit *)",
-      "WebFetch(domain:docs.example.com)",
-      "mcp__github",             // tous les outils MCP github
-      "Task(Explore)"            // sous-agent Explore
-    ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Bash(curl *)",
-      "Read(~/.ssh/**)",         // gitignore-style paths
-      "Read(**/.env)",
-      "Edit(//etc/**)",          // // = chemin absolu
-      "Task(Plan)"              // désactiver sous-agent Plan
-    ]
-  }
-}</code></pre>
+<h3>Dans la session</h3>
+<pre><code>/help       Toutes les commandes disponibles
+<p>/clear      Effacer et repartir à zéro</p>
+<p>/compact    Compacter le contexte (résumé)</p>
+<p>/rewind     Time travel (Esc+Esc pour menu)</p>
+<p>/insights   Rapport HTML de vos habitudes</p>
+<p>/usage      Limites du plan</p>
+<p>/cost       Coût de la session (API)</p>
+<p>/context    Visualiser l'usage du contexte</p>
+<p>/stats      Statistiques gamifiées</p>
+<p>/review     Review du code courant</p>
+<p>/agents     Gérer les sous-agents</p>
+<p>/mcp        Gérer les serveurs MCP</p>
+<p>/config     Interface de configuration</p>
+<p>/init       Générer CLAUDE.md du projet</p>
+<p>/doctor     Diagnostics d'environnement</code></pre></p>
 
-<h2>🏖️ Sandbox — Quick Ref</h2>
-<pre><code>{
-  "sandbox": {
-    "enabled": true,
-    "autoAllow": true,           // auto-approve sandboxed commands
-    "allowedDomains": [
-      "registry.npmjs.org",
-      "github.com"
-    ],
-    "excludedCommands": ["docker"],  // run outside sandbox
-    "allowUnsandboxedCommands": false, // disable escape hatch
-    "network": {
-      "httpProxyPort": 8080,
-      "socksProxyPort": 8081
-    }
-  }
-}</code></pre>
+<h3>Raccourcis clavier</h3>
+<pre><code>Shift+Tab   Changer de mode (Normal → Auto-Accept → Plan)
+<p>Ctrl+G      Éditer le plan dans l'éditeur externe</p>
+<p>Esc+Esc     Menu de rewind (time travel)</p>
+<p>/           Voir toutes les commandes</p>
+<p>?           Voir tous les raccourcis</code></pre></p>
 
-<h2>🪝 Hooks — Quick Ref</h2>
-<pre><code>{
-  "hooks": {
-    "PreToolUse": [{
-      "matcher": "Bash",
-      "hooks": [{ "type": "command", "command": ".claude/hooks/guard.sh" }]
-    }],
-    "PostToolUse": [{
-      "matcher": "Edit",
-      "hooks": [{ "type": "command", "command": ".claude/hooks/lint.sh" }]
-    }],
-    "WorktreeCreate": [{
-      "hooks": [{ "type": "command", "command": ".claude/hooks/setup-wt.sh" }]
-    }],
-    "Stop": [{
-      "hooks": [{ "type": "command", "command": ".claude/hooks/on-done.sh" }]
-    }]
-  }
-}</code></pre>
+<h3>Modes de permission</h3>
+<pre><code>Normal Mode  →  Auto-Accept Mode  →  Plan Mode
+<p>(demande)       (accepte auto)        (aucune modification)</code></pre></p>
 
-<h2>🤖 Sous-agent — Quick Ref</h2>
-<pre><code># .claude/agents/reviewer.md
----
-name: reviewer
-description: Code review expert
-tools: Read, Glob, Grep
-model: sonnet
-permissionMode: plan
-maxTurns: 20
----
+<p>---</p>
 
-Review code for quality, security, and best practices.
-Focus on actionable feedback.</code></pre>
+<h2>🔧 Configuration</h2>
 
-<h2>🧑‍💻 Headless / CI — Quick Ref</h2>
-<pre><code># One-shot
-claude -p "Fix the failing tests" --output-format json
-
-# Stream output
-claude -p "Analyze security" --output-format stream-json
-
-# No permissions (containers ONLY)
-claude -p "..." --dangerously-skip-permissions
-
-# With custom model
-claude --model opus -p "Complex architecture analysis"
-
-# With effort level
-CLAUDE_CODE_EFFORT_LEVEL=high claude -p "..."</code></pre>
-
-<h2>🔗 Liens utiles</h2>
+<h3>CLAUDE.md (créer avec <code>/init</code>, affiner ensuite)</h3>
+<pre><code><h1>Code style</h1>
 <ul>
-<li><a href="https://docs.anthropic.com/en/docs/claude-code">Documentation officielle</a></li>
-<li><a href="https://github.com/anthropics/claude-code">GitHub</a></li>
-<li><a href="https://github.com/anthropics/claude-code/tree/main/examples/settings">Exemples de settings</a></li>
-<li><a href="https://github.com/anthropic-experimental/sandbox-runtime">Sandbox Runtime (open source)</a></li>
-<li><a href="https://claude.ai/code">Claude Code sur le web</a></li>
+<li>Use ES modules (not CommonJS)</li>
+<li>TypeScript strict mode</li>
 </ul>
+
+<h1>Testing</h1>
+<ul>
+<li>Use Vitest (not Jest)</li>
+<li>Always run tests after changes</li>
+</ul>
+
+<h1>Git</h1>
+<ul>
+<li>Branch: feature/*, fix/*, chore/*</li>
+<li>Commit with conventional commits</code></pre></li>
+</ul>
+
+<h3>settings.json</h3>
+<pre><code>{
+<p>  "autoCompact": true,</p>
+<p>  "permissions": {</p>
+<p>    "defaultMode": "normal",</p>
+<p>    "allowedTools": ["Bash(git *)", "Bash(npm test *)"]</p>
+<p>  }</p>
+<p>}</code></pre></p>
+
+<h3>MCP (connecteurs)</h3>
+<pre><code>claude mcp add --transport http notion https://mcp.notion.com/mcp
+<p>claude mcp add --transport http slack https://mcp.slack.com/mcp \</p>
+<p>  --header "Authorization: Bearer token"</p>
+<p>claude mcp list</p>
+<p>claude mcp disable server-name</code></pre></p>
+
+<p>---</p>
+
+<h2>🤖 GitHub Actions</h2>
+<pre><code>- uses: anthropics/claude-code-action@v1
+<p>  with:</p>
+<p>    anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}</p>
+<p>    # Répond aux @claude dans les commentaires PR/issues</code></pre></p>
+<p>Usage : <code>@claude implement this feature</code> dans un commentaire de PR</p>
+
+<p>---</p>
+
+<h2>💡 CLAUDE CODE — Workflow optimal</h2>
+
+<pre><code>1. Plan Mode → Explorer le codebase (aucune modification)
+<ol>
+<li>Plan Mode + Ctrl+G → Créer et éditer le plan</li>
+<li>Normal Mode → Implémenter (avec tests)</li>
+<li>> "commit with descriptive message and open PR"</code></pre></li>
+</ol>
+
+<p>---</p>
+
+<h2>📁 COWORK — Essentiels</h2>
+
+<h3>Démarrer</h3>
+<ul>
+<li>App Claude Desktop → "Cowork" dans la barre latérale</li>
+<li>Choisir un dossier de travail</li>
+<li>Optionnel : activer les connectors nécessaires</li>
+</ul>
+
+<h3>Patterns de base</h3>
+<pre><code><blockquote>Show me the plan before making any changes.</blockquote>
+<blockquote>[Tâche]. Only proceed after I approve the plan.</blockquote>
+<blockquote>[Tâche]. Create a backup first.</blockquote></code></pre>
+
+<h3>Exemples de tâches</h3>
+<pre><code><blockquote>Organize my Downloads folder. Show me the plan first.</blockquote>
+<blockquote>Create a Q1 report from all meeting notes in this folder.</blockquote>
+<blockquote>Extract data from these receipts and create a spreadsheet.</blockquote>
+<blockquote>Draft a job description for [ROLE] using our template.</blockquote></code></pre>
+
+<h3>Slash commands (plugins)</h3>
+<pre><code>/generate-report    → Lance un formulaire guidé
+<p>/analyze-portfolio  → Analyse avec paramètres</p>
+<p>/draft-proposal     → Création de document</code></pre></p>
+
+<p>---</p>
+
+<h2>🔌 Connectors Cowork disponibles (Fév 2026)</h2>
+
+<strong>Google</strong> : Drive, Gmail, Calendar  
+<strong>Microsoft</strong> : Excel, PowerPoint  
+<strong>Finance</strong> : FactSet, MSCI, S&P Global, LSEG  
+<strong>Legal</strong> : DocuSign, LegalZoom, Harvey  
+<strong>Sales</strong> : Apollo, Clay, Outreach, Similarweb  
+<strong>Collaboration</strong> : Slack, WordPress
+
+<p>---</p>
+
+<h2>🧩 Plugins Cowork par département</h2>
+
+<p>| Département | Plugin |</p>
+<p>|-------------|--------|</p>
+<p>| Finance | Financial Analysis, Investment Banking, Equity Research, PE, Wealth Mgmt |</p>
+<p>| Legal | Thomson Reuters CoCounsel |</p>
+<p>| RH | HR |</p>
+<p>| Design | Design |</p>
+<p>| Engineering | Engineering |</p>
+<p>| Opérations | Operations |</p>
+<p>| Marketing | Brand Voice (Tribe AI) |</p>
+<p>| Sales | Apollo, Common Room |</p>
+
+<p>---</p>
+
+<h2>💡 Tips Ultra-Rapides</h2>
+
+<h3>Claude Code</h3>
+<ul>
+<li><strong>Toujours fournir des critères de vérification</strong> → performance x2</li>
+<li><strong>Garder CLAUDE.md < 1 page</strong> → trop long = ignoré</li>
+<li><strong><code>/clear</code> entre les tâches</strong> → contexte frais = meilleures performances</li>
+<li><strong><code>@fichier</code></strong> pour référencer un fichier spécifique</li>
+<li><strong><code>ctrl+c</code> puis reformuler</strong> si Claude boucle</li>
+<li><strong><code>claude -p</code></strong> pour scripts et automation CI</li>
+</ul>
+
+<h3>Cowork</h3>
+<ul>
+<li><strong>Demander le plan d'abord</strong> pour toute tâche destructive</li>
+<li><strong>Instructions globales</strong> pour vos préférences permanentes</li>
+<li><strong>Instructions par dossier</strong> pour le contexte projet</li>
+<li><strong>Accès minimal</strong> : ne donner que le dossier nécessaire</li>
+<li><strong>Backup avant transformation</strong> de fichiers importants</li>
+</ul>
+
+<p>---</p>
+
+<h2>💰 Coûts</h2>
+
+<p>| Usage | Coût approx. |</p>
+<p>|-------|--------------|</p>
+<p>| Développeur moyen | ~$6/jour (API) |</p>
+<p>| 90e percentile | <$12/jour (API) |</p>
+<p>| Plan Max | ~$100-200/mois tout inclus |</p>
+
+<strong>Réduire les coûts</strong> : <code>/clear</code> entre tâches, bon modèle (Sonnet vs Opus), désactiver MCP inutilisés, <code>autoCompact: true</code>
+
+<p>---</p>
+
+<h2>🚑 Dépannage rapide</h2>
+
+<p>| Problème | Solution |</p>
+<p>|----------|----------|</p>
+<p>| <code>command not found: claude</code> | Ajouter <code>~/.local/bin</code> au PATH |</p>
+<p>| Performances basses | <code>/clear</code> ou <code>/compact</code> |</p>
+<p>| Claude boucle | <code>Ctrl+C</code>, reformuler avec critères |</p>
+<p>| MCP ne répond pas | <code>claude mcp restart <nom></code> |</p>
+<p>| Tokens épuisés | <code>/clear</code> ou nouvelle session |</p>
+<p>| Plan Mode pas disponible (Windows) | Utiliser <code>/plan</code> au lieu de Shift+Tab |</p>
+
+<p>---</p>
+
+<h2>📍 URLs Clés</h2>
+
+<pre><code>code.claude.com/docs          Documentation Claude Code
+<p>claude.com/product/cowork     Page Cowork</p>
+<p>claude.com/plugins            Marketplace plugins</p>
+<p>claude.com/connectors         Annuaire connectors</p>
+<p>claude.ai/download            Télécharger l'app</p>
+<p>github.com/anthropics/claude-code-action  GitHub Action</code></pre></p>
+
+<p>---</p>
+<p>*27 Février 2026 — Vérifier code.claude.com/docs pour les dernières mises à jour*</p>
+
 </div>
+
 
 <script>
 // Tab navigation
@@ -1433,16 +2527,13 @@ document.getElementById('search').addEventListener('input', function() {
     });
     return;
   }
-  // Show all tabs content for search
   const contents = document.querySelectorAll('.content');
   let found = false;
   contents.forEach(c => {
-    // Remove old marks
     c.querySelectorAll('mark').forEach(m => m.outerHTML = m.textContent);
     const text = c.textContent.toLowerCase();
     if (text.includes(q)) {
       if (!found) {
-        // Switch to the first tab with results
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.content').forEach(cc => cc.classList.remove('active'));
         c.classList.add('active');
